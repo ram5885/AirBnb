@@ -12,46 +12,62 @@ public class Hotel {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Long hotelId;
 
     @Column(nullable = false)
-    private String hotelName;
+    private String name;
+
+    private String city;
 
     @Column(columnDefinition = "TEXT[]")
-    private String[] photo;
+    private String[] photos;
 
     @Column(columnDefinition = "TEXT[]")
     private String[] amenities;
 
     @CreationTimestamp
-    private LocalDateTime createdDate;
+    private LocalDateTime createdAt;
 
     @UpdateTimestamp
-    private LocalDateTime updatedDate;
+    private LocalDateTime updatedAt;
+
+    @Embedded
+    private HotelContactInfo contactInfo;
+
+    @Column(nullable = false)
+    private Boolean active;
 
 
-    public long getId() {
-        return id;
+    public Long gethotelId() {
+        return hotelId;
     }
 
-    public void setId(long id) {
-        this.id = id;
+    public void sethotelId(Long hotelId) {
+        this.hotelId = hotelId;
     }
 
-    public String getHotelName() {
-        return hotelName;
+    public String getName() {
+        return name;
     }
 
-    public void setHotelName(String hotelName) {
-        this.hotelName = hotelName;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public String[] getPhoto() {
-        return photo;
+    public String getCity() {
+        return city;
     }
 
-    public void setPhoto(String[] photo) {
-        this.photo = photo;
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public String[] getPhotos() {
+        return photos;
+    }
+
+    public void setPhotos(String[] photos) {
+        this.photos = photos;
     }
 
     public String[] getAmenities() {
@@ -62,20 +78,35 @@ public class Hotel {
         this.amenities = amenities;
     }
 
-    public LocalDateTime getCreatedDate() {
-        return createdDate;
+    public LocalDateTime getCreatedAt() {
+        return createdAt;
     }
 
-    public void setCreatedDate(LocalDateTime createdDate) {
-        this.createdDate = createdDate;
+    public void setCreatedAt(LocalDateTime createdAt) {
+        this.createdAt = createdAt;
     }
 
-    public LocalDateTime getUpdatedDate() {
-        return updatedDate;
+    public LocalDateTime getUpdatedAt() {
+        return updatedAt;
     }
 
-    public void setUpdatedDate(LocalDateTime updatedDate) {
-        this.updatedDate = updatedDate;
+    public void setUpdatedAt(LocalDateTime updatedAt) {
+        this.updatedAt = updatedAt;
     }
 
+    public HotelContactInfo getContactInfo() {
+        return contactInfo;
+    }
+
+    public void setContactInfo(HotelContactInfo contactInfo) {
+        this.contactInfo = contactInfo;
+    }
+
+    public Boolean getActive() {
+        return active;
+    }
+
+    public void setActive(Boolean active) {
+        this.active = active;
+    }
 }
