@@ -1,0 +1,227 @@
+.auth-page {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  background:
+    linear-gradient(rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.45)),
+    url('https://picsum.photos/id/1039/1600/1000') center/cover no-repeat;
+}
+
+.auth-card {
+  width: 100%;
+  max-width: 440px;
+  background: #fff;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-md);
+  overflow: hidden;
+  position: relative;
+  max-height: calc(100vh - 48px);
+  overflow-y: auto;
+}
+
+.auth-card__header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  border-bottom: 1px solid var(--color-border-light);
+  position: relative;
+}
+
+.auth-card__header h1 {
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.auth-card__close {
+  position: absolute;
+  left: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 22px;
+  line-height: 1;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-text);
+}
+
+.auth-card__close:hover {
+  background: var(--color-bg-soft);
+}
+
+.auth-tabs {
+  display: flex;
+  padding: 0 24px;
+  border-bottom: 1px solid var(--color-border-light);
+}
+
+.auth-tabs__tab {
+  flex: 1;
+  padding: 14px 0;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--color-text-light);
+  border-bottom: 2px solid transparent;
+}
+
+.auth-tabs__tab.is-active {
+  color: var(--color-text);
+  border-color: var(--color-text);
+}
+
+.auth-form {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  padding: 20px 24px 4px;
+}
+
+.auth-field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.auth-field span {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--color-text);
+}
+
+.auth-field input,
+.auth-select select {
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  padding: 12px 14px;
+  font-size: 15px;
+  color: var(--color-text);
+}
+
+.auth-field input:focus,
+.auth-select select:focus {
+  outline: none;
+  border-color: var(--color-text);
+  box-shadow: 0 0 0 1px var(--color-text);
+}
+
+.auth-field.has-error input {
+  border-color: var(--color-primary);
+}
+
+.auth-field.has-error input:focus {
+  box-shadow: 0 0 0 1px var(--color-primary);
+}
+
+.auth-field__error {
+  font-size: 12px;
+  color: var(--color-primary);
+  font-style: normal;
+}
+
+.auth-select {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.auth-select span {
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.auth-select select {
+  background: #fff;
+}
+
+.auth-form__error {
+  font-size: 13px;
+  color: #c13515;
+  background: #fff0ee;
+  border: 1px solid #ffd9d0;
+  border-radius: var(--radius-sm);
+  padding: 10px 12px;
+}
+
+.auth-submit {
+  margin-top: 8px;
+  background: var(--color-primary-gradient);
+  color: #fff;
+  font-size: 15px;
+  font-weight: 600;
+  border-radius: var(--radius-sm);
+  padding: 13px;
+}
+
+.auth-submit:hover {
+  filter: brightness(0.95);
+}
+
+.auth-submit:disabled {
+  opacity: 0.6;
+  cursor: default;
+}
+
+.auth-divider {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 20px 24px;
+  color: var(--color-text-light);
+  font-size: 12px;
+}
+
+.auth-divider::before,
+.auth-divider::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--color-border);
+}
+
+.auth-social {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 0 24px;
+}
+
+.auth-social__btn {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--color-text);
+  border-radius: var(--radius-sm);
+  padding: 12px;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.auth-social__btn:hover {
+  background: var(--color-bg-soft);
+}
+
+.auth-social__icon {
+  position: absolute;
+  left: 14px;
+  font-weight: 700;
+}
+
+.auth-switch {
+  text-align: center;
+  font-size: 13px;
+  color: var(--color-text-light);
+  padding: 20px 24px 24px;
+}
+
+.auth-switch button {
+  color: var(--color-text);
+  font-weight: 600;
+  text-decoration: underline;
+}
