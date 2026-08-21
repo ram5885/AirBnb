@@ -1,13 +1,23 @@
 package com.HotelManagement.AirBnb.entity;
 
 
-import jakarta.persistence.*;
+import java.time.LocalDateTime;
+
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
-import java.time.LocalDateTime;
+import jakarta.persistence.Column;
+import jakarta.persistence.Embedded;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import lombok.Getter;
+import lombok.Setter;
 
 @Entity
+@Getter
+@Setter
 public class Hotel {
 
     @Id
@@ -36,77 +46,4 @@ public class Hotel {
 
     @Column(nullable = false)
     private Boolean active;
-
-
-    public Long gethotelId() {
-        return hotelId;
-    }
-
-    public void sethotelId(Long hotelId) {
-        this.hotelId = hotelId;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getCity() {
-        return city;
-    }
-
-    public void setCity(String city) {
-        this.city = city;
-    }
-
-    public String[] getPhotos() {
-        return photos;
-    }
-
-    public void setPhotos(String[] photos) {
-        this.photos = photos;
-    }
-
-    public String[] getAmenities() {
-        return amenities;
-    }
-
-    public void setAmenities(String[] amenities) {
-        this.amenities = amenities;
-    }
-
-    public LocalDateTime getCreatedAt() {
-        return createdAt;
-    }
-
-    public void setCreatedAt(LocalDateTime createdAt) {
-        this.createdAt = createdAt;
-    }
-
-    public LocalDateTime getUpdatedAt() {
-        return updatedAt;
-    }
-
-    public void setUpdatedAt(LocalDateTime updatedAt) {
-        this.updatedAt = updatedAt;
-    }
-
-    public HotelContactInfo getContactInfo() {
-        return contactInfo;
-    }
-
-    public void setContactInfo(HotelContactInfo contactInfo) {
-        this.contactInfo = contactInfo;
-    }
-
-    public Boolean getActive() {
-        return active;
-    }
-
-    public void setActive(Boolean active) {
-        this.active = active;
-    }
 }
