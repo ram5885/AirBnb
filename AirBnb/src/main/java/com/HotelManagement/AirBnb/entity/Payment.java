@@ -6,6 +6,7 @@ import java.time.LocalDateTime;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
+import com.HotelManagement.AirBnb.entity.enums.PaymentMethod;
 import com.HotelManagement.AirBnb.entity.enums.PaymentStatus;
 
 import jakarta.persistence.Column;
@@ -27,8 +28,23 @@ public class Payment {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    // Our reference for this payment, sent to the gateway as the order receipt.
     @Column(unique = true, nullable = false)
     private String transactionId;
+
+    @Column(unique = true)
+    private String razorpayOrderId;
+
+    // Set once a payment is verified; unique so the same gateway payment can't confirm twice.
+    @Column(unique = true)
+    private String razorpayPaymentId;
+
+    private String razorpayRefundId;
+
+    @Column(length = 3)
+    private String currency;
+
+    private String failureReason;
 
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
@@ -36,6 +52,11 @@ public class Payment {
 
     @Column(nullable = false, precision = 10, scale = 2)
     private BigDecimal amount;
+
+    // ONLINE (Razorpay) or PAY_AT_HOTEL; null on records created before this column existed means ONLINE.
+    @Enumerated(EnumType.STRING)
+    @Column(length = 20)
+    private PaymentMethod method;
 
     @CreationTimestamp
     private LocalDateTime createdAt;

@@ -1,13 +1,23 @@
 package com.HotelManagement.AirBnb.repository;
 
 import com.HotelManagement.AirBnb.entity.User;
-import org.springframework.data.jpa.repository.JpaRepository;
+import com.HotelManagement.AirBnb.repository.query.UserQueries;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 
 import java.util.Optional;
 
-public interface UserRepository extends JpaRepository<User, Long> {
+public interface UserRepository extends WriteRepository<User, Long> {
 
-    Optional<User> findByEmail(String email);
+    @Query(value = UserQueries.FIND_BY_ID, nativeQuery = true)
+    Optional<User> findUserById(@Param("id") Long id);
 
-    boolean existsByEmail(String email);
+    @Query(value = UserQueries.FIND_BY_EMAIL, nativeQuery = true)
+    Optional<User> findByEmail(@Param("email") String email);
+
+    @Query(value = UserQueries.EXISTS_BY_EMAIL, nativeQuery = true)
+    boolean existsByEmail(@Param("email") String email);
+
+    @Query(value = UserQueries.COUNT_ALL, nativeQuery = true)
+    long countAll();
 }

@@ -17,10 +17,12 @@ public class AuthService {
 
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
+    private final JwtService jwtService;
 
-    public AuthService(UserRepository userRepository, PasswordEncoder passwordEncoder) {
+    public AuthService(UserRepository userRepository, PasswordEncoder passwordEncoder, JwtService jwtService) {
         this.userRepository = userRepository;
         this.passwordEncoder = passwordEncoder;
+        this.jwtService = jwtService;
     }
 
     public AuthResponse signup(SignupRequest request) {
@@ -37,7 +39,8 @@ public class AuthService {
 
         User saved = userRepository.save(user);
 
-        return new AuthResponse(saved.getId(), saved.getName(), saved.getEmail(), saved.getRoles(), "Signup successful");
+        return new AuthResponse(saved.getId(), saved.getName(), saved.getEmail(), saved.getRoles(), "Signup successful",
+                jwtService.issueToken(saved));
     }
 
     public AuthResponse login(LoginRequest request) {
@@ -49,6 +52,7 @@ public class AuthService {
             throw new InvalidCredentialsException("Invalid email or password");
         }
 
-        return new AuthResponse(user.getId(), user.getName(), user.getEmail(), user.getRoles(), "Login successful");
+        return new AuthResponse(user.getId(), user.getName(), user.getEmail(), user.getRoles(), "Login successful",
+                jwtService.issueToken(user));
     }
 }

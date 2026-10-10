@@ -6,7 +6,7 @@
   padding: 24px;
   background:
     linear-gradient(rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.45)),
-    url('https://picsum.photos/id/1039/1600/1000') center/cover no-repeat;
+    url('../assets/images/auth-background.jpg') center/cover no-repeat;
 }
 
 .auth-card {

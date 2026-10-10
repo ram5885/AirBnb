@@ -33,3 +33,6 @@ build/
 .vscode/
 .DS_Store
 **/.DS_Store
+
+### Local secrets ###
+src/main/resources/razorpay-secrets.properties

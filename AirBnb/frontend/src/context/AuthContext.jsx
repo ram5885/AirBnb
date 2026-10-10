@@ -1,25 +1,51 @@
-import { createContext, useContext, useEffect, useState } from 'react';
+import { createContext, useCallback, useContext, useEffect, useState } from 'react';
 import * as api from '../api.js';
 
 const STORAGE_KEY = 'airbnb_clone_user';
+
+export function isHotelManager(user) {
+  return !!user?.roles?.includes('HOTEL_MANAGER');
+}
+
+/** Landing page for a signed-in user: hotel managers get their dashboard, everyone else the home page. */
+export function homePathFor(user) {
+  return isHotelManager(user) ? '/manager' : '/';
+}
 const AuthContext = createContext(null);
 
 export function AuthProvider({ children }) {
   const [user, setUser] = useState(null);
   const [ready, setReady] = useState(false);
 
+  const logout = useCallback(() => {
+    api.configureAuth({ token: null });
+    setUser(null);
+    try {
+      localStorage.removeItem(STORAGE_KEY);
+    } catch {
+      // ignore
+    }
+  }, []);
+
   useEffect(() => {
+    // A 401 from a protected API means the token expired or was rejected: sign out.
+    api.configureAuth({ token: null, handleUnauthorized: logout });
     try {
       const stored = localStorage.getItem(STORAGE_KEY);
-      if (stored) setUser(JSON.parse(stored));
+      if (stored) {
+        const parsed = JSON.parse(stored);
+        api.configureAuth({ token: parsed.token });
+        setUser(parsed);
+      }
     } catch {
       // ignore malformed/blocked storage
     } finally {
       setReady(true);
     }
-  }, []);
+  }, [logout]);
 
   function persist(authResponse) {
+    api.configureAuth({ token: authResponse.token });
     setUser(authResponse);
     try {
       localStorage.setItem(STORAGE_KEY, JSON.stringify(authResponse));
@@ -38,15 +64,6 @@ export function AuthProvider({ children }) {
     const res = await api.signup(details);
     persist(res);
     return res;
-  }
-
-  function logout() {
-    setUser(null);
-    try {
-      localStorage.removeItem(STORAGE_KEY);
-    } catch {
-      // ignore
-    }
   }
 
   return (

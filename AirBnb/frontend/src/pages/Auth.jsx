@@ -1,12 +1,11 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useAuth } from '../context/AuthContext.jsx';
+import { homePathFor, useAuth } from '../context/AuthContext.jsx';
 import '../styles/auth.css';
 
 const ROLES = [
   { value: 'GUEST', label: 'Guest — book stays' },
   { value: 'HOTEL_MANAGER', label: 'Hotel manager — list properties' },
-  { value: 'ADMIN', label: 'Admin' },
 ];
 
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -61,17 +60,19 @@ export default function Auth({ mode: initialMode }) {
 
     setSubmitting(true);
     try {
+      let user;
       if (isSignup) {
-        await signup({
+        user = await signup({
           name: form.name.trim(),
           email: form.email.trim(),
           password: form.password,
           role: form.role,
         });
       } else {
-        await login({ email: form.email.trim(), password: form.password });
+        user = await login({ email: form.email.trim(), password: form.password });
       }
-      navigate('/');
+      // Role-based landing: hotel managers -> manager dashboard, other users -> home.
+      navigate(homePathFor(user), { replace: true });
     } catch (err) {
       setFormError(err.message || 'Something went wrong. Please try again.');
     } finally {

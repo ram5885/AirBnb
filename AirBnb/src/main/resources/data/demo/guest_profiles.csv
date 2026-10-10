@@ -1,0 +1,25 @@
+user_email,name,gender,age
+guest1@example.com,Aditi Sharma,FEMALE,34
+guest1@example.com,Rajesh Sharma,MALE,33
+guest1@example.com,Aarav Sharma,MALE,9
+guest1@example.com,Ira Sharma,FEMALE,6
+guest2@example.com,Vikram Nair,MALE,34
+guest2@example.com,Nisha Nair,FEMALE,33
+guest2@example.com,Aarav Nair,MALE,9
+guest2@example.com,Ira Nair,FEMALE,6
+guest3@example.com,Meera Pillai,FEMALE,34
+guest3@example.com,Rajesh Pillai,MALE,33
+guest3@example.com,Aarav Pillai,MALE,9
+guest3@example.com,Ira Pillai,FEMALE,6
+guest4@example.com,Rahul Verma,MALE,34
+guest4@example.com,Nisha Verma,FEMALE,33
+guest4@example.com,Aarav Verma,MALE,9
+guest4@example.com,Ira Verma,FEMALE,6
+guest5@example.com,Ananya Ghosh,FEMALE,34
+guest5@example.com,Rajesh Ghosh,MALE,33
+guest5@example.com,Aarav Ghosh,MALE,9
+guest5@example.com,Ira Ghosh,FEMALE,6
+guest6@example.com,Siddharth Rao,MALE,34
+guest6@example.com,Nisha Rao,FEMALE,33
+guest6@example.com,Aarav Rao,MALE,9
+guest6@example.com,Ira Rao,FEMALE,6

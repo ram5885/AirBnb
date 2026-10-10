@@ -8,8 +8,7 @@ public class SignupRequest {
     private String email;
     private String password;
 
-    // Which of the 3 user types this account should be created as:
-    // GUEST (normal user), HOTEL_MANAGER, or ADMIN.
+    // Which user type this account should be created as: GUEST (normal user) or HOTEL_MANAGER.
     private Role role;
 
     public String getName() {

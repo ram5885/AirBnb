@@ -1,0 +1,162 @@
+manager_email,hotel_name,type,base_price,total_count,capacity,amenities
+manager1@example.com,Saffron Courtyard Bengaluru,Standard Room,1800.00,12,2,WIFI|TV|HOT_WATER
+manager1@example.com,Saffron Courtyard Bengaluru,Deluxe Room,2610.00,8,2,WIFI|TV|AIR_CONDITIONING|HAIR_DRYER|HOT_WATER
+manager1@example.com,Lotus Grand Bengaluru,Standard Room,2170.00,11,2,WIFI|TV|HOT_WATER
+manager1@example.com,Lotus Grand Bengaluru,Deluxe Room,3147.00,7,2,WIFI|TV|AIR_CONDITIONING|HAIR_DRYER|HOT_WATER
+manager1@example.com,Lotus Grand Bengaluru,Premium Room,4557.00,4,3,WIFI|TV|AIR_CONDITIONING|COFFEE_MAKER|TOILETRIES|BALCONY
+manager1@example.com,Neem Tree Residency Bengaluru,Standard Room,2540.00,10,2,WIFI|TV|HOT_WATER
+manager1@example.com,Neem Tree Residency Bengaluru,Deluxe Room,3683.00,6,2,WIFI|TV|AIR_CONDITIONING|HAIR_DRYER|HOT_WATER
+manager1@example.com,Neem Tree Residency Bengaluru,Premium Room,5334.00,3,3,WIFI|TV|AIR_CONDITIONING|COFFEE_MAKER|TOILETRIES|BALCONY
+manager1@example.com,Neem Tree Residency Bengaluru,Family Room,6096.00,2,4,WIFI|TV|AIR_CONDITIONING|REFRIGERATOR|HOT_WATER|CRIB
+manager1@example.com,Peacock Palace Inn Bengaluru,Standard Room,2910.00,12,2,WIFI|TV|HOT_WATER
+manager1@example.com,Peacock Palace Inn Bengaluru,Deluxe Room,4220.00,8,2,WIFI|TV|AIR_CONDITIONING|HAIR_DRYER|HOT_WATER
+manager1@example.com,Marigold Suites Chennai,Standard Room,3280.00,11,2,WIFI|TV|HOT_WATER
+manager1@example.com,Marigold Suites Chennai,Deluxe Room,4756.00,7,2,WIFI|TV|AIR_CONDITIONING|HAIR_DRYER|HOT_WATER
+manager1@example.com,Marigold Suites Chennai,Premium Room,6888.00,4,3,WIFI|TV|AIR_CONDITIONING|COFFEE_MAKER|TOILETRIES|BALCONY
+manager1@example.com,Sandalwood Stay Chennai,Standard Room,3650.00,10,2,WIFI|TV|HOT_WATER
+manager1@example.com,Sandalwood Stay Chennai,Deluxe Room,5293.00,6,2,WIFI|TV|AIR_CONDITIONING|HAIR_DRYER|HOT_WATER
+manager1@example.com,Sandalwood Stay Chennai,Premium Room,7665.00,3,3,WIFI|TV|AIR_CONDITIONING|COFFEE_MAKER|TOILETRIES|BALCONY
+manager1@example.com,Sandalwood Stay Chennai,Family Room,8760.00,2,4,WIFI|TV|AIR_CONDITIONING|REFRIGERATOR|HOT_WATER|CRIB
+manager1@example.com,Jasmine Heritage Haveli Chennai,Standard Room,4020.00,12,2,WIFI|TV|HOT_WATER
+manager1@example.com,Jasmine Heritage Haveli Chennai,Deluxe Room,5829.00,8,2,WIFI|TV|AIR_CONDITIONING|HAIR_DRYER|HOT_WATER
+manager1@example.com,Coral Bay Inn Chennai,Standard Room,4390.00,11,2,WIFI|TV|HOT_WATER
+manager1@example.com,Coral Bay Inn Chennai,Deluxe Room,6366.00,7,2,WIFI|TV|AIR_CONDITIONING|HAIR_DRYER|HOT_WATER
+manager1@example.com,Coral Bay Inn Chennai,Premium Room,9219.00,4,3,WIFI|TV|AIR_CONDITIONING|COFFEE_MAKER|TOILETRIES|BALCONY
+manager1@example.com,Kesari Mahal Ahmedabad,Standard Room,2160.00,10,2,WIFI|TV|HOT_WATER
+manager1@example.com,Kesari Mahal Ahmedabad,Deluxe Room,3132.00,6,2,WIFI|TV|AIR_CONDITIONING|HAIR_DRYER|HOT_WATER
+manager1@example.com,Kesari Mahal Ahmedabad,Premium Room,4536.00,3,3,WIFI|TV|AIR_CONDITIONING|COFFEE_MAKER|TOILETRIES|BALCONY
+manager1@example.com,Kesari Mahal Ahmedabad,Family Room,5184.00,2,4,WIFI|TV|AIR_CONDITIONING|REFRIGERATOR|HOT_WATER|CRIB
+manager1@example.com,Tulsi Garden Retreat Ahmedabad,Standard Room,2530.00,12,2,WIFI|TV|HOT_WATER
+manager1@example.com,Tulsi Garden Retreat Ahmedabad,Deluxe Room,3669.00,8,2,WIFI|TV|AIR_CONDITIONING|HAIR_DRYER|HOT_WATER
+manager1@example.com,Mango Grove Resort Ahmedabad,Standard Room,2900.00,11,2,WIFI|TV|HOT_WATER
+manager1@example.com,Mango Grove Resort Ahmedabad,Deluxe Room,4205.00,7,2,WIFI|TV|AIR_CONDITIONING|HAIR_DRYER|HOT_WATER
+manager1@example.com,Mango Grove Resort Ahmedabad,Premium Room,6090.00,4,3,WIFI|TV|AIR_CONDITIONING|COFFEE_MAKER|TOILETRIES|BALCONY
+manager1@example.com,Silver Oak Residency Ahmedabad,Standard Room,3270.00,10,2,WIFI|TV|HOT_WATER
+manager1@example.com,Silver Oak Residency Ahmedabad,Deluxe Room,4742.00,6,2,WIFI|TV|AIR_CONDITIONING|HAIR_DRYER|HOT_WATER
+manager1@example.com,Silver Oak Residency Ahmedabad,Premium Room,6867.00,3,3,WIFI|TV|AIR_CONDITIONING|COFFEE_MAKER|TOILETRIES|BALCONY
+manager1@example.com,Silver Oak Residency Ahmedabad,Family Room,7848.00,2,4,WIFI|TV|AIR_CONDITIONING|REFRIGERATOR|HOT_WATER|CRIB
+manager2@example.com,Saffron Courtyard Jaipur,Standard Room,3640.00,12,2,WIFI|TV|HOT_WATER
+manager2@example.com,Saffron Courtyard Jaipur,Deluxe Room,5278.00,8,2,WIFI|TV|AIR_CONDITIONING|HAIR_DRYER|HOT_WATER
+manager2@example.com,Lotus Grand Jaipur,Standard Room,4010.00,11,2,WIFI|TV|HOT_WATER
+manager2@example.com,Lotus Grand Jaipur,Deluxe Room,5815.00,7,2,WIFI|TV|AIR_CONDITIONING|HAIR_DRYER|HOT_WATER
+manager2@example.com,Lotus Grand Jaipur,Premium Room,8421.00,4,3,WIFI|TV|AIR_CONDITIONING|COFFEE_MAKER|TOILETRIES|BALCONY
+manager2@example.com,Neem Tree Residency Jaipur,Standard Room,4380.00,10,2,WIFI|TV|HOT_WATER
+manager2@example.com,Neem Tree Residency Jaipur,Deluxe Room,6351.00,6,2,WIFI|TV|AIR_CONDITIONING|HAIR_DRYER|HOT_WATER
+manager2@example.com,Neem Tree Residency Jaipur,Premium Room,9198.00,3,3,WIFI|TV|AIR_CONDITIONING|COFFEE_MAKER|TOILETRIES|BALCONY
+manager2@example.com,Neem Tree Residency Jaipur,Family Room,10512.00,2,4,WIFI|TV|AIR_CONDITIONING|REFRIGERATOR|HOT_WATER|CRIB
+manager2@example.com,Peacock Palace Inn Jaipur,Standard Room,2150.00,12,2,WIFI|TV|HOT_WATER
+manager2@example.com,Peacock Palace Inn Jaipur,Deluxe Room,3118.00,8,2,WIFI|TV|AIR_CONDITIONING|HAIR_DRYER|HOT_WATER
+manager2@example.com,Marigold Suites Delhi,Standard Room,2520.00,11,2,WIFI|TV|HOT_WATER
+manager2@example.com,Marigold Suites Delhi,Deluxe Room,3654.00,7,2,WIFI|TV|AIR_CONDITIONING|HAIR_DRYER|HOT_WATER
+manager2@example.com,Marigold Suites Delhi,Premium Room,5292.00,4,3,WIFI|TV|AIR_CONDITIONING|COFFEE_MAKER|TOILETRIES|BALCONY
+manager2@example.com,Sandalwood Stay Delhi,Standard Room,2890.00,10,2,WIFI|TV|HOT_WATER
+manager2@example.com,Sandalwood Stay Delhi,Deluxe Room,4191.00,6,2,WIFI|TV|AIR_CONDITIONING|HAIR_DRYER|HOT_WATER
+manager2@example.com,Sandalwood Stay Delhi,Premium Room,6069.00,3,3,WIFI|TV|AIR_CONDITIONING|COFFEE_MAKER|TOILETRIES|BALCONY
+manager2@example.com,Sandalwood Stay Delhi,Family Room,6936.00,2,4,WIFI|TV|AIR_CONDITIONING|REFRIGERATOR|HOT_WATER|CRIB
+manager2@example.com,Jasmine Heritage Haveli Delhi,Standard Room,3260.00,12,2,WIFI|TV|HOT_WATER
+manager2@example.com,Jasmine Heritage Haveli Delhi,Deluxe Room,4727.00,8,2,WIFI|TV|AIR_CONDITIONING|HAIR_DRYER|HOT_WATER
+manager2@example.com,Coral Bay Inn Delhi,Standard Room,3630.00,11,2,WIFI|TV|HOT_WATER
+manager2@example.com,Coral Bay Inn Delhi,Deluxe Room,5264.00,7,2,WIFI|TV|AIR_CONDITIONING|HAIR_DRYER|HOT_WATER
+manager2@example.com,Coral Bay Inn Delhi,Premium Room,7623.00,4,3,WIFI|TV|AIR_CONDITIONING|COFFEE_MAKER|TOILETRIES|BALCONY
+manager2@example.com,Kesari Mahal Agra,Standard Room,4000.00,10,2,WIFI|TV|HOT_WATER
+manager2@example.com,Kesari Mahal Agra,Deluxe Room,5800.00,6,2,WIFI|TV|AIR_CONDITIONING|HAIR_DRYER|HOT_WATER
+manager2@example.com,Kesari Mahal Agra,Premium Room,8400.00,3,3,WIFI|TV|AIR_CONDITIONING|COFFEE_MAKER|TOILETRIES|BALCONY
+manager2@example.com,Kesari Mahal Agra,Family Room,9600.00,2,4,WIFI|TV|AIR_CONDITIONING|REFRIGERATOR|HOT_WATER|CRIB
+manager2@example.com,Tulsi Garden Retreat Agra,Standard Room,4370.00,12,2,WIFI|TV|HOT_WATER
+manager2@example.com,Tulsi Garden Retreat Agra,Deluxe Room,6337.00,8,2,WIFI|TV|AIR_CONDITIONING|HAIR_DRYER|HOT_WATER
+manager2@example.com,Mango Grove Resort Agra,Standard Room,2140.00,11,2,WIFI|TV|HOT_WATER
+manager2@example.com,Mango Grove Resort Agra,Deluxe Room,3103.00,7,2,WIFI|TV|AIR_CONDITIONING|HAIR_DRYER|HOT_WATER
+manager2@example.com,Mango Grove Resort Agra,Premium Room,4494.00,4,3,WIFI|TV|AIR_CONDITIONING|COFFEE_MAKER|TOILETRIES|BALCONY
+manager2@example.com,Silver Oak Residency Agra,Standard Room,2510.00,10,2,WIFI|TV|HOT_WATER
+manager2@example.com,Silver Oak Residency Agra,Deluxe Room,3640.00,6,2,WIFI|TV|AIR_CONDITIONING|HAIR_DRYER|HOT_WATER
+manager2@example.com,Silver Oak Residency Agra,Premium Room,5271.00,3,3,WIFI|TV|AIR_CONDITIONING|COFFEE_MAKER|TOILETRIES|BALCONY
+manager2@example.com,Silver Oak Residency Agra,Family Room,6024.00,2,4,WIFI|TV|AIR_CONDITIONING|REFRIGERATOR|HOT_WATER|CRIB
+manager3@example.com,Saffron Courtyard Hyderabad,Standard Room,2880.00,12,2,WIFI|TV|HOT_WATER
+manager3@example.com,Saffron Courtyard Hyderabad,Deluxe Room,4176.00,8,2,WIFI|TV|AIR_CONDITIONING|HAIR_DRYER|HOT_WATER
+manager3@example.com,Lotus Grand Hyderabad,Standard Room,3250.00,11,2,WIFI|TV|HOT_WATER
+manager3@example.com,Lotus Grand Hyderabad,Deluxe Room,4713.00,7,2,WIFI|TV|AIR_CONDITIONING|HAIR_DRYER|HOT_WATER
+manager3@example.com,Lotus Grand Hyderabad,Premium Room,6825.00,4,3,WIFI|TV|AIR_CONDITIONING|COFFEE_MAKER|TOILETRIES|BALCONY
+manager3@example.com,Neem Tree Residency Hyderabad,Standard Room,3620.00,10,2,WIFI|TV|HOT_WATER
+manager3@example.com,Neem Tree Residency Hyderabad,Deluxe Room,5249.00,6,2,WIFI|TV|AIR_CONDITIONING|HAIR_DRYER|HOT_WATER
+manager3@example.com,Neem Tree Residency Hyderabad,Premium Room,7602.00,3,3,WIFI|TV|AIR_CONDITIONING|COFFEE_MAKER|TOILETRIES|BALCONY
+manager3@example.com,Neem Tree Residency Hyderabad,Family Room,8688.00,2,4,WIFI|TV|AIR_CONDITIONING|REFRIGERATOR|HOT_WATER|CRIB
+manager3@example.com,Peacock Palace Inn Hyderabad,Standard Room,3990.00,12,2,WIFI|TV|HOT_WATER
+manager3@example.com,Peacock Palace Inn Hyderabad,Deluxe Room,5786.00,8,2,WIFI|TV|AIR_CONDITIONING|HAIR_DRYER|HOT_WATER
+manager3@example.com,Marigold Suites Alappuzha,Standard Room,4360.00,11,2,WIFI|TV|HOT_WATER
+manager3@example.com,Marigold Suites Alappuzha,Deluxe Room,6322.00,7,2,WIFI|TV|AIR_CONDITIONING|HAIR_DRYER|HOT_WATER
+manager3@example.com,Marigold Suites Alappuzha,Premium Room,9156.00,4,3,WIFI|TV|AIR_CONDITIONING|COFFEE_MAKER|TOILETRIES|BALCONY
+manager3@example.com,Sandalwood Stay Alappuzha,Standard Room,2130.00,10,2,WIFI|TV|HOT_WATER
+manager3@example.com,Sandalwood Stay Alappuzha,Deluxe Room,3089.00,6,2,WIFI|TV|AIR_CONDITIONING|HAIR_DRYER|HOT_WATER
+manager3@example.com,Sandalwood Stay Alappuzha,Premium Room,4473.00,3,3,WIFI|TV|AIR_CONDITIONING|COFFEE_MAKER|TOILETRIES|BALCONY
+manager3@example.com,Sandalwood Stay Alappuzha,Family Room,5112.00,2,4,WIFI|TV|AIR_CONDITIONING|REFRIGERATOR|HOT_WATER|CRIB
+manager3@example.com,Jasmine Heritage Haveli Alappuzha,Standard Room,2500.00,12,2,WIFI|TV|HOT_WATER
+manager3@example.com,Jasmine Heritage Haveli Alappuzha,Deluxe Room,3625.00,8,2,WIFI|TV|AIR_CONDITIONING|HAIR_DRYER|HOT_WATER
+manager3@example.com,Coral Bay Inn Alappuzha,Standard Room,2870.00,11,2,WIFI|TV|HOT_WATER
+manager3@example.com,Coral Bay Inn Alappuzha,Deluxe Room,4162.00,7,2,WIFI|TV|AIR_CONDITIONING|HAIR_DRYER|HOT_WATER
+manager3@example.com,Coral Bay Inn Alappuzha,Premium Room,6027.00,4,3,WIFI|TV|AIR_CONDITIONING|COFFEE_MAKER|TOILETRIES|BALCONY
+manager3@example.com,Kesari Mahal Bhubaneswar,Standard Room,3240.00,10,2,WIFI|TV|HOT_WATER
+manager3@example.com,Kesari Mahal Bhubaneswar,Deluxe Room,4698.00,6,2,WIFI|TV|AIR_CONDITIONING|HAIR_DRYER|HOT_WATER
+manager3@example.com,Kesari Mahal Bhubaneswar,Premium Room,6804.00,3,3,WIFI|TV|AIR_CONDITIONING|COFFEE_MAKER|TOILETRIES|BALCONY
+manager3@example.com,Kesari Mahal Bhubaneswar,Family Room,7776.00,2,4,WIFI|TV|AIR_CONDITIONING|REFRIGERATOR|HOT_WATER|CRIB
+manager3@example.com,Tulsi Garden Retreat Bhubaneswar,Standard Room,3610.00,12,2,WIFI|TV|HOT_WATER
+manager3@example.com,Tulsi Garden Retreat Bhubaneswar,Deluxe Room,5235.00,8,2,WIFI|TV|AIR_CONDITIONING|HAIR_DRYER|HOT_WATER
+manager3@example.com,Mango Grove Resort Bhubaneswar,Standard Room,3980.00,11,2,WIFI|TV|HOT_WATER
+manager3@example.com,Mango Grove Resort Bhubaneswar,Deluxe Room,5771.00,7,2,WIFI|TV|AIR_CONDITIONING|HAIR_DRYER|HOT_WATER
+manager3@example.com,Mango Grove Resort Bhubaneswar,Premium Room,8358.00,4,3,WIFI|TV|AIR_CONDITIONING|COFFEE_MAKER|TOILETRIES|BALCONY
+manager3@example.com,Silver Oak Residency Bhubaneswar,Standard Room,4350.00,10,2,WIFI|TV|HOT_WATER
+manager3@example.com,Silver Oak Residency Bhubaneswar,Deluxe Room,6308.00,6,2,WIFI|TV|AIR_CONDITIONING|HAIR_DRYER|HOT_WATER
+manager3@example.com,Silver Oak Residency Bhubaneswar,Premium Room,9135.00,3,3,WIFI|TV|AIR_CONDITIONING|COFFEE_MAKER|TOILETRIES|BALCONY
+manager3@example.com,Silver Oak Residency Bhubaneswar,Family Room,10440.00,2,4,WIFI|TV|AIR_CONDITIONING|REFRIGERATOR|HOT_WATER|CRIB
+manager4@example.com,Saffron Courtyard Darjeeling,Standard Room,2120.00,12,2,WIFI|TV|HOT_WATER
+manager4@example.com,Saffron Courtyard Darjeeling,Deluxe Room,3074.00,8,2,WIFI|TV|AIR_CONDITIONING|HAIR_DRYER|HOT_WATER
+manager4@example.com,Lotus Grand Darjeeling,Standard Room,2490.00,11,2,WIFI|TV|HOT_WATER
+manager4@example.com,Lotus Grand Darjeeling,Deluxe Room,3611.00,7,2,WIFI|TV|AIR_CONDITIONING|HAIR_DRYER|HOT_WATER
+manager4@example.com,Lotus Grand Darjeeling,Premium Room,5229.00,4,3,WIFI|TV|AIR_CONDITIONING|COFFEE_MAKER|TOILETRIES|BALCONY
+manager4@example.com,Neem Tree Residency Darjeeling,Standard Room,2860.00,10,2,WIFI|TV|HOT_WATER
+manager4@example.com,Neem Tree Residency Darjeeling,Deluxe Room,4147.00,6,2,WIFI|TV|AIR_CONDITIONING|HAIR_DRYER|HOT_WATER
+manager4@example.com,Neem Tree Residency Darjeeling,Premium Room,6006.00,3,3,WIFI|TV|AIR_CONDITIONING|COFFEE_MAKER|TOILETRIES|BALCONY
+manager4@example.com,Neem Tree Residency Darjeeling,Family Room,6864.00,2,4,WIFI|TV|AIR_CONDITIONING|REFRIGERATOR|HOT_WATER|CRIB
+manager4@example.com,Peacock Palace Inn Darjeeling,Standard Room,3230.00,12,2,WIFI|TV|HOT_WATER
+manager4@example.com,Peacock Palace Inn Darjeeling,Deluxe Room,4684.00,8,2,WIFI|TV|AIR_CONDITIONING|HAIR_DRYER|HOT_WATER
+manager4@example.com,Marigold Suites Dehradun,Standard Room,3600.00,11,2,WIFI|TV|HOT_WATER
+manager4@example.com,Marigold Suites Dehradun,Deluxe Room,5220.00,7,2,WIFI|TV|AIR_CONDITIONING|HAIR_DRYER|HOT_WATER
+manager4@example.com,Marigold Suites Dehradun,Premium Room,7560.00,4,3,WIFI|TV|AIR_CONDITIONING|COFFEE_MAKER|TOILETRIES|BALCONY
+manager4@example.com,Sandalwood Stay Dehradun,Standard Room,3970.00,10,2,WIFI|TV|HOT_WATER
+manager4@example.com,Sandalwood Stay Dehradun,Deluxe Room,5757.00,6,2,WIFI|TV|AIR_CONDITIONING|HAIR_DRYER|HOT_WATER
+manager4@example.com,Sandalwood Stay Dehradun,Premium Room,8337.00,3,3,WIFI|TV|AIR_CONDITIONING|COFFEE_MAKER|TOILETRIES|BALCONY
+manager4@example.com,Sandalwood Stay Dehradun,Family Room,9528.00,2,4,WIFI|TV|AIR_CONDITIONING|REFRIGERATOR|HOT_WATER|CRIB
+manager4@example.com,Jasmine Heritage Haveli Dehradun,Standard Room,4340.00,12,2,WIFI|TV|HOT_WATER
+manager4@example.com,Jasmine Heritage Haveli Dehradun,Deluxe Room,6293.00,8,2,WIFI|TV|AIR_CONDITIONING|HAIR_DRYER|HOT_WATER
+manager4@example.com,Coral Bay Inn Dehradun,Standard Room,2110.00,11,2,WIFI|TV|HOT_WATER
+manager4@example.com,Coral Bay Inn Dehradun,Deluxe Room,3060.00,7,2,WIFI|TV|AIR_CONDITIONING|HAIR_DRYER|HOT_WATER
+manager4@example.com,Coral Bay Inn Dehradun,Premium Room,4431.00,4,3,WIFI|TV|AIR_CONDITIONING|COFFEE_MAKER|TOILETRIES|BALCONY
+manager4@example.com,Kesari Mahal Amritsar,Standard Room,2480.00,10,2,WIFI|TV|HOT_WATER
+manager4@example.com,Kesari Mahal Amritsar,Deluxe Room,3596.00,6,2,WIFI|TV|AIR_CONDITIONING|HAIR_DRYER|HOT_WATER
+manager4@example.com,Kesari Mahal Amritsar,Premium Room,5208.00,3,3,WIFI|TV|AIR_CONDITIONING|COFFEE_MAKER|TOILETRIES|BALCONY
+manager4@example.com,Kesari Mahal Amritsar,Family Room,5952.00,2,4,WIFI|TV|AIR_CONDITIONING|REFRIGERATOR|HOT_WATER|CRIB
+manager4@example.com,Tulsi Garden Retreat Amritsar,Standard Room,2850.00,12,2,WIFI|TV|HOT_WATER
+manager4@example.com,Tulsi Garden Retreat Amritsar,Deluxe Room,4133.00,8,2,WIFI|TV|AIR_CONDITIONING|HAIR_DRYER|HOT_WATER
+manager4@example.com,Mango Grove Resort Amritsar,Standard Room,3220.00,11,2,WIFI|TV|HOT_WATER
+manager4@example.com,Mango Grove Resort Amritsar,Deluxe Room,4669.00,7,2,WIFI|TV|AIR_CONDITIONING|HAIR_DRYER|HOT_WATER
+manager4@example.com,Mango Grove Resort Amritsar,Premium Room,6762.00,4,3,WIFI|TV|AIR_CONDITIONING|COFFEE_MAKER|TOILETRIES|BALCONY
+manager4@example.com,Silver Oak Residency Amritsar,Standard Room,3590.00,10,2,WIFI|TV|HOT_WATER
+manager4@example.com,Silver Oak Residency Amritsar,Deluxe Room,5206.00,6,2,WIFI|TV|AIR_CONDITIONING|HAIR_DRYER|HOT_WATER
+manager4@example.com,Silver Oak Residency Amritsar,Premium Room,7539.00,3,3,WIFI|TV|AIR_CONDITIONING|COFFEE_MAKER|TOILETRIES|BALCONY
+manager4@example.com,Silver Oak Residency Amritsar,Family Room,8616.00,2,4,WIFI|TV|AIR_CONDITIONING|REFRIGERATOR|HOT_WATER|CRIB
+manager3@example.com,Lingaraj Heritage Inn Bhubaneswar,Standard Room,1600.00,10,2,WIFI|TV|HOT_WATER
+manager3@example.com,Lingaraj Heritage Inn Bhubaneswar,Deluxe Room,2300.00,6,2,WIFI|TV|AIR_CONDITIONING|HOT_WATER|TOILETRIES
+manager3@example.com,Lingaraj Heritage Inn Bhubaneswar,Family Room,3400.00,3,4,WIFI|TV|AIR_CONDITIONING|REFRIGERATOR|CRIB|HOT_WATER
+manager1@example.com,Kalinga Courtyard Bhubaneswar,Standard Room,2800.00,14,2,WIFI|TV|AIR_CONDITIONING|HOT_WATER
+manager1@example.com,Kalinga Courtyard Bhubaneswar,Deluxe Room,3900.00,8,2,WIFI|TV|AIR_CONDITIONING|HAIR_DRYER|COFFEE_MAKER|HOT_WATER
+manager1@example.com,Kalinga Courtyard Bhubaneswar,Premium Room,5600.00,5,3,WIFI|TV|AIR_CONDITIONING|BALCONY|COFFEE_MAKER|TOILETRIES
+manager1@example.com,Kalinga Courtyard Bhubaneswar,Family Room,6400.00,4,4,WIFI|TV|AIR_CONDITIONING|REFRIGERATOR|CRIB|HOT_WATER
+manager2@example.com,Udayagiri View Stay Bhubaneswar,Standard Room,1200.00,8,2,WIFI|HOT_WATER|BED_LINENS
+manager2@example.com,Udayagiri View Stay Bhubaneswar,Deluxe Room,1800.00,5,2,WIFI|TV|AIR_CONDITIONING|HOT_WATER
+manager4@example.com,Patia Tech Park Suites Bhubaneswar,Studio Suite,3200.00,12,2,WIFI|TV|AIR_CONDITIONING|DEDICATED_WORKSPACE|MICROWAVE|REFRIGERATOR
+manager4@example.com,Patia Tech Park Suites Bhubaneswar,Executive Suite,4800.00,6,2,WIFI|TV|AIR_CONDITIONING|DEDICATED_WORKSPACE|COFFEE_MAKER|IRON|HAIR_DRYER
+manager4@example.com,Patia Tech Park Suites Bhubaneswar,Two Bedroom Suite,7200.00,3,4,WIFI|TV|AIR_CONDITIONING|DEDICATED_WORKSPACE|MICROWAVE|REFRIGERATOR|BALCONY
+manager1@example.com,Jaydev Vihar Residency Bhubaneswar,Standard Room,2400.00,10,2,WIFI|TV|AIR_CONDITIONING|HOT_WATER
+manager1@example.com,Jaydev Vihar Residency Bhubaneswar,Deluxe Room,3300.00,6,2,WIFI|TV|AIR_CONDITIONING|HAIR_DRYER|HOT_WATER
+manager1@example.com,Jaydev Vihar Residency Bhubaneswar,Premium Room,4700.00,4,3,WIFI|TV|AIR_CONDITIONING|BALCONY|COFFEE_MAKER|TOILETRIES
+manager2@example.com,Nandankanan Green Retreat Bhubaneswar,Garden Cottage,2600.00,6,3,WIFI|BALCONY|HOT_WATER|BED_LINENS
+manager2@example.com,Nandankanan Green Retreat Bhubaneswar,Family Cottage,3800.00,4,4,WIFI|TV|REFRIGERATOR|CRIB|BALCONY|HOT_WATER

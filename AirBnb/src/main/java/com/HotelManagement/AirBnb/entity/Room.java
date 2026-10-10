@@ -11,13 +11,20 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.Index;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Table;
 import lombok.Getter;
 import lombok.Setter;
 
 
+/**
+ * A room type of a hotel (e.g. "Deluxe King"). totalCount is how many physical
+ * rooms of this type the hotel has; individual rooms are not modelled.
+ */
 @Entity
+@Table(indexes = @Index(name = "idx_room_hotel", columnList = "hotel_id"))
 @Getter
 @Setter
 public class Room {
@@ -35,8 +42,7 @@ public class Room {
     @Column(nullable = false, precision = 10, scale = 2)
     private BigDecimal basePrice;
 
-    @Column(columnDefinition = "TEXT[]")
-    private String[] photos;
+    // Photos are stored as binary rows in room_photo (see RoomPhoto).
 
     @Column(columnDefinition = "TEXT[]")
     private String[] amenities;
@@ -53,5 +59,8 @@ public class Room {
 
     @UpdateTimestamp
     private LocalDateTime updatedAt;
+
+    // Soft delete: set when the manager deletes the room type, so booking history is kept.
+    private LocalDateTime deletedAt;
 
 }

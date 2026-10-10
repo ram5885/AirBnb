@@ -11,16 +11,19 @@ public class AuthResponse {
     private String email;
     private Set<Role> roles;
     private String message;
+    // Bearer token for protected APIs (see SecurityConfig).
+    private String token;
 
     public AuthResponse() {
     }
 
-    public AuthResponse(Long id, String name, String email, Set<Role> roles, String message) {
+    public AuthResponse(Long id, String name, String email, Set<Role> roles, String message, String token) {
         this.id = id;
         this.name = name;
         this.email = email;
         this.roles = roles;
         this.message = message;
+        this.token = token;
     }
 
     public Long getId() {
@@ -61,5 +64,13 @@ public class AuthResponse {
 
     public void setMessage(String message) {
         this.message = message;
+    }
+
+    public String getToken() {
+        return token;
+    }
+
+    public void setToken(String token) {
+        this.token = token;
     }
 }

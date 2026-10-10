@@ -4,6 +4,7 @@ import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
+import org.hibernate.annotations.Check;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
@@ -23,6 +24,8 @@ import lombok.Setter;
 @Entity
 @Getter
 @Setter
+// Database-level guard against overbooking and negative inventory.
+@Check(name = "chk_inventory_booked_count", constraints = "booked_count >= 0 AND booked_count <= total_count")
 @Table(
         uniqueConstraints = @UniqueConstraint(
                 name = "unique_hotel_room_date",

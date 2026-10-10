@@ -1,0 +1,359 @@
+/* Guest hotel search, hotel and room pages. Uses tokens from index.css and shared m-* pieces from manager.css. */
+
+.s-muted {
+  color: var(--color-text-light);
+}
+
+.s-small {
+  font-size: 13px;
+}
+
+.s-available {
+  color: #067647;
+  font-weight: 600;
+}
+
+.s-unavailable {
+  color: #b42318;
+}
+
+/* ------------------------------------------------------------ search form */
+
+.s-hero {
+  padding: 28px 0 20px;
+  border-bottom: 1px solid var(--color-border-light);
+  background: linear-gradient(180deg, var(--color-bg-soft), var(--color-bg));
+}
+
+.s-hero__title {
+  font-size: 28px;
+  font-weight: 700;
+  margin-bottom: 16px;
+}
+
+.s-search {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  flex-wrap: wrap;
+  background: var(--color-bg);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-card);
+  padding: 14px;
+}
+
+.s-field {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  flex: 1 1 150px;
+  min-width: 0;
+}
+
+.s-field--wide {
+  flex: 2 1 240px;
+}
+
+.s-field--narrow {
+  flex: 0 1 130px;
+}
+
+.s-field label {
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+
+.s-field input,
+.s-field select {
+  width: 100%;
+  padding: 11px 12px;
+  font-size: 15px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  background: var(--color-bg);
+  color: var(--color-text);
+  font-family: inherit;
+}
+
+.s-field input:focus,
+.s-field select:focus {
+  outline: none;
+  border-color: var(--color-text);
+  box-shadow: 0 0 0 1px var(--color-text);
+}
+
+.s-field--error input,
+.s-field--error select {
+  border-color: #c13515;
+  background: #fff8f6;
+}
+
+.s-field__error {
+  font-size: 12px;
+  color: #c13515;
+}
+
+.s-search__button {
+  align-self: flex-end;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  height: 44px;
+  padding: 0 22px;
+  border-radius: var(--radius-sm);
+  background: var(--color-primary-gradient);
+  color: #fff;
+  font-weight: 600;
+  font-size: 15px;
+}
+
+.s-search__button:disabled {
+  opacity: 0.6;
+  cursor: progress;
+}
+
+.s-search__button:focus-visible {
+  outline: 2px solid var(--color-text);
+  outline-offset: 2px;
+}
+
+/* ------------------------------------------------------------ results */
+
+.s-results-header {
+  margin-bottom: 20px;
+}
+
+.s-results-header h2 {
+  font-size: 22px;
+}
+
+.s-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 28px 20px;
+}
+
+.s-card {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.s-card__image {
+  display: block;
+  aspect-ratio: 20 / 19;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  background: var(--color-bg-soft);
+}
+
+.s-card__image img,
+.s-card__image .m-img-placeholder {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s;
+}
+
+.s-card:hover .s-card__image img {
+  transform: scale(1.03);
+}
+
+.s-card__body {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  font-size: 14px;
+}
+
+.s-card__title {
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.s-card__title a:hover {
+  text-decoration: underline;
+}
+
+.s-card__amenities {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 12px;
+  color: var(--color-text-light);
+  font-size: 13px;
+}
+
+.s-card__amenities li {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.s-card__availability {
+  color: #067647;
+  font-size: 13px;
+}
+
+.s-card__price {
+  margin-top: 4px;
+}
+
+/* ------------------------------------------------------------ hotel & room pages */
+
+.s-gallery {
+  display: grid;
+  gap: 8px;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  margin-bottom: 24px;
+  height: 360px;
+}
+
+.s-gallery img,
+.s-gallery .m-img-placeholder {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.s-gallery--1 {
+  grid-template-columns: 1fr;
+}
+
+.s-gallery--2 {
+  grid-template-columns: 1fr 1fr;
+}
+
+.s-gallery--3,
+.s-gallery--4,
+.s-gallery--5 {
+  grid-template-columns: 2fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+}
+
+.s-gallery--3 > :first-child,
+.s-gallery--4 > :first-child,
+.s-gallery--5 > :first-child {
+  grid-row: span 2;
+}
+
+.s-gallery--3 > :nth-child(2) {
+  grid-column: span 2;
+}
+
+.s-gallery--4 > :nth-child(4) {
+  grid-column: span 2;
+}
+
+.s-detail {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.3fr);
+  gap: 24px;
+  align-items: start;
+}
+
+.s-rooms {
+  position: sticky;
+  top: calc(var(--nav-height) + 16px);
+}
+
+.s-staybar {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  margin-bottom: 12px;
+}
+
+.s-staybar .m-btn {
+  align-self: flex-end;
+  height: 44px;
+}
+
+.s-room-list {
+  display: flex;
+  flex-direction: column;
+  margin-top: 12px;
+}
+
+.s-room {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 14px 0;
+  border-top: 1px solid var(--color-border-light);
+}
+
+.s-room__thumb {
+  width: 88px;
+  height: 66px;
+  flex-shrink: 0;
+  object-fit: cover;
+  border-radius: var(--radius-sm);
+}
+
+.s-room__body {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.s-room__body h3 {
+  font-size: 16px;
+}
+
+.s-room__body h3 a:hover {
+  text-decoration: underline;
+}
+
+.s-row-unavailable td {
+  color: #b42318;
+  background: #fff8f6;
+}
+
+/* ------------------------------------------------------------ responsive */
+
+@media (max-width: 900px) {
+  .s-detail {
+    grid-template-columns: 1fr;
+  }
+
+  .s-rooms {
+    position: static;
+  }
+
+  .s-gallery {
+    height: 260px;
+  }
+}
+
+@media (max-width: 600px) {
+  .s-hero__title {
+    font-size: 22px;
+  }
+
+  .s-search__button {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .s-gallery--3,
+  .s-gallery--4,
+  .s-gallery--5 {
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr;
+  }
+
+  .s-gallery > :not(:first-child) {
+    display: none;
+  }
+
+  .s-room {
+    flex-wrap: wrap;
+  }
+}

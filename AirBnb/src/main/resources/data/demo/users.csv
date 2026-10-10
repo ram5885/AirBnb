@@ -1,0 +1,11 @@
+email,name,role
+manager1@example.com,Arjun Mehta,HOTEL_MANAGER
+manager2@example.com,Kavya Iyer,HOTEL_MANAGER
+manager3@example.com,Rohan Deshmukh,HOTEL_MANAGER
+manager4@example.com,Sneha Banerjee,HOTEL_MANAGER
+guest1@example.com,Aditi Sharma,GUEST
+guest2@example.com,Vikram Nair,GUEST
+guest3@example.com,Meera Pillai,GUEST
+guest4@example.com,Rahul Verma,GUEST
+guest5@example.com,Ananya Ghosh,GUEST
+guest6@example.com,Siddharth Rao,GUEST

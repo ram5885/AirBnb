@@ -1,0 +1,162 @@
+manager_email,hotel_name,room_type,guest_email,check_in_after_days,nights,rooms,guests,status
+manager1@example.com,Saffron Courtyard Bengaluru,Standard Room,guest1@example.com,5,2,1,1,RESERVED
+manager1@example.com,Saffron Courtyard Bengaluru,Deluxe Room,guest2@example.com,12,3,2,2,ACCEPTED
+manager1@example.com,Saffron Courtyard Bengaluru,Standard Room,guest3@example.com,20,1,1,2,CANCELLED
+manager1@example.com,Saffron Courtyard Bengaluru,Deluxe Room,guest4@example.com,2,4,1,1,RESERVED
+manager1@example.com,Lotus Grand Bengaluru,Standard Room,guest2@example.com,6,2,1,2,RESERVED
+manager1@example.com,Lotus Grand Bengaluru,Deluxe Room,guest3@example.com,13,3,2,3,ACCEPTED
+manager1@example.com,Lotus Grand Bengaluru,Standard Room,guest4@example.com,21,1,1,1,CANCELLED
+manager1@example.com,Neem Tree Residency Bengaluru,Standard Room,guest3@example.com,7,2,1,2,RESERVED
+manager1@example.com,Neem Tree Residency Bengaluru,Deluxe Room,guest4@example.com,14,3,2,1,ACCEPTED
+manager1@example.com,Neem Tree Residency Bengaluru,Standard Room,guest5@example.com,22,1,1,2,CANCELLED
+manager1@example.com,Neem Tree Residency Bengaluru,Family Room,guest6@example.com,4,4,1,3,RESERVED
+manager1@example.com,Peacock Palace Inn Bengaluru,Standard Room,guest4@example.com,8,2,1,1,RESERVED
+manager1@example.com,Peacock Palace Inn Bengaluru,Deluxe Room,guest5@example.com,15,3,2,2,ACCEPTED
+manager1@example.com,Peacock Palace Inn Bengaluru,Standard Room,guest6@example.com,23,1,1,2,CANCELLED
+manager1@example.com,Marigold Suites Chennai,Standard Room,guest5@example.com,9,2,1,2,RESERVED
+manager1@example.com,Marigold Suites Chennai,Deluxe Room,guest6@example.com,16,3,2,3,ACCEPTED
+manager1@example.com,Marigold Suites Chennai,Standard Room,guest1@example.com,24,1,1,1,CANCELLED
+manager1@example.com,Marigold Suites Chennai,Premium Room,guest2@example.com,6,4,1,2,RESERVED
+manager1@example.com,Jasmine Heritage Haveli Chennai,Standard Room,guest1@example.com,11,2,1,1,RESERVED
+manager1@example.com,Jasmine Heritage Haveli Chennai,Deluxe Room,guest2@example.com,18,3,2,2,ACCEPTED
+manager1@example.com,Jasmine Heritage Haveli Chennai,Standard Room,guest3@example.com,26,1,1,2,CANCELLED
+manager1@example.com,Jasmine Heritage Haveli Chennai,Deluxe Room,guest4@example.com,8,4,1,1,RESERVED
+manager1@example.com,Coral Bay Inn Chennai,Standard Room,guest2@example.com,12,2,1,2,RESERVED
+manager1@example.com,Coral Bay Inn Chennai,Deluxe Room,guest3@example.com,19,3,2,3,ACCEPTED
+manager1@example.com,Coral Bay Inn Chennai,Standard Room,guest4@example.com,27,1,1,1,CANCELLED
+manager1@example.com,Kesari Mahal Ahmedabad,Standard Room,guest3@example.com,13,2,1,2,RESERVED
+manager1@example.com,Kesari Mahal Ahmedabad,Deluxe Room,guest4@example.com,20,3,2,1,ACCEPTED
+manager1@example.com,Kesari Mahal Ahmedabad,Standard Room,guest5@example.com,28,1,1,2,CANCELLED
+manager1@example.com,Kesari Mahal Ahmedabad,Family Room,guest6@example.com,10,4,1,3,RESERVED
+manager1@example.com,Tulsi Garden Retreat Ahmedabad,Standard Room,guest4@example.com,14,2,1,1,RESERVED
+manager1@example.com,Tulsi Garden Retreat Ahmedabad,Deluxe Room,guest5@example.com,21,3,2,2,ACCEPTED
+manager1@example.com,Tulsi Garden Retreat Ahmedabad,Standard Room,guest6@example.com,29,1,1,2,CANCELLED
+manager1@example.com,Mango Grove Resort Ahmedabad,Standard Room,guest5@example.com,5,2,1,2,RESERVED
+manager1@example.com,Mango Grove Resort Ahmedabad,Deluxe Room,guest6@example.com,12,3,2,3,ACCEPTED
+manager1@example.com,Mango Grove Resort Ahmedabad,Standard Room,guest1@example.com,20,1,1,1,CANCELLED
+manager1@example.com,Mango Grove Resort Ahmedabad,Premium Room,guest2@example.com,2,4,1,2,RESERVED
+manager1@example.com,Silver Oak Residency Ahmedabad,Standard Room,guest6@example.com,6,2,1,2,RESERVED
+manager1@example.com,Silver Oak Residency Ahmedabad,Deluxe Room,guest1@example.com,13,3,2,1,ACCEPTED
+manager1@example.com,Silver Oak Residency Ahmedabad,Standard Room,guest2@example.com,21,1,1,2,CANCELLED
+manager2@example.com,Saffron Courtyard Jaipur,Standard Room,guest1@example.com,7,2,1,1,RESERVED
+manager2@example.com,Saffron Courtyard Jaipur,Deluxe Room,guest2@example.com,14,3,2,2,ACCEPTED
+manager2@example.com,Saffron Courtyard Jaipur,Standard Room,guest3@example.com,22,1,1,2,CANCELLED
+manager2@example.com,Saffron Courtyard Jaipur,Deluxe Room,guest4@example.com,4,4,1,1,RESERVED
+manager2@example.com,Neem Tree Residency Jaipur,Standard Room,guest3@example.com,9,2,1,2,RESERVED
+manager2@example.com,Neem Tree Residency Jaipur,Deluxe Room,guest4@example.com,16,3,2,1,ACCEPTED
+manager2@example.com,Neem Tree Residency Jaipur,Standard Room,guest5@example.com,24,1,1,2,CANCELLED
+manager2@example.com,Neem Tree Residency Jaipur,Family Room,guest6@example.com,6,4,1,3,RESERVED
+manager2@example.com,Peacock Palace Inn Jaipur,Standard Room,guest4@example.com,10,2,1,1,RESERVED
+manager2@example.com,Peacock Palace Inn Jaipur,Deluxe Room,guest5@example.com,17,3,2,2,ACCEPTED
+manager2@example.com,Peacock Palace Inn Jaipur,Standard Room,guest6@example.com,25,1,1,2,CANCELLED
+manager2@example.com,Marigold Suites Delhi,Standard Room,guest5@example.com,11,2,1,2,RESERVED
+manager2@example.com,Marigold Suites Delhi,Deluxe Room,guest6@example.com,18,3,2,3,ACCEPTED
+manager2@example.com,Marigold Suites Delhi,Standard Room,guest1@example.com,26,1,1,1,CANCELLED
+manager2@example.com,Marigold Suites Delhi,Premium Room,guest2@example.com,8,4,1,2,RESERVED
+manager2@example.com,Sandalwood Stay Delhi,Standard Room,guest6@example.com,12,2,1,2,RESERVED
+manager2@example.com,Sandalwood Stay Delhi,Deluxe Room,guest1@example.com,19,3,2,1,ACCEPTED
+manager2@example.com,Sandalwood Stay Delhi,Standard Room,guest2@example.com,27,1,1,2,CANCELLED
+manager2@example.com,Jasmine Heritage Haveli Delhi,Standard Room,guest1@example.com,13,2,1,1,RESERVED
+manager2@example.com,Jasmine Heritage Haveli Delhi,Deluxe Room,guest2@example.com,20,3,2,2,ACCEPTED
+manager2@example.com,Jasmine Heritage Haveli Delhi,Standard Room,guest3@example.com,28,1,1,2,CANCELLED
+manager2@example.com,Jasmine Heritage Haveli Delhi,Deluxe Room,guest4@example.com,10,4,1,1,RESERVED
+manager2@example.com,Coral Bay Inn Delhi,Standard Room,guest2@example.com,14,2,1,2,RESERVED
+manager2@example.com,Coral Bay Inn Delhi,Deluxe Room,guest3@example.com,21,3,2,3,ACCEPTED
+manager2@example.com,Coral Bay Inn Delhi,Standard Room,guest4@example.com,29,1,1,1,CANCELLED
+manager2@example.com,Kesari Mahal Agra,Standard Room,guest3@example.com,5,2,1,2,RESERVED
+manager2@example.com,Kesari Mahal Agra,Deluxe Room,guest4@example.com,12,3,2,1,ACCEPTED
+manager2@example.com,Kesari Mahal Agra,Standard Room,guest5@example.com,20,1,1,2,CANCELLED
+manager2@example.com,Kesari Mahal Agra,Family Room,guest6@example.com,2,4,1,3,RESERVED
+manager2@example.com,Mango Grove Resort Agra,Standard Room,guest5@example.com,7,2,1,2,RESERVED
+manager2@example.com,Mango Grove Resort Agra,Deluxe Room,guest6@example.com,14,3,2,3,ACCEPTED
+manager2@example.com,Mango Grove Resort Agra,Standard Room,guest1@example.com,22,1,1,1,CANCELLED
+manager2@example.com,Mango Grove Resort Agra,Premium Room,guest2@example.com,4,4,1,2,RESERVED
+manager2@example.com,Silver Oak Residency Agra,Standard Room,guest6@example.com,8,2,1,2,RESERVED
+manager2@example.com,Silver Oak Residency Agra,Deluxe Room,guest1@example.com,15,3,2,1,ACCEPTED
+manager2@example.com,Silver Oak Residency Agra,Standard Room,guest2@example.com,23,1,1,2,CANCELLED
+manager3@example.com,Saffron Courtyard Hyderabad,Standard Room,guest1@example.com,9,2,1,1,RESERVED
+manager3@example.com,Saffron Courtyard Hyderabad,Deluxe Room,guest2@example.com,16,3,2,2,ACCEPTED
+manager3@example.com,Saffron Courtyard Hyderabad,Standard Room,guest3@example.com,24,1,1,2,CANCELLED
+manager3@example.com,Saffron Courtyard Hyderabad,Deluxe Room,guest4@example.com,6,4,1,1,RESERVED
+manager3@example.com,Lotus Grand Hyderabad,Standard Room,guest2@example.com,10,2,1,2,RESERVED
+manager3@example.com,Lotus Grand Hyderabad,Deluxe Room,guest3@example.com,17,3,2,3,ACCEPTED
+manager3@example.com,Lotus Grand Hyderabad,Standard Room,guest4@example.com,25,1,1,1,CANCELLED
+manager3@example.com,Neem Tree Residency Hyderabad,Standard Room,guest3@example.com,11,2,1,2,RESERVED
+manager3@example.com,Neem Tree Residency Hyderabad,Deluxe Room,guest4@example.com,18,3,2,1,ACCEPTED
+manager3@example.com,Neem Tree Residency Hyderabad,Standard Room,guest5@example.com,26,1,1,2,CANCELLED
+manager3@example.com,Neem Tree Residency Hyderabad,Family Room,guest6@example.com,8,4,1,3,RESERVED
+manager3@example.com,Peacock Palace Inn Hyderabad,Standard Room,guest4@example.com,12,2,1,1,RESERVED
+manager3@example.com,Peacock Palace Inn Hyderabad,Deluxe Room,guest5@example.com,19,3,2,2,ACCEPTED
+manager3@example.com,Peacock Palace Inn Hyderabad,Standard Room,guest6@example.com,27,1,1,2,CANCELLED
+manager3@example.com,Marigold Suites Alappuzha,Standard Room,guest5@example.com,13,2,1,2,RESERVED
+manager3@example.com,Marigold Suites Alappuzha,Deluxe Room,guest6@example.com,20,3,2,3,ACCEPTED
+manager3@example.com,Marigold Suites Alappuzha,Standard Room,guest1@example.com,28,1,1,1,CANCELLED
+manager3@example.com,Marigold Suites Alappuzha,Premium Room,guest2@example.com,10,4,1,2,RESERVED
+manager3@example.com,Jasmine Heritage Haveli Alappuzha,Standard Room,guest1@example.com,5,2,1,1,RESERVED
+manager3@example.com,Jasmine Heritage Haveli Alappuzha,Deluxe Room,guest2@example.com,12,3,2,2,ACCEPTED
+manager3@example.com,Jasmine Heritage Haveli Alappuzha,Standard Room,guest3@example.com,20,1,1,2,CANCELLED
+manager3@example.com,Jasmine Heritage Haveli Alappuzha,Deluxe Room,guest4@example.com,2,4,1,1,RESERVED
+manager3@example.com,Coral Bay Inn Alappuzha,Standard Room,guest2@example.com,6,2,1,2,RESERVED
+manager3@example.com,Coral Bay Inn Alappuzha,Deluxe Room,guest3@example.com,13,3,2,3,ACCEPTED
+manager3@example.com,Coral Bay Inn Alappuzha,Standard Room,guest4@example.com,21,1,1,1,CANCELLED
+manager3@example.com,Kesari Mahal Bhubaneswar,Standard Room,guest3@example.com,7,2,1,2,RESERVED
+manager3@example.com,Kesari Mahal Bhubaneswar,Deluxe Room,guest4@example.com,14,3,2,1,ACCEPTED
+manager3@example.com,Kesari Mahal Bhubaneswar,Standard Room,guest5@example.com,22,1,1,2,CANCELLED
+manager3@example.com,Kesari Mahal Bhubaneswar,Family Room,guest6@example.com,4,4,1,3,RESERVED
+manager3@example.com,Tulsi Garden Retreat Bhubaneswar,Standard Room,guest4@example.com,8,2,1,1,RESERVED
+manager3@example.com,Tulsi Garden Retreat Bhubaneswar,Deluxe Room,guest5@example.com,15,3,2,2,ACCEPTED
+manager3@example.com,Tulsi Garden Retreat Bhubaneswar,Standard Room,guest6@example.com,23,1,1,2,CANCELLED
+manager3@example.com,Mango Grove Resort Bhubaneswar,Standard Room,guest5@example.com,9,2,1,2,RESERVED
+manager3@example.com,Mango Grove Resort Bhubaneswar,Deluxe Room,guest6@example.com,16,3,2,3,ACCEPTED
+manager3@example.com,Mango Grove Resort Bhubaneswar,Standard Room,guest1@example.com,24,1,1,1,CANCELLED
+manager3@example.com,Mango Grove Resort Bhubaneswar,Premium Room,guest2@example.com,6,4,1,2,RESERVED
+manager3@example.com,Silver Oak Residency Bhubaneswar,Standard Room,guest6@example.com,10,2,1,2,RESERVED
+manager3@example.com,Silver Oak Residency Bhubaneswar,Deluxe Room,guest1@example.com,17,3,2,1,ACCEPTED
+manager3@example.com,Silver Oak Residency Bhubaneswar,Standard Room,guest2@example.com,25,1,1,2,CANCELLED
+manager4@example.com,Saffron Courtyard Darjeeling,Standard Room,guest1@example.com,11,2,1,1,RESERVED
+manager4@example.com,Saffron Courtyard Darjeeling,Deluxe Room,guest2@example.com,18,3,2,2,ACCEPTED
+manager4@example.com,Saffron Courtyard Darjeeling,Standard Room,guest3@example.com,26,1,1,2,CANCELLED
+manager4@example.com,Saffron Courtyard Darjeeling,Deluxe Room,guest4@example.com,8,4,1,1,RESERVED
+manager4@example.com,Neem Tree Residency Darjeeling,Standard Room,guest3@example.com,13,2,1,2,RESERVED
+manager4@example.com,Neem Tree Residency Darjeeling,Deluxe Room,guest4@example.com,20,3,2,1,ACCEPTED
+manager4@example.com,Neem Tree Residency Darjeeling,Standard Room,guest5@example.com,28,1,1,2,CANCELLED
+manager4@example.com,Neem Tree Residency Darjeeling,Family Room,guest6@example.com,10,4,1,3,RESERVED
+manager4@example.com,Peacock Palace Inn Darjeeling,Standard Room,guest4@example.com,14,2,1,1,RESERVED
+manager4@example.com,Peacock Palace Inn Darjeeling,Deluxe Room,guest5@example.com,21,3,2,2,ACCEPTED
+manager4@example.com,Peacock Palace Inn Darjeeling,Standard Room,guest6@example.com,29,1,1,2,CANCELLED
+manager4@example.com,Marigold Suites Dehradun,Standard Room,guest5@example.com,5,2,1,2,RESERVED
+manager4@example.com,Marigold Suites Dehradun,Deluxe Room,guest6@example.com,12,3,2,3,ACCEPTED
+manager4@example.com,Marigold Suites Dehradun,Standard Room,guest1@example.com,20,1,1,1,CANCELLED
+manager4@example.com,Marigold Suites Dehradun,Premium Room,guest2@example.com,2,4,1,2,RESERVED
+manager4@example.com,Sandalwood Stay Dehradun,Standard Room,guest6@example.com,6,2,1,2,RESERVED
+manager4@example.com,Sandalwood Stay Dehradun,Deluxe Room,guest1@example.com,13,3,2,1,ACCEPTED
+manager4@example.com,Sandalwood Stay Dehradun,Standard Room,guest2@example.com,21,1,1,2,CANCELLED
+manager4@example.com,Jasmine Heritage Haveli Dehradun,Standard Room,guest1@example.com,7,2,1,1,RESERVED
+manager4@example.com,Jasmine Heritage Haveli Dehradun,Deluxe Room,guest2@example.com,14,3,2,2,ACCEPTED
+manager4@example.com,Jasmine Heritage Haveli Dehradun,Standard Room,guest3@example.com,22,1,1,2,CANCELLED
+manager4@example.com,Jasmine Heritage Haveli Dehradun,Deluxe Room,guest4@example.com,4,4,1,1,RESERVED
+manager4@example.com,Coral Bay Inn Dehradun,Standard Room,guest2@example.com,8,2,1,2,RESERVED
+manager4@example.com,Coral Bay Inn Dehradun,Deluxe Room,guest3@example.com,15,3,2,3,ACCEPTED
+manager4@example.com,Coral Bay Inn Dehradun,Standard Room,guest4@example.com,23,1,1,1,CANCELLED
+manager4@example.com,Kesari Mahal Amritsar,Standard Room,guest3@example.com,9,2,1,2,RESERVED
+manager4@example.com,Kesari Mahal Amritsar,Deluxe Room,guest4@example.com,16,3,2,1,ACCEPTED
+manager4@example.com,Kesari Mahal Amritsar,Standard Room,guest5@example.com,24,1,1,2,CANCELLED
+manager4@example.com,Kesari Mahal Amritsar,Family Room,guest6@example.com,6,4,1,3,RESERVED
+manager4@example.com,Mango Grove Resort Amritsar,Standard Room,guest5@example.com,11,2,1,2,RESERVED
+manager4@example.com,Mango Grove Resort Amritsar,Deluxe Room,guest6@example.com,18,3,2,3,ACCEPTED
+manager4@example.com,Mango Grove Resort Amritsar,Standard Room,guest1@example.com,26,1,1,1,CANCELLED
+manager4@example.com,Mango Grove Resort Amritsar,Premium Room,guest2@example.com,8,4,1,2,RESERVED
+manager4@example.com,Silver Oak Residency Amritsar,Standard Room,guest6@example.com,12,2,1,2,RESERVED
+manager4@example.com,Silver Oak Residency Amritsar,Deluxe Room,guest1@example.com,19,3,2,1,ACCEPTED
+manager4@example.com,Silver Oak Residency Amritsar,Standard Room,guest2@example.com,27,1,1,2,CANCELLED
+manager3@example.com,Lingaraj Heritage Inn Bhubaneswar,Standard Room,guest1@example.com,6,2,1,2,ACCEPTED
+manager3@example.com,Lingaraj Heritage Inn Bhubaneswar,Family Room,guest4@example.com,15,3,1,4,RESERVED
+manager1@example.com,Kalinga Courtyard Bhubaneswar,Deluxe Room,guest2@example.com,4,2,2,3,ACCEPTED
+manager1@example.com,Kalinga Courtyard Bhubaneswar,Premium Room,guest5@example.com,10,1,1,2,CANCELLED
+manager1@example.com,Kalinga Courtyard Bhubaneswar,Standard Room,guest3@example.com,18,3,1,1,RESERVED
+manager2@example.com,Udayagiri View Stay Bhubaneswar,Standard Room,guest6@example.com,7,2,1,2,ACCEPTED
+manager4@example.com,Patia Tech Park Suites Bhubaneswar,Studio Suite,guest1@example.com,3,5,1,1,ACCEPTED
+manager4@example.com,Patia Tech Park Suites Bhubaneswar,Executive Suite,guest2@example.com,12,2,1,2,CANCELLED
+manager1@example.com,Jaydev Vihar Residency Bhubaneswar,Deluxe Room,guest4@example.com,9,2,1,2,ACCEPTED
+manager2@example.com,Nandankanan Green Retreat Bhubaneswar,Family Cottage,guest5@example.com,14,2,1,4,ACCEPTED
+manager2@example.com,Nandankanan Green Retreat Bhubaneswar,Garden Cottage,guest3@example.com,5,1,2,4,RESERVED

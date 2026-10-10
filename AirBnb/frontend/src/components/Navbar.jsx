@@ -1,5 +1,5 @@
 import { useState, useRef, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext.jsx';
 import '../styles/navbar.css';
 
@@ -16,8 +16,10 @@ function initials(name) {
 export default function Navbar() {
   const { user, logout } = useAuth();
   const navigate = useNavigate();
+  const location = useLocation();
   const [menuOpen, setMenuOpen] = useState(false);
   const menuRef = useRef(null);
+  const isManager = user?.roles?.includes('HOTEL_MANAGER');
 
   useEffect(() => {
     function onClickOutside(e) {
@@ -28,6 +30,12 @@ export default function Navbar() {
     document.addEventListener('mousedown', onClickOutside);
     return () => document.removeEventListener('mousedown', onClickOutside);
   }, []);
+
+  // The search form lives on the home page: focus it there, or go there and ask it to focus.
+  function openSearch() {
+    if (location.pathname === '/') document.getElementById('search-city')?.focus();
+    else navigate('/', { state: { focusSearch: true } });
+  }
 
   function handleLogout() {
     logout();
@@ -45,27 +53,36 @@ export default function Navbar() {
           <span>airbnb</span>
         </a>
 
-        <button
-          type="button"
-          className="navbar__search"
-          onClick={() => alert('Search is not wired up yet — this is a demo landing page.')}
-        >
-          <span className="navbar__search-item">Anywhere</span>
-          <span className="navbar__search-divider" />
-          <span className="navbar__search-item">Any week</span>
-          <span className="navbar__search-divider" />
-          <span className="navbar__search-item navbar__search-item--muted">Add guests</span>
-          <span className="navbar__search-icon" aria-hidden="true">
-            <svg viewBox="0 0 32 32" width="14" height="14" fill="#fff">
-              <path d="M13 24a11 11 0 118-18.7A11 11 0 0113 24zm8.6-3l6.7 6.7-1.6 1.6-6.7-6.7z" />
-            </svg>
-          </span>
-        </button>
+        {/* Guest search (Anywhere / Any week / Add guests) isn't relevant to hotel managers. */}
+        {!isManager && (
+          <button
+            type="button"
+            className="navbar__search"
+            onClick={openSearch}
+          >
+            <span className="navbar__search-item">Anywhere</span>
+            <span className="navbar__search-divider" />
+            <span className="navbar__search-item">Any week</span>
+            <span className="navbar__search-divider" />
+            <span className="navbar__search-item navbar__search-item--muted">Add guests</span>
+            <span className="navbar__search-icon" aria-hidden="true">
+              <svg viewBox="0 0 32 32" width="14" height="14" fill="#fff">
+                <path d="M13 24a11 11 0 118-18.7A11 11 0 0113 24zm8.6-3l6.7 6.7-1.6 1.6-6.7-6.7z" />
+              </svg>
+            </span>
+          </button>
+        )}
 
         <div className="navbar__right">
-          <a className="navbar__host-link" href="#host">
-            Airbnb your home
-          </a>
+          {isManager ? (
+            <Link className="navbar__host-link" to="/manager">
+              Manage hotels
+            </Link>
+          ) : (
+            <a className="navbar__host-link" href="#host">
+              Airbnb your home
+            </a>
+          )}
           <button
             type="button"
             className="navbar__icon-btn"
@@ -107,6 +124,21 @@ export default function Navbar() {
                       <strong>{user.name}</strong>
                       <span>{user.email}</span>
                     </div>
+                    {!isManager && (
+                      <button type="button" onClick={() => navigate('/my-bookings')}>
+                        My bookings
+                      </button>
+                    )}
+                    {isManager && (
+                      <>
+                        <button type="button" onClick={() => navigate('/manager/hotels')}>
+                          Your hotels
+                        </button>
+                        <button type="button" onClick={() => navigate('/manager/bookings')}>
+                          Bookings
+                        </button>
+                      </>
+                    )}
                     <button type="button" onClick={handleLogout}>
                       Log out
                     </button>

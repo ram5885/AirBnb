@@ -1,5 +1,6 @@
 package com.HotelManagement.AirBnb.entity;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Set;
@@ -17,15 +18,22 @@ import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.Index;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToOne;
+import jakarta.persistence.Table;
 import lombok.Getter;
 import lombok.Setter;
 
 @Entity
+@Table(indexes = {
+        @Index(name = "idx_booking_hotel", columnList = "hotel_id"),
+        @Index(name = "idx_booking_room", columnList = "room_id"),
+        @Index(name = "idx_booking_user", columnList = "user_id")
+})
 @Getter
 @Setter
 public class Booking {
@@ -49,6 +57,10 @@ public class Booking {
     @Column(nullable = false)
     private Integer roomsCount;
 
+    // Total for all nights and rooms, computed from inventory prices when the booking is created.
+    @Column(precision = 12, scale = 2)
+    private BigDecimal amount;
+
     @Column(nullable = false)
     private LocalDate checkInDate;
 
@@ -56,6 +68,7 @@ public class Booking {
     private LocalDate checkOutDate;
 
     @CreationTimestamp
+    @Column(updatable = false)
     private LocalDateTime createdAt;
 
     @UpdateTimestamp
