@@ -1,8 +1,8 @@
-package com.HotelManagement.AirBnb.dto.booking;
+package com.HotelManagement.AirBnb.booking.dto;
 
-import com.HotelManagement.AirBnb.entity.enums.BookingStatus;
-import com.HotelManagement.AirBnb.entity.enums.PaymentMethod;
-import com.HotelManagement.AirBnb.entity.enums.PaymentStatus;
+import com.HotelManagement.AirBnb.booking.entity.BookingStatus;
+import com.HotelManagement.AirBnb.payment.entity.PaymentMethod;
+import com.HotelManagement.AirBnb.payment.entity.PaymentStatus;
 
 import java.math.BigDecimal;
 

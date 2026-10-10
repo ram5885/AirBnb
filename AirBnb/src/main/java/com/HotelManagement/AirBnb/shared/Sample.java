@@ -1,4 +1,4 @@
-package com.HotelManagement.AirBnb.controller;
+package com.HotelManagement.AirBnb.shared;
 
 public class Sample  {
 }

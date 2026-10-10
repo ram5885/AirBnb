@@ -1,9 +1,9 @@
-package com.HotelManagement.AirBnb.controller;
+package com.HotelManagement.AirBnb.auth.controller;
 
-import com.HotelManagement.AirBnb.dto.AuthResponse;
-import com.HotelManagement.AirBnb.dto.LoginRequest;
-import com.HotelManagement.AirBnb.dto.SignupRequest;
-import com.HotelManagement.AirBnb.service.AuthService;
+import com.HotelManagement.AirBnb.auth.dto.AuthResponse;
+import com.HotelManagement.AirBnb.auth.dto.LoginRequest;
+import com.HotelManagement.AirBnb.auth.dto.SignupRequest;
+import com.HotelManagement.AirBnb.auth.service.AuthService;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;

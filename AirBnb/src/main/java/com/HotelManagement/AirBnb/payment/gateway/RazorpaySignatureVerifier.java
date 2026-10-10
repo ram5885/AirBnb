@@ -1,4 +1,4 @@
-package com.HotelManagement.AirBnb.payment;
+package com.HotelManagement.AirBnb.payment.gateway;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;

@@ -1,7 +1,8 @@
-package com.HotelManagement.AirBnb.repository;
+package com.HotelManagement.AirBnb.booking.repository;
 
-import com.HotelManagement.AirBnb.entity.Booking;
-import com.HotelManagement.AirBnb.repository.query.BookingQueries;
+import com.HotelManagement.AirBnb.booking.entity.Booking;
+import com.HotelManagement.AirBnb.booking.repository.query.BookingQueries;
+import com.HotelManagement.AirBnb.shared.repository.WriteRepository;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.Query;

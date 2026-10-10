@@ -1,4 +1,4 @@
-package com.HotelManagement.AirBnb.config;
+package com.HotelManagement.AirBnb.shared.config;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;

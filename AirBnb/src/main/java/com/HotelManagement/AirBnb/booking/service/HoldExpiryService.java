@@ -1,10 +1,10 @@
-package com.HotelManagement.AirBnb.service;
+package com.HotelManagement.AirBnb.booking.service;
 
-import com.HotelManagement.AirBnb.entity.Booking;
-import com.HotelManagement.AirBnb.entity.Payment;
-import com.HotelManagement.AirBnb.entity.enums.BookingStatus;
-import com.HotelManagement.AirBnb.entity.enums.PaymentStatus;
-import com.HotelManagement.AirBnb.repository.BookingRepository;
+import com.HotelManagement.AirBnb.booking.entity.Booking;
+import com.HotelManagement.AirBnb.booking.entity.BookingStatus;
+import com.HotelManagement.AirBnb.booking.repository.BookingRepository;
+import com.HotelManagement.AirBnb.payment.entity.Payment;
+import com.HotelManagement.AirBnb.payment.entity.PaymentStatus;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.scheduling.annotation.Scheduled;

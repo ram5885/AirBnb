@@ -1,6 +1,7 @@
-package com.HotelManagement.AirBnb.entity;
+package com.HotelManagement.AirBnb.guest.entity;
 
-import com.HotelManagement.AirBnb.entity.enums.Gender;
+import com.HotelManagement.AirBnb.auth.entity.User;
+import com.HotelManagement.AirBnb.guest.entity.Gender;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;

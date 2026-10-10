@@ -1,6 +1,7 @@
-package com.HotelManagement.AirBnb.entity;
+package com.HotelManagement.AirBnb.hotel.entity;
 
-
+import com.HotelManagement.AirBnb.auth.entity.User;
+import com.HotelManagement.AirBnb.location.entity.Location;
 import java.time.LocalDateTime;
 
 import org.hibernate.annotations.CreationTimestamp;

@@ -1,9 +1,9 @@
-package com.HotelManagement.AirBnb.service;
+package com.HotelManagement.AirBnb.hotel.service;
 
-import com.HotelManagement.AirBnb.dto.AmenityCategoryResponse;
-import com.HotelManagement.AirBnb.dto.AmenityCategoryResponse.AmenityOption;
-import com.HotelManagement.AirBnb.entity.enums.Amenity;
-import com.HotelManagement.AirBnb.exception.BadRequestException;
+import com.HotelManagement.AirBnb.hotel.dto.AmenityCategoryResponse;
+import com.HotelManagement.AirBnb.hotel.dto.AmenityCategoryResponse.AmenityOption;
+import com.HotelManagement.AirBnb.hotel.entity.Amenity;
+import com.HotelManagement.AirBnb.shared.exception.BadRequestException;
 import org.springframework.stereotype.Service;
 
 import java.util.Arrays;

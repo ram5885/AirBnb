@@ -1,10 +1,11 @@
-package com.HotelManagement.AirBnb.controller;
+package com.HotelManagement.AirBnb.search.controller;
 
-import com.HotelManagement.AirBnb.dto.PageResponse;
-import com.HotelManagement.AirBnb.dto.search.HotelSearchResult;
-import com.HotelManagement.AirBnb.dto.search.PublicHotelResponse;
-import com.HotelManagement.AirBnb.dto.search.PublicRoomResponse;
-import com.HotelManagement.AirBnb.service.HotelSearchService;
+import com.HotelManagement.AirBnb.search.dto.HotelSearchResult;
+import com.HotelManagement.AirBnb.search.dto.PublicHotelResponse;
+import com.HotelManagement.AirBnb.search.dto.PublicRoomResponse;
+import com.HotelManagement.AirBnb.search.service.HotelSearchService;
+import com.HotelManagement.AirBnb.shared.dto.PageResponse;
+import com.HotelManagement.AirBnb.shared.web.PhotoResponses;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;

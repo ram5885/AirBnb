@@ -1,4 +1,4 @@
-package com.HotelManagement.AirBnb.entity.enums;
+package com.HotelManagement.AirBnb.payment.entity;
 
 /**
  * PENDING        - gateway order created, awaiting a successful payment (also after a failed attempt is retried).

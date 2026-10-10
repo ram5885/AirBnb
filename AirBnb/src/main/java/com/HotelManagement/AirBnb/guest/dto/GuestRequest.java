@@ -1,6 +1,6 @@
-package com.HotelManagement.AirBnb.dto.guest;
+package com.HotelManagement.AirBnb.guest.dto;
 
-import com.HotelManagement.AirBnb.entity.enums.Gender;
+import com.HotelManagement.AirBnb.guest.entity.Gender;
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;

@@ -1,15 +1,16 @@
-package com.HotelManagement.AirBnb.service;
+package com.HotelManagement.AirBnb.booking.service;
 
-import com.HotelManagement.AirBnb.dto.PhotoMetadata;
-import com.HotelManagement.AirBnb.dto.booking.GuestBookingResponse;
-import com.HotelManagement.AirBnb.dto.guest.GuestResponse;
-import com.HotelManagement.AirBnb.entity.Booking;
-import com.HotelManagement.AirBnb.entity.Hotel;
-import com.HotelManagement.AirBnb.entity.Payment;
-import com.HotelManagement.AirBnb.entity.enums.BookingStatus;
-import com.HotelManagement.AirBnb.entity.enums.PaymentMethod;
-import com.HotelManagement.AirBnb.entity.enums.PaymentStatus;
-import com.HotelManagement.AirBnb.repository.HotelPhotoRepository;
+import com.HotelManagement.AirBnb.booking.dto.GuestBookingResponse;
+import com.HotelManagement.AirBnb.booking.entity.Booking;
+import com.HotelManagement.AirBnb.booking.entity.BookingStatus;
+import com.HotelManagement.AirBnb.guest.dto.GuestResponse;
+import com.HotelManagement.AirBnb.hotel.dto.PhotoMetadata;
+import com.HotelManagement.AirBnb.hotel.entity.Hotel;
+import com.HotelManagement.AirBnb.hotel.repository.HotelPhotoRepository;
+import com.HotelManagement.AirBnb.payment.entity.Payment;
+import com.HotelManagement.AirBnb.payment.entity.PaymentMethod;
+import com.HotelManagement.AirBnb.payment.entity.PaymentStatus;
+import com.HotelManagement.AirBnb.search.service.HotelSearchService;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 

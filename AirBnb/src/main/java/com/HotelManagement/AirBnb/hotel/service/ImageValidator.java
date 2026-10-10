@@ -1,7 +1,7 @@
-package com.HotelManagement.AirBnb.service;
+package com.HotelManagement.AirBnb.hotel.service;
 
-import com.HotelManagement.AirBnb.entity.PhotoBase;
-import com.HotelManagement.AirBnb.exception.BadRequestException;
+import com.HotelManagement.AirBnb.hotel.entity.PhotoBase;
+import com.HotelManagement.AirBnb.shared.exception.BadRequestException;
 import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartFile;
 

@@ -1,4 +1,4 @@
-package com.HotelManagement.AirBnb.payment;
+package com.HotelManagement.AirBnb.payment.gateway;
 
 /**
  * Server-side calls to the payment gateway (Razorpay). Amounts are in currency subunits (paise).

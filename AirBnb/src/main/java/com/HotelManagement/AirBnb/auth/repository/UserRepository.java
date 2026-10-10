@@ -1,7 +1,8 @@
-package com.HotelManagement.AirBnb.repository;
+package com.HotelManagement.AirBnb.auth.repository;
 
-import com.HotelManagement.AirBnb.entity.User;
-import com.HotelManagement.AirBnb.repository.query.UserQueries;
+import com.HotelManagement.AirBnb.auth.entity.User;
+import com.HotelManagement.AirBnb.auth.repository.query.UserQueries;
+import com.HotelManagement.AirBnb.shared.repository.WriteRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 

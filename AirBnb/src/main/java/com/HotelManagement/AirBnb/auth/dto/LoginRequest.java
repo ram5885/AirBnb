@@ -1,4 +1,4 @@
-package com.HotelManagement.AirBnb.dto;
+package com.HotelManagement.AirBnb.auth.dto;
 
 public class LoginRequest {
 

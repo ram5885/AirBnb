@@ -1,7 +1,7 @@
-package com.HotelManagement.AirBnb.dto.guest;
+package com.HotelManagement.AirBnb.guest.dto;
 
-import com.HotelManagement.AirBnb.entity.Guest;
-import com.HotelManagement.AirBnb.entity.enums.Gender;
+import com.HotelManagement.AirBnb.guest.entity.Gender;
+import com.HotelManagement.AirBnb.guest.entity.Guest;
 
 public record GuestResponse(Long id, String name, Gender gender, Integer age) {
 

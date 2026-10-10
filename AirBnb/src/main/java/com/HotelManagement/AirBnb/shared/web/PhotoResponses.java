@@ -1,6 +1,6 @@
-package com.HotelManagement.AirBnb.controller;
+package com.HotelManagement.AirBnb.shared.web;
 
-import com.HotelManagement.AirBnb.entity.PhotoBase;
+import com.HotelManagement.AirBnb.hotel.entity.PhotoBase;
 import org.springframework.http.CacheControl;
 import org.springframework.http.ContentDisposition;
 import org.springframework.http.HttpHeaders;
@@ -9,13 +9,13 @@ import org.springframework.http.ResponseEntity;
 
 import java.time.Duration;
 
-final class PhotoResponses {
+public final class PhotoResponses {
 
     private PhotoResponses() {
     }
 
     /** Streams stored image bytes with the detected (trusted) content type; private, cacheable. */
-    static ResponseEntity<byte[]> of(PhotoBase photo) {
+    public static ResponseEntity<byte[]> of(PhotoBase photo) {
         return ResponseEntity.ok()
                 .contentType(MediaType.parseMediaType(photo.getContentType()))
                 .contentLength(photo.getSizeBytes())
@@ -25,7 +25,7 @@ final class PhotoResponses {
                 .body(photo.getData());
     }
 
-    static int pageSize(int size) {
+    public static int pageSize(int size) {
         return Math.min(Math.max(size, 1), 100);
     }
 }

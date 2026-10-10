@@ -1,6 +1,6 @@
-package com.HotelManagement.AirBnb.service;
+package com.HotelManagement.AirBnb.auth.service;
 
-import com.HotelManagement.AirBnb.entity.User;
+import com.HotelManagement.AirBnb.auth.entity.User;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.oauth2.jose.jws.MacAlgorithm;
 import org.springframework.security.oauth2.jwt.JwsHeader;

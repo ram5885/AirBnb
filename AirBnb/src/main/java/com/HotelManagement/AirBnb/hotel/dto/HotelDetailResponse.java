@@ -1,6 +1,6 @@
-package com.HotelManagement.AirBnb.dto.hotel;
+package com.HotelManagement.AirBnb.hotel.dto;
 
-import com.HotelManagement.AirBnb.dto.PhotoResponse;
+import com.HotelManagement.AirBnb.hotel.dto.PhotoResponse;
 
 import java.time.LocalDateTime;
 import java.util.List;

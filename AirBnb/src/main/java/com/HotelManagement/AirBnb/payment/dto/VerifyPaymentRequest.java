@@ -1,4 +1,4 @@
-package com.HotelManagement.AirBnb.dto.payment;
+package com.HotelManagement.AirBnb.payment.dto;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;

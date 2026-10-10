@@ -1,4 +1,4 @@
-package com.HotelManagement.AirBnb.repository.query;
+package com.HotelManagement.AirBnb.hotel.repository.query;
 
 /**
  * Native SQL for HotelPhotoRepository / RoomPhotoRepository (tables hotel_photo, room_photo).

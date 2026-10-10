@@ -1,4 +1,4 @@
-package com.HotelManagement.AirBnb.config;
+package com.HotelManagement.AirBnb.auth.config;
 
 import com.nimbusds.jose.jwk.source.ImmutableSecret;
 import org.springframework.beans.factory.annotation.Value;

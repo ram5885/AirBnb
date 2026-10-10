@@ -1,13 +1,12 @@
-package com.HotelManagement.AirBnb.entity;
+package com.HotelManagement.AirBnb.payment.entity;
 
+import com.HotelManagement.AirBnb.payment.entity.PaymentMethod;
+import com.HotelManagement.AirBnb.payment.entity.PaymentStatus;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
-
-import com.HotelManagement.AirBnb.entity.enums.PaymentMethod;
-import com.HotelManagement.AirBnb.entity.enums.PaymentStatus;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;

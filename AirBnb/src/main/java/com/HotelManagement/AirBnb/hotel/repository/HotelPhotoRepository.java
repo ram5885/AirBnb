@@ -1,8 +1,9 @@
-package com.HotelManagement.AirBnb.repository;
+package com.HotelManagement.AirBnb.hotel.repository;
 
-import com.HotelManagement.AirBnb.dto.PhotoMetadata;
-import com.HotelManagement.AirBnb.entity.HotelPhoto;
-import com.HotelManagement.AirBnb.repository.query.PhotoQueries;
+import com.HotelManagement.AirBnb.hotel.dto.PhotoMetadata;
+import com.HotelManagement.AirBnb.hotel.entity.HotelPhoto;
+import com.HotelManagement.AirBnb.hotel.repository.query.PhotoQueries;
+import com.HotelManagement.AirBnb.shared.repository.WriteRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;

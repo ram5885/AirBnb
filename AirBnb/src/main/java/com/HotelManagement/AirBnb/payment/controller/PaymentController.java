@@ -1,12 +1,12 @@
-package com.HotelManagement.AirBnb.controller;
+package com.HotelManagement.AirBnb.payment.controller;
 
-import com.HotelManagement.AirBnb.dto.booking.GuestBookingResponse;
-import com.HotelManagement.AirBnb.dto.payment.PaymentFailureRequest;
-import com.HotelManagement.AirBnb.dto.payment.PaymentOrderResponse;
-import com.HotelManagement.AirBnb.dto.payment.PaymentResultResponse;
-import com.HotelManagement.AirBnb.dto.payment.VerifyPaymentRequest;
-import com.HotelManagement.AirBnb.service.CurrentUserService;
-import com.HotelManagement.AirBnb.service.PaymentService;
+import com.HotelManagement.AirBnb.auth.service.CurrentUserService;
+import com.HotelManagement.AirBnb.booking.dto.GuestBookingResponse;
+import com.HotelManagement.AirBnb.payment.dto.PaymentFailureRequest;
+import com.HotelManagement.AirBnb.payment.dto.PaymentOrderResponse;
+import com.HotelManagement.AirBnb.payment.dto.PaymentResultResponse;
+import com.HotelManagement.AirBnb.payment.dto.VerifyPaymentRequest;
+import com.HotelManagement.AirBnb.payment.service.PaymentService;
 import jakarta.validation.Valid;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.ResponseEntity;

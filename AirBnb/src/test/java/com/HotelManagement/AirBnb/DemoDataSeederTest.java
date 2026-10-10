@@ -1,16 +1,16 @@
 package com.HotelManagement.AirBnb;
 
-import com.HotelManagement.AirBnb.config.DemoDataSeeder;
-import com.HotelManagement.AirBnb.repository.BookingRepository;
-import com.HotelManagement.AirBnb.repository.GuestRepository;
-import com.HotelManagement.AirBnb.repository.HotelRepository;
-import com.HotelManagement.AirBnb.repository.LocationRepository;
-import com.HotelManagement.AirBnb.repository.RoomRepository;
-import com.HotelManagement.AirBnb.repository.UserRepository;
-import com.HotelManagement.AirBnb.service.BookingService;
-import com.HotelManagement.AirBnb.service.HotelService;
-import com.HotelManagement.AirBnb.service.ManagerBookingService;
-import com.HotelManagement.AirBnb.service.RoomService;
+import com.HotelManagement.AirBnb.auth.repository.UserRepository;
+import com.HotelManagement.AirBnb.booking.repository.BookingRepository;
+import com.HotelManagement.AirBnb.booking.service.BookingService;
+import com.HotelManagement.AirBnb.booking.service.ManagerBookingService;
+import com.HotelManagement.AirBnb.demodata.DemoDataSeeder;
+import com.HotelManagement.AirBnb.guest.repository.GuestRepository;
+import com.HotelManagement.AirBnb.hotel.repository.HotelRepository;
+import com.HotelManagement.AirBnb.hotel.repository.RoomRepository;
+import com.HotelManagement.AirBnb.hotel.service.HotelService;
+import com.HotelManagement.AirBnb.hotel.service.RoomService;
+import com.HotelManagement.AirBnb.location.repository.LocationRepository;
 import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;

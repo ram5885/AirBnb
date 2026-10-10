@@ -1,4 +1,4 @@
-package com.HotelManagement.AirBnb.repository;
+package com.HotelManagement.AirBnb.shared.repository;
 
 import org.springframework.data.repository.NoRepositoryBean;
 import org.springframework.data.repository.Repository;

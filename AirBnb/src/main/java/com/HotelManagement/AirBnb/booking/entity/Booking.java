@@ -1,5 +1,11 @@
-package com.HotelManagement.AirBnb.entity;
+package com.HotelManagement.AirBnb.booking.entity;
 
+import com.HotelManagement.AirBnb.auth.entity.User;
+import com.HotelManagement.AirBnb.booking.entity.BookingStatus;
+import com.HotelManagement.AirBnb.guest.entity.Guest;
+import com.HotelManagement.AirBnb.hotel.entity.Hotel;
+import com.HotelManagement.AirBnb.hotel.entity.Room;
+import com.HotelManagement.AirBnb.payment.entity.Payment;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -7,8 +13,6 @@ import java.util.Set;
 
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
-
-import com.HotelManagement.AirBnb.entity.enums.BookingStatus;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;

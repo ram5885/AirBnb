@@ -1,4 +1,4 @@
-package com.HotelManagement.AirBnb.repository.query;
+package com.HotelManagement.AirBnb.guest.repository.query;
 
 /** Native SQL for GuestRepository (table guest: people travelling on a user's bookings). */
 public final class GuestQueries {

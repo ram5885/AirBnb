@@ -1,4 +1,4 @@
-package com.HotelManagement.AirBnb.exception;
+package com.HotelManagement.AirBnb.payment.exception;
 
 public class PaymentFailedException extends RuntimeException {
 

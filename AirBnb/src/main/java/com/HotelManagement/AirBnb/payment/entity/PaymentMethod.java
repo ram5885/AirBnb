@@ -1,4 +1,4 @@
-package com.HotelManagement.AirBnb.entity.enums;
+package com.HotelManagement.AirBnb.payment.entity;
 
 /** How a booking is paid: online through Razorpay, or in person at the hotel. */
 public enum PaymentMethod {

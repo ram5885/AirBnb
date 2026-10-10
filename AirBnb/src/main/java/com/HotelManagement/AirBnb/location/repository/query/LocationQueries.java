@@ -1,4 +1,4 @@
-package com.HotelManagement.AirBnb.repository.query;
+package com.HotelManagement.AirBnb.location.repository.query;
 
 /** Native SQL for LocationRepository (table location). */
 public final class LocationQueries {

@@ -1,4 +1,4 @@
-package com.HotelManagement.AirBnb.repository.query;
+package com.HotelManagement.AirBnb.hotel.repository.query;
 
 /** Native SQL for InventoryRepository (table inventory: one row per room type per date). */
 public final class InventoryQueries {

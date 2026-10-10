@@ -1,4 +1,4 @@
-package com.HotelManagement.AirBnb.dto.search;
+package com.HotelManagement.AirBnb.search.dto;
 
 import java.util.List;
 

@@ -1,10 +1,10 @@
 package com.HotelManagement.AirBnb;
 
-import com.HotelManagement.AirBnb.dto.booking.CreateBookingRequest;
-import com.HotelManagement.AirBnb.entity.User;
-import com.HotelManagement.AirBnb.exception.ConflictException;
-import com.HotelManagement.AirBnb.repository.UserRepository;
-import com.HotelManagement.AirBnb.service.BookingService;
+import com.HotelManagement.AirBnb.auth.entity.User;
+import com.HotelManagement.AirBnb.auth.repository.UserRepository;
+import com.HotelManagement.AirBnb.booking.dto.CreateBookingRequest;
+import com.HotelManagement.AirBnb.booking.service.BookingService;
+import com.HotelManagement.AirBnb.shared.exception.ConflictException;
 import com.jayway.jsonpath.JsonPath;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;

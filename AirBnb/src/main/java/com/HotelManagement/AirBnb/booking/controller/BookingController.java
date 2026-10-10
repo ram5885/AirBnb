@@ -1,12 +1,13 @@
-package com.HotelManagement.AirBnb.controller;
+package com.HotelManagement.AirBnb.booking.controller;
 
-import com.HotelManagement.AirBnb.dto.PageResponse;
-import com.HotelManagement.AirBnb.dto.booking.CreateBookingRequest;
-import com.HotelManagement.AirBnb.dto.booking.GuestBookingResponse;
-import com.HotelManagement.AirBnb.dto.booking.UpdateGuestsRequest;
-import com.HotelManagement.AirBnb.service.BookingService;
-import com.HotelManagement.AirBnb.service.CurrentUserService;
-import com.HotelManagement.AirBnb.service.GuestBookingService;
+import com.HotelManagement.AirBnb.auth.service.CurrentUserService;
+import com.HotelManagement.AirBnb.booking.dto.CreateBookingRequest;
+import com.HotelManagement.AirBnb.booking.dto.GuestBookingResponse;
+import com.HotelManagement.AirBnb.booking.dto.UpdateGuestsRequest;
+import com.HotelManagement.AirBnb.booking.service.BookingService;
+import com.HotelManagement.AirBnb.booking.service.GuestBookingService;
+import com.HotelManagement.AirBnb.shared.dto.PageResponse;
+import com.HotelManagement.AirBnb.shared.web.PhotoResponses;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;

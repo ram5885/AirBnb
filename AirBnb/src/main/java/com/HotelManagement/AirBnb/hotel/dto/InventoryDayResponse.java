@@ -1,4 +1,4 @@
-package com.HotelManagement.AirBnb.dto.inventory;
+package com.HotelManagement.AirBnb.hotel.dto;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;

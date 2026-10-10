@@ -1,4 +1,4 @@
-package com.HotelManagement.AirBnb.entity.enums;
+package com.HotelManagement.AirBnb.auth.entity;
 
 public enum Role {
     GUEST,

@@ -1,4 +1,4 @@
-package com.HotelManagement.AirBnb.repository.query;
+package com.HotelManagement.AirBnb.hotel.repository.query;
 
 /** Native SQL for HotelRepository (table hotel). Soft-deleted hotels have deleted_at set. */
 public final class HotelQueries {

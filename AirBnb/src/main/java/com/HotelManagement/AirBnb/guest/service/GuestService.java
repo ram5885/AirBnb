@@ -1,11 +1,11 @@
-package com.HotelManagement.AirBnb.service;
+package com.HotelManagement.AirBnb.guest.service;
 
-import com.HotelManagement.AirBnb.dto.guest.GuestRequest;
-import com.HotelManagement.AirBnb.dto.guest.GuestResponse;
-import com.HotelManagement.AirBnb.entity.Guest;
-import com.HotelManagement.AirBnb.entity.User;
-import com.HotelManagement.AirBnb.exception.ResourceNotFoundException;
-import com.HotelManagement.AirBnb.repository.GuestRepository;
+import com.HotelManagement.AirBnb.auth.entity.User;
+import com.HotelManagement.AirBnb.guest.dto.GuestRequest;
+import com.HotelManagement.AirBnb.guest.dto.GuestResponse;
+import com.HotelManagement.AirBnb.guest.entity.Guest;
+import com.HotelManagement.AirBnb.guest.repository.GuestRepository;
+import com.HotelManagement.AirBnb.shared.exception.ResourceNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 

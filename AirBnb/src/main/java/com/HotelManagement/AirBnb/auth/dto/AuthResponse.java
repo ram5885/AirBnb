@@ -1,6 +1,6 @@
-package com.HotelManagement.AirBnb.dto;
+package com.HotelManagement.AirBnb.auth.dto;
 
-import com.HotelManagement.AirBnb.entity.enums.Role;
+import com.HotelManagement.AirBnb.auth.entity.Role;
 
 import java.util.Set;
 

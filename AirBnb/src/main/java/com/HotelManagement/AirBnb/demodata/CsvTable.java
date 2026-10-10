@@ -1,4 +1,4 @@
-package com.HotelManagement.AirBnb.config;
+package com.HotelManagement.AirBnb.demodata;
 
 import org.springframework.core.io.Resource;
 

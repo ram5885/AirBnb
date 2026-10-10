@@ -1,7 +1,7 @@
 package com.HotelManagement.AirBnb;
 
-import com.HotelManagement.AirBnb.entity.Location;
-import com.HotelManagement.AirBnb.repository.LocationRepository;
+import com.HotelManagement.AirBnb.location.entity.Location;
+import com.HotelManagement.AirBnb.location.repository.LocationRepository;
 import com.jayway.jsonpath.JsonPath;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

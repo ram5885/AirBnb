@@ -1,4 +1,4 @@
-package com.HotelManagement.AirBnb.entity.enums;
+package com.HotelManagement.AirBnb.hotel.entity;
 
 /**
  * Amenities a hotel or room type can offer. Stored by name in the TEXT[]

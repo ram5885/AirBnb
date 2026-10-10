@@ -1,8 +1,8 @@
-package com.HotelManagement.AirBnb.service;
+package com.HotelManagement.AirBnb.booking.service;
 
-import com.HotelManagement.AirBnb.entity.Booking;
-import com.HotelManagement.AirBnb.entity.Inventory;
-import com.HotelManagement.AirBnb.repository.InventoryRepository;
+import com.HotelManagement.AirBnb.booking.entity.Booking;
+import com.HotelManagement.AirBnb.hotel.entity.Inventory;
+import com.HotelManagement.AirBnb.hotel.repository.InventoryRepository;
 import org.springframework.stereotype.Component;
 
 import java.time.temporal.ChronoUnit;

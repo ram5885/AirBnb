@@ -1,4 +1,4 @@
-package com.HotelManagement.AirBnb.repository.query;
+package com.HotelManagement.AirBnb.payment.repository.query;
 
 /** Native SQL for PaymentRepository and PaymentWebhookEventRepository. */
 public final class PaymentQueries {

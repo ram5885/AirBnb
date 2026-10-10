@@ -1,4 +1,4 @@
-package com.HotelManagement.AirBnb.entity;
+package com.HotelManagement.AirBnb.location.entity;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;

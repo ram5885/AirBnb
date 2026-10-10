@@ -1,12 +1,12 @@
-package com.HotelManagement.AirBnb.service;
+package com.HotelManagement.AirBnb.hotel.service;
 
-import com.HotelManagement.AirBnb.dto.inventory.InventoryDayResponse;
-import com.HotelManagement.AirBnb.dto.inventory.InventoryUpdateRequest;
-import com.HotelManagement.AirBnb.dto.inventory.InventoryUpdateResponse;
-import com.HotelManagement.AirBnb.entity.Inventory;
-import com.HotelManagement.AirBnb.entity.Room;
-import com.HotelManagement.AirBnb.exception.BadRequestException;
-import com.HotelManagement.AirBnb.repository.InventoryRepository;
+import com.HotelManagement.AirBnb.hotel.dto.InventoryDayResponse;
+import com.HotelManagement.AirBnb.hotel.dto.InventoryUpdateRequest;
+import com.HotelManagement.AirBnb.hotel.dto.InventoryUpdateResponse;
+import com.HotelManagement.AirBnb.hotel.entity.Inventory;
+import com.HotelManagement.AirBnb.hotel.entity.Room;
+import com.HotelManagement.AirBnb.hotel.repository.InventoryRepository;
+import com.HotelManagement.AirBnb.shared.exception.BadRequestException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 

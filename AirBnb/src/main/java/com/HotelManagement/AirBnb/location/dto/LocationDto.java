@@ -1,6 +1,6 @@
-package com.HotelManagement.AirBnb.dto;
+package com.HotelManagement.AirBnb.location.dto;
 
-import com.HotelManagement.AirBnb.entity.Location;
+import com.HotelManagement.AirBnb.location.entity.Location;
 
 public record LocationDto(Long id, String city, String state) {
 

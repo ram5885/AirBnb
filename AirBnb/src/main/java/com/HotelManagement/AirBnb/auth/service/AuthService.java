@@ -1,12 +1,12 @@
-package com.HotelManagement.AirBnb.service;
+package com.HotelManagement.AirBnb.auth.service;
 
-import com.HotelManagement.AirBnb.dto.AuthResponse;
-import com.HotelManagement.AirBnb.dto.LoginRequest;
-import com.HotelManagement.AirBnb.dto.SignupRequest;
-import com.HotelManagement.AirBnb.entity.User;
-import com.HotelManagement.AirBnb.exception.DuplicateEmailException;
-import com.HotelManagement.AirBnb.exception.InvalidCredentialsException;
-import com.HotelManagement.AirBnb.repository.UserRepository;
+import com.HotelManagement.AirBnb.auth.dto.AuthResponse;
+import com.HotelManagement.AirBnb.auth.dto.LoginRequest;
+import com.HotelManagement.AirBnb.auth.dto.SignupRequest;
+import com.HotelManagement.AirBnb.auth.entity.User;
+import com.HotelManagement.AirBnb.auth.exception.DuplicateEmailException;
+import com.HotelManagement.AirBnb.auth.exception.InvalidCredentialsException;
+import com.HotelManagement.AirBnb.auth.repository.UserRepository;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 

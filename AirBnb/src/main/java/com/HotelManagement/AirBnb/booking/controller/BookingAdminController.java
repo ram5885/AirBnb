@@ -1,11 +1,13 @@
-package com.HotelManagement.AirBnb.controller;
+package com.HotelManagement.AirBnb.booking.controller;
 
-import com.HotelManagement.AirBnb.dto.PageResponse;
-import com.HotelManagement.AirBnb.dto.booking.BookingDetailResponse;
-import com.HotelManagement.AirBnb.dto.booking.BookingResponse;
-import com.HotelManagement.AirBnb.entity.enums.BookingStatus;
-import com.HotelManagement.AirBnb.service.CurrentUserService;
-import com.HotelManagement.AirBnb.service.ManagerBookingService;
+import com.HotelManagement.AirBnb.auth.service.CurrentUserService;
+import com.HotelManagement.AirBnb.booking.dto.BookingDetailResponse;
+import com.HotelManagement.AirBnb.booking.dto.BookingResponse;
+import com.HotelManagement.AirBnb.booking.entity.BookingStatus;
+import com.HotelManagement.AirBnb.booking.service.ManagerBookingService;
+import com.HotelManagement.AirBnb.shared.dto.PageResponse;
+import com.HotelManagement.AirBnb.shared.exception.BadRequestException;
+import com.HotelManagement.AirBnb.shared.web.PhotoResponses;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.oauth2.jwt.Jwt;
@@ -52,7 +54,7 @@ public class BookingAdminController {
         try {
             return Long.valueOf(digits);
         } catch (NumberFormatException e) {
-            throw new com.HotelManagement.AirBnb.exception.BadRequestException("Booking reference looks like BK000123");
+            throw new BadRequestException("Booking reference looks like BK000123");
         }
     }
 

@@ -1,4 +1,4 @@
-package com.HotelManagement.AirBnb.config;
+package com.HotelManagement.AirBnb.auth.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

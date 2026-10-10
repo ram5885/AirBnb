@@ -1,8 +1,8 @@
-package com.HotelManagement.AirBnb.service;
+package com.HotelManagement.AirBnb.auth.service;
 
-import com.HotelManagement.AirBnb.entity.User;
-import com.HotelManagement.AirBnb.exception.UnauthorizedException;
-import com.HotelManagement.AirBnb.repository.UserRepository;
+import com.HotelManagement.AirBnb.auth.entity.User;
+import com.HotelManagement.AirBnb.auth.repository.UserRepository;
+import com.HotelManagement.AirBnb.shared.exception.UnauthorizedException;
 import org.springframework.security.oauth2.jwt.Jwt;
 import org.springframework.stereotype.Service;
 

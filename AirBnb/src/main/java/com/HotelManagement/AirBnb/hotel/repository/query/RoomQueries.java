@@ -1,4 +1,4 @@
-package com.HotelManagement.AirBnb.repository.query;
+package com.HotelManagement.AirBnb.hotel.repository.query;
 
 /** Native SQL for RoomRepository (table room = room types). */
 public final class RoomQueries {

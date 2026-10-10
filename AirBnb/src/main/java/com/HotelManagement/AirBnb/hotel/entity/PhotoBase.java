@@ -1,4 +1,4 @@
-package com.HotelManagement.AirBnb.entity;
+package com.HotelManagement.AirBnb.hotel.entity;
 
 import java.time.LocalDateTime;
 

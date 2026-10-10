@@ -1,4 +1,4 @@
-package com.HotelManagement.AirBnb.exception;
+package com.HotelManagement.AirBnb.shared.exception;
 
 public class ResourceNotFoundException extends RuntimeException {
 

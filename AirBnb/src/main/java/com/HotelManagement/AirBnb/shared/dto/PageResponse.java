@@ -1,4 +1,4 @@
-package com.HotelManagement.AirBnb.dto;
+package com.HotelManagement.AirBnb.shared.dto;
 
 import org.springframework.data.domain.Page;
 

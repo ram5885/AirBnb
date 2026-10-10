@@ -1,4 +1,4 @@
-package com.HotelManagement.AirBnb.dto.hotel;
+package com.HotelManagement.AirBnb.hotel.dto;
 
 import jakarta.validation.constraints.NotNull;
 

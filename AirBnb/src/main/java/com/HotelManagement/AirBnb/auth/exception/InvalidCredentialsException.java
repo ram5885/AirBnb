@@ -1,4 +1,4 @@
-package com.HotelManagement.AirBnb.exception;
+package com.HotelManagement.AirBnb.auth.exception;
 
 public class InvalidCredentialsException extends RuntimeException {
 

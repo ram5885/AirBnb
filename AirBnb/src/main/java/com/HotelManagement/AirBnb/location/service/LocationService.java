@@ -1,7 +1,7 @@
-package com.HotelManagement.AirBnb.service;
+package com.HotelManagement.AirBnb.location.service;
 
-import com.HotelManagement.AirBnb.dto.LocationDto;
-import com.HotelManagement.AirBnb.repository.LocationRepository;
+import com.HotelManagement.AirBnb.location.dto.LocationDto;
+import com.HotelManagement.AirBnb.location.repository.LocationRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 

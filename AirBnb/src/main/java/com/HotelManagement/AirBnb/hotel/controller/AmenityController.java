@@ -1,7 +1,7 @@
-package com.HotelManagement.AirBnb.controller;
+package com.HotelManagement.AirBnb.hotel.controller;
 
-import com.HotelManagement.AirBnb.dto.AmenityCategoryResponse;
-import com.HotelManagement.AirBnb.service.AmenityService;
+import com.HotelManagement.AirBnb.hotel.dto.AmenityCategoryResponse;
+import com.HotelManagement.AirBnb.hotel.service.AmenityService;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;

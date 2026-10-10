@@ -1,4 +1,4 @@
-package com.HotelManagement.AirBnb.repository.query;
+package com.HotelManagement.AirBnb.auth.repository.query;
 
 /** Native SQL for UserRepository (table app_user). */
 public final class UserQueries {

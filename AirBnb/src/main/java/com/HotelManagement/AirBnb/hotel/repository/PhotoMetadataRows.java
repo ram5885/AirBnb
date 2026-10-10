@@ -1,6 +1,6 @@
-package com.HotelManagement.AirBnb.repository;
+package com.HotelManagement.AirBnb.hotel.repository;
 
-import com.HotelManagement.AirBnb.dto.PhotoMetadata;
+import com.HotelManagement.AirBnb.hotel.dto.PhotoMetadata;
 
 /** Maps native [id, owner_id, file_name, content_type, size_bytes] rows to PhotoMetadata. */
 final class PhotoMetadataRows {

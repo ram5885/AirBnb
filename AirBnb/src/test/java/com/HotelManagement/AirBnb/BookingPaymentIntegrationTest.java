@@ -1,10 +1,11 @@
 package com.HotelManagement.AirBnb;
 
-import com.HotelManagement.AirBnb.payment.PaymentGateway.GatewayOrder;
-import com.HotelManagement.AirBnb.payment.PaymentGateway.GatewayPayment;
-import com.HotelManagement.AirBnb.payment.PaymentGateway.GatewayRefund;
-import com.HotelManagement.AirBnb.payment.PaymentGatewayException;
-import com.HotelManagement.AirBnb.service.HoldExpiryService;
+import com.HotelManagement.AirBnb.booking.entity.Booking;
+import com.HotelManagement.AirBnb.booking.service.HoldExpiryService;
+import com.HotelManagement.AirBnb.payment.gateway.PaymentGateway.GatewayOrder;
+import com.HotelManagement.AirBnb.payment.gateway.PaymentGateway.GatewayPayment;
+import com.HotelManagement.AirBnb.payment.gateway.PaymentGateway.GatewayRefund;
+import com.HotelManagement.AirBnb.payment.gateway.PaymentGatewayException;
 import com.jayway.jsonpath.JsonPath;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Nested;

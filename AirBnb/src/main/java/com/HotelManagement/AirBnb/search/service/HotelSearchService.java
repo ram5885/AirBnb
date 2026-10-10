@@ -1,27 +1,29 @@
-package com.HotelManagement.AirBnb.service;
+package com.HotelManagement.AirBnb.search.service;
 
-import com.HotelManagement.AirBnb.dto.PageResponse;
-import com.HotelManagement.AirBnb.dto.PhotoMetadata;
-import com.HotelManagement.AirBnb.dto.search.AvailabilityResponse;
-import com.HotelManagement.AirBnb.dto.search.HotelSearchResult;
-import com.HotelManagement.AirBnb.dto.search.PublicHotelResponse;
-import com.HotelManagement.AirBnb.dto.search.PublicRoomResponse;
-import com.HotelManagement.AirBnb.dto.search.PublicRoomTypeSummary;
-import com.HotelManagement.AirBnb.dto.search.StayResponse;
-import com.HotelManagement.AirBnb.entity.Hotel;
-import com.HotelManagement.AirBnb.entity.HotelPhoto;
-import com.HotelManagement.AirBnb.entity.Inventory;
-import com.HotelManagement.AirBnb.entity.Location;
-import com.HotelManagement.AirBnb.entity.Room;
-import com.HotelManagement.AirBnb.entity.RoomPhoto;
-import com.HotelManagement.AirBnb.exception.BadRequestException;
-import com.HotelManagement.AirBnb.exception.ResourceNotFoundException;
-import com.HotelManagement.AirBnb.repository.HotelPhotoRepository;
-import com.HotelManagement.AirBnb.repository.HotelRepository;
-import com.HotelManagement.AirBnb.repository.InventoryRepository;
-import com.HotelManagement.AirBnb.repository.LocationRepository;
-import com.HotelManagement.AirBnb.repository.RoomPhotoRepository;
-import com.HotelManagement.AirBnb.repository.RoomRepository;
+import com.HotelManagement.AirBnb.booking.service.BookingService;
+import com.HotelManagement.AirBnb.hotel.dto.PhotoMetadata;
+import com.HotelManagement.AirBnb.hotel.entity.Hotel;
+import com.HotelManagement.AirBnb.hotel.entity.HotelPhoto;
+import com.HotelManagement.AirBnb.hotel.entity.Inventory;
+import com.HotelManagement.AirBnb.hotel.entity.Room;
+import com.HotelManagement.AirBnb.hotel.entity.RoomPhoto;
+import com.HotelManagement.AirBnb.hotel.repository.HotelPhotoRepository;
+import com.HotelManagement.AirBnb.hotel.repository.HotelRepository;
+import com.HotelManagement.AirBnb.hotel.repository.InventoryRepository;
+import com.HotelManagement.AirBnb.hotel.repository.RoomPhotoRepository;
+import com.HotelManagement.AirBnb.hotel.repository.RoomRepository;
+import com.HotelManagement.AirBnb.hotel.service.AmenityService;
+import com.HotelManagement.AirBnb.location.entity.Location;
+import com.HotelManagement.AirBnb.location.repository.LocationRepository;
+import com.HotelManagement.AirBnb.search.dto.AvailabilityResponse;
+import com.HotelManagement.AirBnb.search.dto.HotelSearchResult;
+import com.HotelManagement.AirBnb.search.dto.PublicHotelResponse;
+import com.HotelManagement.AirBnb.search.dto.PublicRoomResponse;
+import com.HotelManagement.AirBnb.search.dto.PublicRoomTypeSummary;
+import com.HotelManagement.AirBnb.search.dto.StayResponse;
+import com.HotelManagement.AirBnb.shared.dto.PageResponse;
+import com.HotelManagement.AirBnb.shared.exception.BadRequestException;
+import com.HotelManagement.AirBnb.shared.exception.ResourceNotFoundException;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
@@ -275,7 +277,7 @@ public class HotelSearchService {
         return new AvailabilityResponse(a.bookable(), Math.max(0, a.minFree()), a.total(stay), a.averageNightly(stay));
     }
 
-    static String hotelPhotoUrl(Long hotelId, Long photoId) {
+    public static String hotelPhotoUrl(Long hotelId, Long photoId) {
         return "/api/v1/hotels/" + hotelId + "/photos/" + photoId;
     }
 

@@ -1,7 +1,8 @@
-package com.HotelManagement.AirBnb.repository;
+package com.HotelManagement.AirBnb.location.repository;
 
-import com.HotelManagement.AirBnb.entity.Location;
-import com.HotelManagement.AirBnb.repository.query.LocationQueries;
+import com.HotelManagement.AirBnb.location.entity.Location;
+import com.HotelManagement.AirBnb.location.repository.query.LocationQueries;
+import com.HotelManagement.AirBnb.shared.repository.WriteRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 

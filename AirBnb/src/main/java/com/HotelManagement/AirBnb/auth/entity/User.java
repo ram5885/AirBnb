@@ -1,8 +1,7 @@
-package com.HotelManagement.AirBnb.entity;
+package com.HotelManagement.AirBnb.auth.entity;
 
+import com.HotelManagement.AirBnb.auth.entity.Role;
 import java.util.Set;
-
-import com.HotelManagement.AirBnb.entity.enums.Role;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.ElementCollection;

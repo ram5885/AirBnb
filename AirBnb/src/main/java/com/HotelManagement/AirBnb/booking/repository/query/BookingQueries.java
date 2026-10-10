@@ -1,4 +1,4 @@
-package com.HotelManagement.AirBnb.repository.query;
+package com.HotelManagement.AirBnb.booking.repository.query;
 
 /**
  * Native SQL for BookingRepository (table booking; booking_guest links guests).

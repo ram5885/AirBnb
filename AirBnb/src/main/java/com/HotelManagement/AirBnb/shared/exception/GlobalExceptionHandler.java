@@ -1,5 +1,9 @@
-package com.HotelManagement.AirBnb.exception;
+package com.HotelManagement.AirBnb.shared.exception;
 
+import com.HotelManagement.AirBnb.auth.exception.DuplicateEmailException;
+import com.HotelManagement.AirBnb.auth.exception.InvalidCredentialsException;
+import com.HotelManagement.AirBnb.payment.exception.PaymentFailedException;
+import com.HotelManagement.AirBnb.payment.gateway.PaymentGatewayException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.dao.DataIntegrityViolationException;
@@ -73,8 +77,8 @@ public class GlobalExceptionHandler {
     }
 
     /** Gateway problems: details are logged by the gateway client, never returned. */
-    @ExceptionHandler(com.HotelManagement.AirBnb.payment.PaymentGatewayException.class)
-    public ResponseEntity<Map<String, String>> handleGateway(com.HotelManagement.AirBnb.payment.PaymentGatewayException ex) {
+    @ExceptionHandler(PaymentGatewayException.class)
+    public ResponseEntity<Map<String, String>> handleGateway(PaymentGatewayException ex) {
         return error(HttpStatus.BAD_GATEWAY, "The payment provider couldn't complete the request. Nothing was changed; please try again.");
     }
 

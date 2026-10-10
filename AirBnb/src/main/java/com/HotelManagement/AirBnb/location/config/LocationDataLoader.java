@@ -1,7 +1,7 @@
-package com.HotelManagement.AirBnb.config;
+package com.HotelManagement.AirBnb.location.config;
 
-import com.HotelManagement.AirBnb.entity.Location;
-import com.HotelManagement.AirBnb.repository.LocationRepository;
+import com.HotelManagement.AirBnb.location.entity.Location;
+import com.HotelManagement.AirBnb.location.repository.LocationRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;

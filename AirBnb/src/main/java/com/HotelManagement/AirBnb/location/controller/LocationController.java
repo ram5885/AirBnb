@@ -1,7 +1,7 @@
-package com.HotelManagement.AirBnb.controller;
+package com.HotelManagement.AirBnb.location.controller;
 
-import com.HotelManagement.AirBnb.dto.LocationDto;
-import com.HotelManagement.AirBnb.service.LocationService;
+import com.HotelManagement.AirBnb.location.dto.LocationDto;
+import com.HotelManagement.AirBnb.location.service.LocationService;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
