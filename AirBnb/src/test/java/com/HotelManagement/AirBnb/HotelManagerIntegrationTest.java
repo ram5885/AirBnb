@@ -36,6 +36,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.hamcrest.Matchers.containsString;
 import static org.hamcrest.Matchers.hasSize;
 import static org.hamcrest.Matchers.not;
+import static org.hamcrest.Matchers.startsWith;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.multipart;
@@ -87,7 +88,7 @@ class HotelManagerIntegrationTest extends ApiTestSupport {
             createHotel(manager, hotelJson("Mass Assign", "Kerala", "Alappuzha",
                     ",\"owner\":{\"id\":999},\"createdAt\":\"2000-01-01T00:00:00\",\"hotelId\":42"))
                     .andExpect(status().isCreated())
-                    .andExpect(jsonPath("$.createdAt", not(containsString("2000"))));
+                    .andExpect(jsonPath("$.createdAt", not(startsWith("2000-")))); // server sets the timestamp
         }
 
         @Test

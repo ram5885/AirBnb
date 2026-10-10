@@ -32,17 +32,51 @@ public class GuestController {
         this.currentUser = currentUser;
     }
 
+    /**
+     * <b>GET /api/v1/guests</b> — the caller's saved guests.
+     * <p>
+     * People the caller travels with ({@code id, name, gender, age}), oldest first. Shown as checkboxes
+     * when booking.
+     * <p>
+     * Access: GUEST. 200 OK.
+     *
+     * @return the caller's guests
+     */
     @GetMapping
     public List<GuestResponse> list(@AuthenticationPrincipal Jwt jwt) {
         return guestService.list(currentUser.require(jwt));
     }
 
+    /**
+     * <b>POST /api/v1/guests</b> — save a new guest.
+     * <p>
+     * Body: {@code {"name", "gender" (MALE|FEMALE|OTHER), "age" (0–120)}}. The guest belongs to the caller
+     * and can be added to any of their bookings.
+     * <p>
+     * Access: GUEST.<br>
+     * 201 Created: the saved guest. 400: missing or invalid fields (with {@code fieldErrors}).
+     *
+     * @param request the guest's details
+     * @return the saved guest
+     */
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping
     public GuestResponse create(@AuthenticationPrincipal Jwt jwt, @Valid @RequestBody GuestRequest request) {
         return guestService.create(currentUser.require(jwt), request);
     }
 
+    /**
+     * <b>PUT /api/v1/guests/{guestId}</b> — edit a saved guest.
+     * <p>
+     * Replaces name, gender and age. Bookings that include this guest show the new details.
+     * <p>
+     * Access: GUEST, owner only.<br>
+     * 200 OK. 400: invalid fields. 404: not found or belongs to someone else.
+     *
+     * @param guestId guest id
+     * @param request the new details
+     * @return the updated guest
+     */
     @PutMapping("/{guestId}")
     public GuestResponse update(@AuthenticationPrincipal Jwt jwt, @PathVariable Long guestId,
                                 @Valid @RequestBody GuestRequest request) {
