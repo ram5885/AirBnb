@@ -9,6 +9,8 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
 import java.time.LocalDate;
+import java.util.Collection;
+import java.util.List;
 import java.util.Optional;
 
 public interface HotelRepository extends WriteRepository<Hotel, Long> {
@@ -50,6 +52,16 @@ public interface HotelRepository extends WriteRepository<Hotel, Long> {
     Page<Hotel> searchAvailable(@Param("locationId") Long locationId, @Param("checkIn") LocalDate checkIn,
                                 @Param("checkOut") LocalDate checkOut, @Param("rooms") int rooms,
                                 @Param("nights") long nights, Pageable pageable);
+
+    /** Rows of [hotel_id, location_id, available_in_city]; see HotelQueries.SECTION_HOTEL_IDS. */
+    @Query(value = HotelQueries.SECTION_HOTEL_IDS, nativeQuery = true)
+    List<Object[]> findSectionHotelIds(@Param("checkIn") LocalDate checkIn, @Param("checkOut") LocalDate checkOut,
+                                       @Param("rooms") int rooms, @Param("nights") long nights,
+                                       @Param("perCity") int perCity);
+
+    /** Active, non-deleted hotels with these ids, in no particular order. */
+    @Query(value = HotelQueries.FIND_PUBLIC_BY_IDS, nativeQuery = true)
+    List<Hotel> findPublicByIds(@Param("ids") Collection<Long> ids);
 
     /**
      * Shared row lock (SELECT ... FOR SHARE) taken while creating a booking, so a concurrent

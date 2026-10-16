@@ -17,6 +17,7 @@ import com.HotelManagement.AirBnb.location.entity.Location;
 import com.HotelManagement.AirBnb.location.repository.LocationRepository;
 import com.HotelManagement.AirBnb.search.dto.AvailabilityResponse;
 import com.HotelManagement.AirBnb.search.dto.HotelSearchResult;
+import com.HotelManagement.AirBnb.search.dto.HotelSectionResponse;
 import com.HotelManagement.AirBnb.search.dto.PublicHotelResponse;
 import com.HotelManagement.AirBnb.search.dto.PublicRoomResponse;
 import com.HotelManagement.AirBnb.search.dto.PublicRoomTypeSummary;
@@ -52,6 +53,8 @@ import java.util.stream.Collectors;
 public class HotelSearchService {
 
     public static final int MAX_PAGE_SIZE = 50;
+    public static final int MAX_SECTIONS = 50;
+    public static final int MAX_SECTION_HOTELS = 20;
     private static final int SEARCH_PHOTOS_PER_HOTEL = 5;
 
     private final HotelRepository hotelRepository;
@@ -122,17 +125,72 @@ public class HotelSearchService {
 
         Page<Hotel> hotels = hotelRepository.searchAvailable(location.getId(), stay.checkIn(), stay.checkOut(),
                 stay.rooms(), stay.nights(), PageRequest.of(page, size)); // ordered by name in the query
-        List<Long> ids = hotels.getContent().stream().map(Hotel::getHotelId).toList();
-        if (ids.isEmpty()) {
-            return PageResponse.of(hotels, List.of());
+        return PageResponse.of(hotels, toResults(hotels.getContent(), stay));
+    }
+
+    /**
+     * Home page "Stays in {city}" rows for a stay: cities with the most hotels that can take it first (up to
+     * maxCities), each with its first perCity such hotels by name. Uses the same availability rule and result
+     * shape as search, in three set-based queries whatever the number of cities.
+     */
+    public List<HotelSectionResponse> getSections(Stay stay, int maxCities, int perCity) {
+        if (maxCities < 1 || maxCities > MAX_SECTIONS || perCity < 1 || perCity > MAX_SECTION_HOTELS) {
+            throw new BadRequestException("maxCities must be between 1 and " + MAX_SECTIONS
+                    + " and perCity between 1 and " + MAX_SECTION_HOTELS);
+        }
+        record Row(long hotelId, long locationId, long availableInCity) {
+        }
+        List<Row> rows = hotelRepository.findSectionHotelIds(stay.checkIn(), stay.checkOut(), stay.rooms(),
+                        stay.nights(), perCity).stream()
+                .map(r -> new Row(((Number) r[0]).longValue(), ((Number) r[1]).longValue(), ((Number) r[2]).longValue()))
+                .toList();
+        if (rows.isEmpty()) {
+            return List.of();
         }
 
-        // Two set-based queries for the whole page (no per-hotel queries, no image bytes).
+        Map<Long, Hotel> hotels = hotelRepository.findPublicByIds(rows.stream().map(Row::hotelId).toList()).stream()
+                .collect(Collectors.toMap(Hotel::getHotelId, Function.identity()));
+        Map<Long, List<Hotel>> byCity = new HashMap<>();
+        Map<Long, Long> availableInCity = new HashMap<>();
+        for (Row r : rows) {
+            Hotel h = hotels.get(r.hotelId());
+            if (h != null) {
+                byCity.computeIfAbsent(r.locationId(), k -> new ArrayList<>()).add(h);
+                availableInCity.put(r.locationId(), r.availableInCity());
+            }
+        }
+        Comparator<List<Hotel>> mostAvailableFirst = Comparator
+                .comparing((List<Hotel> l) -> availableInCity.get(l.getFirst().getLocation().getId())).reversed()
+                .thenComparing(l -> l.getFirst().getLocation().getCity());
+        List<List<Hotel>> sections = byCity.values().stream()
+                .map(l -> l.stream().sorted(Comparator.comparing(Hotel::getName).thenComparing(Hotel::getHotelId)).toList())
+                .sorted(mostAvailableFirst)
+                .limit(maxCities)
+                .toList();
+
+        Map<Long, HotelSearchResult> results = toResults(sections.stream().flatMap(List::stream).toList(), stay).stream()
+                .collect(Collectors.toMap(HotelSearchResult::id, Function.identity()));
+        return sections.stream().map(l -> {
+            Location loc = l.getFirst().getLocation();
+            return new HotelSectionResponse(loc.getId(), loc.getCity(), loc.getState(), availableInCity.get(loc.getId()),
+                    l.stream().map(h -> results.get(h.getHotelId())).toList());
+        }).toList();
+    }
+
+    /**
+     * Search-result cards for hotels (same order), with the cheapest room type that can take the stay and up
+     * to five photo URLs. Two set-based queries for the whole list (no per-hotel queries, no image bytes).
+     */
+    private List<HotelSearchResult> toResults(List<Hotel> hotels, Stay stay) {
+        List<Long> ids = hotels.stream().map(Hotel::getHotelId).toList();
+        if (ids.isEmpty()) {
+            return List.of();
+        }
         Map<Long, List<RoomAvailability>> availability = availabilityByHotel(ids, stay);
         Map<Long, List<PhotoMetadata>> photos = hotelPhotoRepository.findMetadataByHotelIds(ids).stream()
                 .collect(Collectors.groupingBy(PhotoMetadata::ownerId));
 
-        return PageResponse.of(hotels, h -> {
+        return hotels.stream().map(h -> {
             List<RoomAvailability> bookable = availability.getOrDefault(h.getHotelId(), List.of()).stream()
                     .filter(RoomAvailability::bookable).toList();
             RoomAvailability cheapest = bookable.stream()
@@ -143,7 +201,7 @@ public class HotelSearchService {
                     photoUrls, amenityService.toList(h.getAmenities()), bookable.size(),
                     cheapest == null ? null : cheapest.averageNightly(stay),
                     cheapest == null ? null : cheapest.total(stay));
-        });
+        }).toList();
     }
 
     public PublicHotelResponse getHotel(Long hotelId, Stay stay) {

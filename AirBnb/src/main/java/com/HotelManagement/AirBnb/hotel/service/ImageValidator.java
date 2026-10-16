@@ -65,7 +65,8 @@ public class ImageValidator {
         return files == null ? List.of() : files;
     }
 
-    static String detectType(byte[] b) {
+    /** "image/jpeg", "image/png" or "image/webp" from the magic bytes, or null for anything else. */
+    public static String detectType(byte[] b) {
         if (b.length >= 3 && (b[0] & 0xFF) == 0xFF && (b[1] & 0xFF) == 0xD8 && (b[2] & 0xFF) == 0xFF) {
             return "image/jpeg";
         }

@@ -29,18 +29,7 @@
   font-size: 28px;
   font-weight: 700;
   margin-bottom: 16px;
-}
-
-.s-search {
-  display: flex;
-  align-items: flex-start;
-  gap: 12px;
-  flex-wrap: wrap;
-  background: var(--color-bg);
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-lg);
-  box-shadow: var(--shadow-card);
-  padding: 14px;
+  text-align: center;
 }
 
 .s-field {
@@ -96,18 +85,127 @@
   color: #c13515;
 }
 
+/* Home search: one pill split into Where | When | Who segments with a round search button. */
+.s-search {
+  display: flex;
+  align-items: center;
+  max-width: 850px;
+  margin: 0 auto;
+  background: var(--color-bg);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-pill);
+  box-shadow: 0 3px 12px rgba(0, 0, 0, 0.1);
+  padding: 8px 8px 8px 0;
+}
+
+.s-search .s-field {
+  position: relative;
+  flex: 1 1 0;
+  gap: 2px;
+  padding: 10px 24px 10px 32px;
+  border-radius: var(--radius-pill);
+  cursor: pointer;
+  transition: background 0.15s;
+}
+
+.s-search .s-field:hover {
+  background: var(--color-bg-soft);
+}
+
+.s-search .s-field:focus-within {
+  background: var(--color-bg);
+  box-shadow: var(--shadow-md);
+}
+
+/* thin dividers between segments, hidden next to the hovered or focused one */
+.s-search .s-field + .s-field::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 50%;
+  height: 32px;
+  border-left: 1px solid var(--color-border);
+  transform: translateY(-50%);
+}
+
+.s-search .s-field:hover::before,
+.s-search .s-field:focus-within::before,
+.s-search .s-field:hover + .s-field::before,
+.s-search .s-field:focus-within + .s-field::before {
+  display: none;
+}
+
+.s-search .s-field--where {
+  flex-grow: 1.1;
+}
+
+.s-search .s-field--when {
+  flex-grow: 1.3;
+}
+
+.s-search .s-field label {
+  font-size: 14px;
+  font-weight: 600;
+  text-transform: none;
+  letter-spacing: 0;
+  cursor: pointer;
+}
+
+.s-search .s-field input,
+.s-search .s-field select {
+  padding: 0;
+  border: none;
+  border-radius: 0;
+  background: transparent;
+  font-size: 15px;
+  color: var(--color-text-light);
+  cursor: pointer;
+}
+
+.s-search .s-field input::placeholder {
+  color: var(--color-text-light);
+}
+
+.s-search .s-field input:focus,
+.s-search .s-field select:focus {
+  border: none;
+  box-shadow: none;
+  color: var(--color-text);
+}
+
+.s-search .s-field--error input,
+.s-search .s-field--error select {
+  background: transparent;
+}
+
+.s-field__dates {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--color-text-light);
+}
+
+.s-field__dates input {
+  min-width: 0;
+}
+
+.s-search .m-combobox__list {
+  top: calc(100% + 18px);
+  left: -32px;
+  min-width: 320px;
+}
+
 .s-search__button {
-  align-self: flex-end;
+  flex-shrink: 0;
   display: inline-flex;
   align-items: center;
-  gap: 8px;
-  height: 44px;
-  padding: 0 22px;
-  border-radius: var(--radius-sm);
+  justify-content: center;
+  width: 56px;
+  height: 56px;
+  margin-left: 8px;
+  border-radius: 50%;
   background: var(--color-primary-gradient);
   color: #fff;
-  font-weight: 600;
-  font-size: 15px;
 }
 
 .s-search__button:disabled {
@@ -337,9 +435,34 @@
     font-size: 22px;
   }
 
+  .s-search {
+    flex-direction: column;
+    align-items: stretch;
+    border-radius: var(--radius-lg);
+    padding: 8px;
+  }
+
+  .s-search .s-field {
+    flex: none;
+    padding: 10px 16px;
+    border-radius: var(--radius-md);
+  }
+
+  .s-search .s-field + .s-field::before {
+    display: none;
+  }
+
+  .s-search .m-combobox__list {
+    left: -16px;
+    min-width: 0;
+    right: -16px;
+  }
+
   .s-search__button {
     width: 100%;
-    justify-content: center;
+    height: 48px;
+    margin: 4px 0 0;
+    border-radius: var(--radius-md);
   }
 
   .s-gallery--3,
@@ -355,5 +478,182 @@
 
   .s-room {
     flex-wrap: wrap;
+  }
+}
+
+/* ------------------------------------------------------------ home carousels (cities, stays by city) */
+
+.carousel {
+  margin-bottom: 40px;
+}
+
+.carousel__header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+.carousel__title {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.carousel__title h2 {
+  font-size: 22px;
+}
+
+.carousel__subtitle {
+  margin-top: 2px;
+  font-size: 15px;
+  color: var(--color-text-light);
+}
+
+.carousel__more,
+.carousel__arrows button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  background: var(--color-bg-soft);
+  border: 1px solid var(--color-border-light);
+  color: var(--color-text);
+}
+
+.carousel__arrows {
+  display: flex;
+  gap: 8px;
+}
+
+.carousel__more:hover,
+.carousel__arrows button:hover:not(:disabled) {
+  box-shadow: var(--shadow-sm);
+  background: var(--color-bg);
+}
+
+.carousel__arrows button:disabled {
+  opacity: 0.35;
+  cursor: default;
+}
+
+.carousel__row {
+  --per-row: 7;
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: calc((100% - (var(--per-row) - 1) * 16px) / var(--per-row));
+  gap: 16px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+  list-style: none;
+}
+
+.carousel__row--stays {
+  --per-row: 5;
+}
+
+.carousel__row::-webkit-scrollbar {
+  display: none;
+}
+
+.carousel__row > li {
+  scroll-snap-align: start;
+  min-width: 0;
+}
+
+.sections--stale {
+  opacity: 0.6;
+  transition: opacity 0.2s;
+}
+
+.sections__note {
+  margin-bottom: 24px;
+}
+
+.m-link-btn {
+  background: none;
+  padding: 0;
+  font: inherit;
+  font-weight: 600;
+  color: inherit;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.d-card {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  width: 100%;
+  text-align: left;
+  background: none;
+}
+
+.d-card__image {
+  display: block;
+  width: 100%;
+  aspect-ratio: 1 / 0.95;
+  object-fit: cover;
+  border-radius: var(--radius-lg);
+  margin-bottom: 8px;
+  transition: transform 0.25s;
+}
+
+.d-card:hover .d-card__image {
+  transform: scale(1.03);
+}
+
+.d-card:focus-visible {
+  outline: 2px solid var(--color-text);
+  outline-offset: 4px;
+  border-radius: var(--radius-lg);
+}
+
+.d-card__city {
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.d-card__meta {
+  font-size: 14px;
+  color: var(--color-text-light);
+}
+
+@media (max-width: 1200px) {
+  .carousel__row {
+    --per-row: 5;
+  }
+
+  .carousel__row--stays {
+    --per-row: 4;
+  }
+}
+
+@media (max-width: 900px) {
+  .carousel__row {
+    --per-row: 4;
+  }
+
+  .carousel__row--stays {
+    --per-row: 2.4;
+  }
+}
+
+@media (max-width: 600px) {
+  .carousel__row {
+    --per-row: 2.3;
+  }
+
+  .carousel__row--stays {
+    --per-row: 1.3;
+  }
+
+  .carousel__subtitle {
+    font-size: 14px;
   }
 }

@@ -24,56 +24,6 @@
   flex: 0 0 auto;
 }
 
-.navbar__search {
-  display: none;
-  align-items: center;
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-pill);
-  box-shadow: var(--shadow-sm);
-  padding: 6px 6px 6px 24px;
-  gap: 0;
-  transition: box-shadow 0.2s ease;
-}
-
-.navbar__search:hover {
-  box-shadow: var(--shadow-card);
-}
-
-@media (min-width: 900px) {
-  .navbar__search {
-    display: flex;
-  }
-}
-
-.navbar__search-item {
-  font-size: 14px;
-  font-weight: 600;
-  padding: 0 16px;
-  white-space: nowrap;
-}
-
-.navbar__search-item--muted {
-  color: var(--color-text-light);
-  font-weight: 400;
-}
-
-.navbar__search-divider {
-  width: 1px;
-  height: 24px;
-  background: var(--color-border);
-}
-
-.navbar__search-icon {
-  width: 32px;
-  height: 32px;
-  border-radius: 50%;
-  background: var(--color-primary-gradient);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-left: 8px;
-}
-
 .navbar__right {
   display: flex;
   align-items: center;

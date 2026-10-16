@@ -1,8 +1,11 @@
 import { addDays, isoDate } from '../manager/ui.jsx';
 import { MAX_NIGHTS, MAX_ROOMS } from './stay.js';
 
-/** Check-in, check-out and number-of-rooms inputs (controlled). */
-export default function StayFields({ idPrefix, value, errors = {}, onChange, disabled }) {
+/**
+ * Check-in, check-out and number-of-rooms inputs (controlled).
+ * `pill` lays them out as the home search bar's "When" (both dates) and "Who" (rooms) segments.
+ */
+export default function StayFields({ idPrefix, value, errors = {}, onChange, disabled, pill }) {
   const today = isoDate(new Date());
 
   function set(key, v) {
@@ -10,6 +13,64 @@ export default function StayFields({ idPrefix, value, errors = {}, onChange, dis
     // Keep check-out after check-in when check-in moves past it.
     if (key === 'checkinDate' && v && next.checkoutDate && next.checkoutDate <= v) next.checkoutDate = addDays(v, 1);
     onChange(next);
+  }
+
+  if (pill) {
+    const dateError = errors.checkinDate || errors.checkoutDate;
+    return (
+      <>
+        <div className={`s-field s-field--when ${dateError ? 's-field--error' : ''}`}>
+          <label htmlFor={`${idPrefix}-in`}>When</label>
+          <div className="s-field__dates">
+            <input
+              id={`${idPrefix}-in`}
+              type="date"
+              aria-label="Check-in"
+              min={today}
+              value={value.checkinDate}
+              onChange={(e) => set('checkinDate', e.target.value)}
+              disabled={disabled}
+              aria-invalid={!!errors.checkinDate}
+              aria-describedby={dateError ? `${idPrefix}-dates-err` : undefined}
+            />
+            <span aria-hidden="true">–</span>
+            <input
+              id={`${idPrefix}-out`}
+              type="date"
+              aria-label="Check-out"
+              min={value.checkinDate ? addDays(value.checkinDate, 1) : addDays(today, 1)}
+              max={value.checkinDate ? addDays(value.checkinDate, MAX_NIGHTS) : undefined}
+              value={value.checkoutDate}
+              onChange={(e) => set('checkoutDate', e.target.value)}
+              disabled={disabled}
+              aria-invalid={!!errors.checkoutDate}
+              aria-describedby={dateError ? `${idPrefix}-dates-err` : undefined}
+            />
+          </div>
+          {dateError && (
+            <span className="s-field__error" id={`${idPrefix}-dates-err`}>
+              {dateError}
+            </span>
+          )}
+        </div>
+        <div className={`s-field s-field--who ${errors.numberOfRooms ? 's-field--error' : ''}`}>
+          <label htmlFor={`${idPrefix}-rooms`}>Who</label>
+          <select
+            id={`${idPrefix}-rooms`}
+            value={value.numberOfRooms}
+            onChange={(e) => set('numberOfRooms', Number(e.target.value))}
+            disabled={disabled}
+          >
+            {Array.from({ length: MAX_ROOMS }, (_, i) => i + 1).map((n) => (
+              <option key={n} value={n}>
+                {n} {n === 1 ? 'room' : 'rooms'}
+              </option>
+            ))}
+          </select>
+          {errors.numberOfRooms && <span className="s-field__error">{errors.numberOfRooms}</span>}
+        </div>
+      </>
+    );
   }
 
   return (

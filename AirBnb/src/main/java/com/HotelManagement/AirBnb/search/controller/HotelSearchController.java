@@ -1,6 +1,7 @@
 package com.HotelManagement.AirBnb.search.controller;
 
 import com.HotelManagement.AirBnb.search.dto.HotelSearchResult;
+import com.HotelManagement.AirBnb.search.dto.HotelSectionResponse;
 import com.HotelManagement.AirBnb.search.dto.PublicHotelResponse;
 import com.HotelManagement.AirBnb.search.dto.PublicRoomResponse;
 import com.HotelManagement.AirBnb.search.service.HotelSearchService;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.time.LocalDate;
+import java.util.List;
 
 /**
  * Public, read-only hotel search for guests (no login required; see SecurityConfig).
@@ -61,6 +63,32 @@ public class HotelSearchController {
             @RequestParam(defaultValue = "10") int size) {
         return searchService.search(city, state, searchService.requireStay(checkinDate, checkoutDate, numberOfRooms),
                 page, size);
+    }
+
+    /**
+     * <b>GET /api/v1/hotels/sections</b> — "Stays in {city}" rows for the guest home page.
+     * <p>
+     * Query: {@code checkinDate}, {@code checkoutDate} and {@code numberOfRooms} (required, same rules as
+     * search), {@code maxCities} (1–50, default 8), {@code perCity} (1–20, default 10).
+     * <p>
+     * For each city with at least one hotel that can take the stay (same availability rule as search),
+     * the city and up to perCity of those hotels by name, as search-result cards; cities with the most
+     * such hotels come first. Cities with no hotel available for the stay are left out.
+     * <p>
+     * Access: public.<br>
+     * 200 OK (may be empty). 400: missing/invalid dates, rooms, maxCities or perCity.
+     *
+     * @return the sections
+     */
+    @GetMapping("/sections")
+    public List<HotelSectionResponse> sections(
+            @RequestParam(required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate checkinDate,
+            @RequestParam(required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate checkoutDate,
+            @RequestParam(required = false) Integer numberOfRooms,
+            @RequestParam(defaultValue = "8") int maxCities,
+            @RequestParam(defaultValue = "10") int perCity) {
+        return searchService.getSections(searchService.requireStay(checkinDate, checkoutDate, numberOfRooms),
+                maxCities, perCity);
     }
 
     /**

@@ -44,14 +44,13 @@ public final class HotelQueries {
             SELECT h.* FROM hotel h WHERE h.hotel_id = :id AND h.active = TRUE AND h.deleted_at IS NULL""";
 
     /**
-     * Guest search: active, non-deleted hotels at the location with at least one live room type that has
-     * :rooms free on every night in [checkIn, checkOut). A night is free when its inventory row exists,
-     * isn't closed and total_count - booked_count covers the request.
+     * The availability rule shared by guest search and the home page sections: hotel {@code h} has at least
+     * one live room type with :rooms free on every night in [checkIn, checkOut). A night is free when its
+     * inventory row exists, isn't closed and total_count - booked_count covers the request (booked_count
+     * already includes every inventory-holding booking; cancelled and expired ones are released).
      */
-    public static final String SEARCH_WHERE = """
-            FROM hotel h
-            WHERE h.location_id = :locationId AND h.active = TRUE AND h.deleted_at IS NULL
-              AND EXISTS (
+    static final String HAS_BOOKABLE_ROOM = """
+            EXISTS (
                 SELECT 1 FROM room r
                 WHERE r.hotel_id = h.hotel_id AND r.deleted_at IS NULL
                   AND (SELECT COUNT(*) FROM inventory i
@@ -59,9 +58,35 @@ public final class HotelQueries {
                          AND i.date >= :checkIn AND i.date < :checkOut
                          AND i.closed = FALSE AND i.total_count - i.booked_count >= :rooms) = :nights)""";
 
+    /** Guest search: active, non-deleted hotels at the location that can take the stay (HAS_BOOKABLE_ROOM). */
+    public static final String SEARCH_WHERE = """
+            FROM hotel h
+            WHERE h.location_id = :locationId AND h.active = TRUE AND h.deleted_at IS NULL
+              AND\s""" + HAS_BOOKABLE_ROOM;
+
     public static final String SEARCH = "SELECT h.* " + SEARCH_WHERE + "\nORDER BY h.name, h.hotel_id";
 
     public static final String SEARCH_COUNT = "SELECT COUNT(*) " + SEARCH_WHERE;
+
+    /**
+     * Home page sections: [hotel_id, location_id, available_in_city] for every active, non-deleted hotel that
+     * can take the stay, keeping the first :perCity per city by name. available_in_city counts all of the
+     * city's matching hotels, before the per-city cut.
+     */
+    public static final String SECTION_HOTEL_IDS = """
+            SELECT x.hotel_id, x.location_id, x.available_in_city
+            FROM (SELECT h.hotel_id, h.location_id,
+                         ROW_NUMBER() OVER (PARTITION BY h.location_id ORDER BY h.name, h.hotel_id) AS rn,
+                         COUNT(*) OVER (PARTITION BY h.location_id) AS available_in_city
+                  FROM hotel h
+                  WHERE h.active = TRUE AND h.deleted_at IS NULL
+                    AND\s""" + HAS_BOOKABLE_ROOM + """
+                  ) x
+            WHERE x.rn <= :perCity""";
+
+    /** Active, non-deleted hotels with the given ids (any order). */
+    public static final String FIND_PUBLIC_BY_IDS = """
+            SELECT h.* FROM hotel h WHERE h.hotel_id IN (:ids) AND h.active = TRUE AND h.deleted_at IS NULL""";
 
     /** Shared row lock held while booking, so a concurrent deactivation/deletion waits. */
     public static final String FIND_BY_ID_FOR_SHARE = FIND_BY_ID + "\nFOR SHARE";

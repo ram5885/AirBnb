@@ -1,7 +1,7 @@
 import { useState } from 'react';
 
 /** Public hotel/room photo (plain <img>; the photo endpoints need no login) with a placeholder fallback. */
-export default function PublicImage({ src, alt, className }) {
+export default function PublicImage({ src, alt, className, title }) {
   const [failed, setFailed] = useState(false);
   if (!src || failed) {
     return (
@@ -12,5 +12,5 @@ export default function PublicImage({ src, alt, className }) {
       </div>
     );
   }
-  return <img src={src} alt={alt} className={className} loading="lazy" onError={() => setFailed(true)} />;
+  return <img src={src} alt={alt} title={title} className={className} loading="lazy" onError={() => setFailed(true)} />;
 }

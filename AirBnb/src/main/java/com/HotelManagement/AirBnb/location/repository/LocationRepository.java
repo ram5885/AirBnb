@@ -30,6 +30,11 @@ public interface LocationRepository extends WriteRepository<Location, Long> {
     @Query(value = LocationQueries.FIND_DISTINCT_STATES, nativeQuery = true)
     List<String> findDistinctStates();
 
+    /** Rows of [location_id, city, state, hotel_count, city_photo_id, artist, license, hotel_photo_hotel_id,
+     *  hotel_photo_id]; see LocationQueries.DESTINATIONS. */
+    @Query(value = LocationQueries.DESTINATIONS, nativeQuery = true)
+    List<Object[]> findDestinationRows();
+
     @Query(value = LocationQueries.COUNT_ALL, nativeQuery = true)
     long countAll();
 }

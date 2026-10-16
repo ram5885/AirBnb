@@ -6,6 +6,9 @@
 
 .home__main {
   flex: 1;
+  /* .container only caps the width; without this the flex column shrinks <main> to its content,
+     collapsing the carousels' percentage-based columns */
+  width: 100%;
   padding-top: 24px;
   padding-bottom: 64px;
 }

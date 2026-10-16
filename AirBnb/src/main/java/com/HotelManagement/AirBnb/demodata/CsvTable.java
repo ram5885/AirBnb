@@ -16,18 +16,18 @@ import java.util.Map;
  * A CSV file read into rows addressed by header name (case-insensitive), so column order
  * doesn't matter. Supports quoted fields with commas and "" escapes; blank lines are ignored.
  */
-final class CsvTable {
+public final class CsvTable {
 
     /** One data row; {@code line} is the 1-based line number in the file, for error messages. */
-    record Row(String file, int line, Map<String, String> values) {
+    public record Row(String file, int line, Map<String, String> values) {
 
         /** Trimmed value, or "" when the column is missing or blank. */
-        String get(String column) {
+        public String get(String column) {
             String v = values.get(column.toLowerCase(Locale.ROOT));
             return v == null ? "" : v.strip();
         }
 
-        String where() {
+        public String where() {
             return file + " line " + line;
         }
     }
@@ -35,7 +35,7 @@ final class CsvTable {
     private CsvTable() {
     }
 
-    static List<Row> read(Resource resource, String... requiredColumns) throws IOException {
+    public static List<Row> read(Resource resource, String... requiredColumns) throws IOException {
         String file = resource.getFilename();
         List<Row> rows = new ArrayList<>();
         try (BufferedReader reader = new BufferedReader(new InputStreamReader(resource.getInputStream(), StandardCharsets.UTF_8))) {

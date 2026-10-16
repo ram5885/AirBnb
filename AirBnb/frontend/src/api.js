@@ -147,6 +147,9 @@ export const markPaymentCollected = (id) => request(`${ADMIN}/bookings/${id}/pay
 
 // Guest hotel search (public; dates are ISO yyyy-MM-dd, check-out exclusive)
 export const getAllLocations = () => request('/api/locations');
+export const getDestinations = () => request('/api/locations/destinations');
+export const getHotelSections = ({ checkinDate, checkoutDate, numberOfRooms }) =>
+  request('/api/v1/hotels/sections', { params: { checkinDate, checkoutDate, numberOfRooms } });
 export const searchHotels = ({ city, state, checkinDate, checkoutDate, numberOfRooms, page, size }) =>
   request('/api/v1/hotels/search', { params: { city, state, checkinDate, checkoutDate, numberOfRooms, page, size } });
 export const getPublicHotel = (hotelId, stay) => request(`/api/v1/hotels/${hotelId}`, { params: stay });

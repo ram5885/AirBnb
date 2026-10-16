@@ -13,8 +13,10 @@ function label(loc) {
 /**
  * City + dates + rooms. Cities come from the Location table and are shown as "City, State"
  * (city names can repeat across states); only a suggestion can be selected.
+ * onStayChange (optional) receives { checkinDate, checkoutDate, numberOfRooms } whenever those change,
+ * so the page can follow the dates being chosen before a search is submitted.
  */
-export default function SearchForm({ initial, onSearch, busy }) {
+export default function SearchForm({ initial, onSearch, busy, onStayChange }) {
   const [locations, setLocations] = useState({ list: locationsCache || [], loading: !locationsCache, error: '' });
   const [form, setForm] = useState(() => ({
     location: initial.city ? { city: initial.city, state: initial.state } : null,
@@ -44,6 +46,11 @@ export default function SearchForm({ initial, onSearch, busy }) {
       numberOfRooms: initial.numberOfRooms || f.numberOfRooms,
     }));
   }, [initial.city, initial.state, initial.checkinDate, initial.checkoutDate, initial.numberOfRooms]);
+
+  useEffect(() => {
+    onStayChange?.({ checkinDate: form.checkinDate, checkoutDate: form.checkoutDate, numberOfRooms: form.numberOfRooms });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [form.checkinDate, form.checkoutDate, form.numberOfRooms]);
 
   const byLabel = useMemo(() => {
     const m = new Map();
@@ -80,7 +87,7 @@ export default function SearchForm({ initial, onSearch, busy }) {
 
   return (
     <form className="s-search" onSubmit={submit} noValidate role="search" aria-label="Search hotels">
-      <div className={`s-field s-field--wide ${errors.city ? 's-field--error' : ''}`}>
+      <div className={`s-field s-field--where ${errors.city ? 's-field--error' : ''}`}>
         <label htmlFor="search-city">Where</label>
         <Autocomplete
           id="search-city"
@@ -90,7 +97,7 @@ export default function SearchForm({ initial, onSearch, busy }) {
             setForm((f) => ({ ...f, location: v ? byLabel.get(v) : null }));
             setErrors((er) => ({ ...er, city: undefined }));
           }}
-          placeholder="Search a city"
+          placeholder="Search destinations"
           loading={locations.loading}
           loadError={locations.error}
           emptyText="No matching city"
@@ -100,6 +107,7 @@ export default function SearchForm({ initial, onSearch, busy }) {
       </div>
       <StayFields
         idPrefix="search"
+        pill
         value={form}
         errors={errors}
         onChange={(next) => {
@@ -107,11 +115,11 @@ export default function SearchForm({ initial, onSearch, busy }) {
           setErrors((er) => ({ ...er, checkinDate: undefined, checkoutDate: undefined, numberOfRooms: undefined }));
         }}
       />
-      <button type="submit" className="s-search__button" disabled={busy}>
-        <svg viewBox="0 0 32 32" width="16" height="16" fill="currentColor" aria-hidden="true">
-          <path d="M13 24a11 11 0 118-18.7A11 11 0 0113 24zm8.6-3l6.7 6.7-1.6 1.6-6.7-6.7z" />
+      <button type="submit" className="s-search__button" disabled={busy} aria-label={busy ? 'Searching' : 'Search'}>
+        <svg viewBox="0 0 32 32" width="18" height="18" fill="none" stroke="currentColor" strokeWidth="4" aria-hidden="true">
+          <circle cx="13" cy="13" r="9" />
+          <path d="M20 20l8 8" strokeLinecap="round" />
         </svg>
-        <span>{busy ? 'Searching…' : 'Search'}</span>
       </button>
     </form>
   );

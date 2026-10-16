@@ -7,6 +7,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
+import org.springframework.core.annotation.Order;
 import org.springframework.core.io.Resource;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
@@ -34,6 +35,7 @@ import java.util.Set;
  * case-insensitively. Safe to run on every startup.
  */
 @Component
+@Order(0) // before CityPhotoLoader, which attaches photos to these locations
 public class LocationDataLoader implements ApplicationRunner {
 
     private static final Logger log = LoggerFactory.getLogger(LocationDataLoader.class);
@@ -135,7 +137,7 @@ public class LocationDataLoader implements ApplicationRunner {
     }
 
     /** "WestBengal", "west bengal" and "West  Bengal" all map to "westbengal". */
-    private static String compactKey(String value) {
+    static String compactKey(String value) {
         return value.toLowerCase(Locale.ROOT).replace("&", "and").replaceAll("[^a-z]", "");
     }
 
