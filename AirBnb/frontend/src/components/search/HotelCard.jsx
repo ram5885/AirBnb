@@ -14,9 +14,16 @@ export default function HotelCard({ hotel, stay, nights, categories }) {
         <PublicImage src={hotel.photoUrls[0]} alt="" />
       </Link>
       <div className="s-card__body">
-        <h2 className="s-card__title">
-          <Link to={`/hotels/${hotel.id}${stayQuery(stay)}`}>{hotel.name}</Link>
-        </h2>
+        <div className="s-card__heading">
+          <h2 className="s-card__title">
+            <Link to={`/hotels/${hotel.id}${stayQuery(stay)}`}>{hotel.name}</Link>
+          </h2>
+          {hotel.reviewCount > 0 && (
+            <span className="s-card__rating" aria-label={`Rated ${hotel.averageRating} out of 5 from ${hotel.reviewCount} reviews`}>
+              ★ {Number(hotel.averageRating).toFixed(1)} <span className="s-muted">({hotel.reviewCount})</span>
+            </span>
+          )}
+        </div>
         <p className="s-muted">
           {hotel.city}, {hotel.state}
         </p>
@@ -31,7 +38,8 @@ export default function HotelCard({ hotel, stay, nights, categories }) {
           </ul>
         )}
         <p className="s-card__availability">
-          {hotel.availableRoomTypes} room type{hotel.availableRoomTypes === 1 ? '' : 's'} available
+          {hotel.availableRoomTypes} room type{hotel.availableRoomTypes === 1 ? '' : 's'}{' '}
+          {stay.amenities?.length || stay.minPrice || stay.maxPrice ? 'match your filters' : 'available'}
         </p>
         {hotel.lowestNightlyPrice != null && (
           <p className="s-card__price">

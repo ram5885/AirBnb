@@ -150,9 +150,23 @@ export const getAllLocations = () => request('/api/locations');
 export const getDestinations = () => request('/api/locations/destinations');
 export const getHotelSections = ({ checkinDate, checkoutDate, numberOfRooms }) =>
   request('/api/v1/hotels/sections', { params: { checkinDate, checkoutDate, numberOfRooms } });
-export const searchHotels = ({ city, state, checkinDate, checkoutDate, numberOfRooms, page, size }) =>
-  request('/api/v1/hotels/search', { params: { city, state, checkinDate, checkoutDate, numberOfRooms, page, size } });
+export const searchHotels = ({ city, state, checkinDate, checkoutDate, numberOfRooms, amenities, minPrice, maxPrice, minRating, page, size }) =>
+  request('/api/v1/hotels/search', {
+    params: {
+      city, state, checkinDate, checkoutDate, numberOfRooms,
+      amenities: amenities?.length ? amenities.join(',') : undefined,
+      minPrice, maxPrice, minRating, page, size,
+    },
+  });
 export const getPublicHotel = (hotelId, stay) => request(`/api/v1/hotels/${hotelId}`, { params: stay });
+
+// Hotel reviews: reading is public; eligibility and posting need a guest login
+export const getReviewSummary = (hotelId) => request(`/api/v1/hotels/${hotelId}/reviews/summary`);
+export const getReviews = (hotelId, { sort, page, size }) =>
+  request(`/api/v1/hotels/${hotelId}/reviews`, { params: { sort, page, size } });
+export const getReviewEligibility = (hotelId) => request(`/api/v1/hotels/${hotelId}/reviews/eligibility`);
+export const createReview = (hotelId, { bookingId, rating, comment }) =>
+  request(`/api/v1/hotels/${hotelId}/reviews`, { method: 'POST', json: { bookingId, rating, comment } });
 export const getPublicRoom = (hotelId, roomId, stay) =>
   request(`/api/v1/hotels/${hotelId}/rooms/${roomId}`, { params: stay });
 

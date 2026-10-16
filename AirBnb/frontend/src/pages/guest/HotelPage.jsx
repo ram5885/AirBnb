@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { Link, useParams, useSearchParams } from 'react-router-dom';
 import * as api from '../../api.js';
 import Navbar from '../../components/Navbar.jsx';
@@ -6,8 +6,10 @@ import PublicImage from '../../components/search/PublicImage.jsx';
 import { amenityItems, amenityLabels, useAmenityCatalog } from '../../components/manager/AmenityPicker.jsx';
 import { AmenityList } from '../../components/manager/AmenityIcon.jsx';
 import { Alert, EmptyState, Spinner, formatDate, formatPrice } from '../../components/manager/ui.jsx';
-import { hasDates, readStay, stayParams, stayQuery } from '../../components/search/stay.js';
+import { hasDates, pickFilters, readStay, roomMatchesFilters, stayParams, stayQuery } from '../../components/search/stay.js';
 import StayBar from './StayBar.jsx';
+import HotelReviews from '../../components/reviews/HotelReviews.jsx';
+import { Stars } from '../../components/reviews/Stars.jsx';
 import '../../styles/manager.css';
 import '../../styles/home.css';
 import '../../styles/search.css';
@@ -39,6 +41,28 @@ export default function HotelPage() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [hotelId, key]);
 
+  // Rating summary: shown in the header and the Reviews tab; reloaded after a review is posted.
+  const [summary, setSummary] = useState(null);
+  const [summaryError, setSummaryError] = useState('');
+  const loadSummary = useCallback(() => {
+    api
+      .getReviewSummary(hotelId)
+      .then((s) => {
+        setSummary(s);
+        setSummaryError('');
+      })
+      .catch((e) => setSummaryError(e.message));
+  }, [hotelId]);
+  useEffect(loadSummary, [loadSummary]);
+
+  const tab = params.get('tab') === 'reviews' ? 'reviews' : 'about';
+  function showTab(next) {
+    const p = new URLSearchParams(params);
+    if (next === 'reviews') p.set('tab', 'reviews');
+    else p.delete('tab');
+    setParams(p, { replace: true });
+  }
+
   function applyStay(v) {
     const next = new URLSearchParams(params);
     next.set('checkinDate', v.checkinDate);
@@ -48,6 +72,13 @@ export default function HotelPage() {
   }
 
   const backToResults = stay.city && hasDates(stay) ? `/${stayQuery(stay)}` : '/';
+  // Price/amenity filters from the search: mark the bookable room options that satisfy them.
+  const filters = pickFilters(stay);
+  const roomFiltersActive = filters.amenities.length > 0 || filters.minPrice !== '' || filters.maxPrice !== '';
+  const matchesFilters = (r) =>
+    roomFiltersActive &&
+    r.availability?.available &&
+    roomMatchesFilters(filters, r.availability.averageNightlyPrice, r.amenities, hotel?.amenities);
 
   return (
     <div className="home">
@@ -73,6 +104,21 @@ export default function HotelPage() {
                 <p className="s-muted">
                   {hotel.city}, {hotel.state}
                 </p>
+                {summary && summary.totalReviews > 0 && (
+                  <button type="button" className="h-rating" onClick={() => showTab('reviews')}>
+                    <Stars value={Number(summary.averageRating)} size={14} label={`Rated ${summary.averageRating} out of 5`} />
+                    <strong>{Number(summary.averageRating).toFixed(1)}</strong>
+                    <span>
+                      {summary.totalReviews} review{summary.totalReviews === 1 ? '' : 's'}
+                    </span>
+                  </button>
+                )}
+                {summary && summary.totalReviews === 0 && (
+                  <button type="button" className="h-rating h-rating--none" onClick={() => showTab('reviews')}>
+                    <Stars value={0} size={14} label="No ratings yet" />
+                    <span>No ratings yet</span>
+                  </button>
+                )}
               </div>
             </div>
 
@@ -85,19 +131,50 @@ export default function HotelPage() {
 
             <div className="s-detail">
               <div>
-                <section className="m-section">
-                  <h2>Location</h2>
-                  <p>{hotel.address || `${hotel.city}, ${hotel.state}`}</p>
-                  {hotel.landmark && <p className="s-muted">{hotel.landmark}</p>}
-                </section>
-                <section className="m-section">
-                  <h2>What this place offers</h2>
-                  {hotel.amenities.length ? (
-                    <AmenityList items={amenityItems(categories, hotel.amenities)} />
-                  ) : (
-                    <p className="s-muted">No amenities listed.</p>
-                  )}
-                </section>
+                <div className="h-tabs" role="tablist" aria-label="Hotel information">
+                  <button
+                    type="button"
+                    role="tab"
+                    id="tab-about"
+                    aria-selected={tab === 'about'}
+                    aria-controls="panel-about"
+                    onClick={() => showTab('about')}
+                  >
+                    About
+                  </button>
+                  <button
+                    type="button"
+                    role="tab"
+                    id="tab-reviews"
+                    aria-selected={tab === 'reviews'}
+                    aria-controls="panel-reviews"
+                    onClick={() => showTab('reviews')}
+                  >
+                    Reviews{summary?.totalReviews ? ` (${summary.totalReviews})` : ''}
+                  </button>
+                </div>
+
+                {tab === 'about' ? (
+                  <div role="tabpanel" id="panel-about" aria-labelledby="tab-about">
+                    <section className="m-section">
+                      <h2>Location</h2>
+                      <p>{hotel.address || `${hotel.city}, ${hotel.state}`}</p>
+                      {hotel.landmark && <p className="s-muted">{hotel.landmark}</p>}
+                    </section>
+                    <section className="m-section">
+                      <h2>What this place offers</h2>
+                      {hotel.amenities.length ? (
+                        <AmenityList items={amenityItems(categories, hotel.amenities)} />
+                      ) : (
+                        <p className="s-muted">No amenities listed.</p>
+                      )}
+                    </section>
+                  </div>
+                ) : (
+                  <div role="tabpanel" id="panel-reviews" aria-labelledby="tab-reviews" className="m-section">
+                    <HotelReviews hotelId={hotel.id} summary={summary} summaryError={summaryError} onChanged={loadSummary} />
+                  </div>
+                )}
               </div>
 
               <section className="m-section s-rooms" aria-labelledby="rooms-heading">
@@ -110,6 +187,11 @@ export default function HotelPage() {
                   </p>
                 )}
                 <Alert>{error}</Alert>
+                {roomFiltersActive && hotel.stay && (
+                  <p className="s-small f-room-note">
+                    Room options marked <span className="f-match">Matches your filters</span> fit your price range and amenities.
+                  </p>
+                )}
                 {hotel.roomTypes.length === 0 && <p className="s-muted">This hotel has no rooms listed yet.</p>}
                 <ul className="s-room-list">
                   {hotel.roomTypes.map((r) => (
@@ -118,6 +200,7 @@ export default function HotelPage() {
                       <div className="s-room__body">
                         <h3>
                           <Link to={`/hotels/${hotel.id}/rooms/${r.id}${stayQuery(stay)}`}>{r.type}</Link>
+                          {matchesFilters(r) && <span className="f-match">Matches your filters</span>}
                         </h3>
                         <p className="s-muted s-small">
                           Up to {r.capacity} guest{r.capacity === 1 ? '' : 's'} per room

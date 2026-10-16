@@ -5,9 +5,21 @@ import SearchForm from '../components/search/SearchForm.jsx';
 import HotelCard from '../components/search/HotelCard.jsx';
 import Destinations from '../components/search/Destinations.jsx';
 import HotelSections from '../components/search/HotelSections.jsx';
+import FilterPanel from '../components/search/FilterPanel.jsx';
+import ActiveFilters from '../components/search/ActiveFilters.jsx';
 import { useAmenityCatalog } from '../components/manager/AmenityPicker.jsx';
 import { Alert, EmptyState, Pagination, Spinner, formatDate } from '../components/manager/ui.jsx';
-import { defaultDates, hasDates, nightsBetween, readStay, validateDates } from '../components/search/stay.js';
+import {
+  EMPTY_FILTERS,
+  activeFilterCount,
+  defaultDates,
+  hasDates,
+  nightsBetween,
+  pickFilters,
+  readStay,
+  stayQuery,
+  validateDates,
+} from '../components/search/stay.js';
 import { useAuth } from '../context/AuthContext.jsx';
 import * as api from '../api.js';
 import '../styles/manager.css';
@@ -55,7 +67,10 @@ export default function Home() {
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
   const [attempt, setAttempt] = useState(0);
+  const [filtersOpen, setFiltersOpen] = useState(false);
   const resultsRef = useRef(null);
+  const filters = pickFilters(stay);
+  const filterCount = activeFilterCount(filters);
 
   const key = params.toString();
   useEffect(() => {
@@ -83,9 +98,17 @@ export default function Home() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [key, attempt]);
 
+  /** New search from the search bar or a city card; keeps the active filters, starts at page 1. */
   function runSearch(next) {
-    setParams({ ...next, numberOfRooms: String(next.numberOfRooms) });
+    setParams(new URLSearchParams(stayQuery({ ...next, ...filters })));
     window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  /** Replaces the filters, keeping city, dates and rooms; back to page 1. */
+  function applyFilters(next) {
+    const { city, state: st, checkinDate, checkoutDate, numberOfRooms } = stay;
+    setParams(new URLSearchParams(stayQuery({ city, state: st, checkinDate, checkoutDate, numberOfRooms, ...next })));
+    setFiltersOpen(false);
   }
 
   /** City card / section arrow: search that city keeping the search bar's dates and rooms. */
@@ -109,6 +132,7 @@ export default function Home() {
         checkinDate: stay.checkinDate,
         checkoutDate: stay.checkoutDate,
         numberOfRooms: stay.numberOfRooms,
+        ...filters, // the hotel page marks the room options that match them
       }
     : {};
   const rooms = `${stay.numberOfRooms} room${stay.numberOfRooms === 1 ? '' : 's'}`;
@@ -156,17 +180,36 @@ export default function Home() {
 
         {searched && (
           <>
-            <div className="s-results-header">
-              <h2>
-                {results ? `${results.totalElements} hotel${results.totalElements === 1 ? '' : 's'}` : 'Hotels'} in{' '}
-                {stay.city}
-                {stay.state ? `, ${stay.state}` : ''}
-              </h2>
-              <p className="s-muted">
-                {formatDate(stay.checkinDate)} – {formatDate(stay.checkoutDate)} · {nights} night{nights === 1 ? '' : 's'} ·{' '}
-                {rooms}
-              </p>
+            <div className="s-results-header s-results-header--filters">
+              <div>
+                <h2>
+                  {results ? `${results.totalElements} hotel${results.totalElements === 1 ? '' : 's'}` : 'Hotels'} in{' '}
+                  {stay.city}
+                  {stay.state ? `, ${stay.state}` : ''}
+                </h2>
+                <p className="s-muted">
+                  {formatDate(stay.checkinDate)} – {formatDate(stay.checkoutDate)} · {nights} night{nights === 1 ? '' : 's'} ·{' '}
+                  {rooms}
+                </p>
+              </div>
+              <button type="button" className="f-button" onClick={() => setFiltersOpen(true)} aria-haspopup="dialog">
+                <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" aria-hidden="true">
+                  <path d="M3 7h11M18 7h3M3 17h3M10 17h11" />
+                  <circle cx="16" cy="7" r="2" />
+                  <circle cx="8" cy="17" r="2" />
+                </svg>
+                Filters
+                {filterCount > 0 && <span className="f-button__count">{filterCount}</span>}
+              </button>
             </div>
+            <ActiveFilters filters={filters} categories={categories} onChange={applyFilters} />
+            <FilterPanel
+              open={filtersOpen}
+              filters={filters}
+              categories={categories}
+              onApply={applyFilters}
+              onClose={() => setFiltersOpen(false)}
+            />
 
             {error && (
               <Alert>
@@ -178,7 +221,25 @@ export default function Home() {
             )}
             {loading && <Spinner label="Searching hotels…" />}
 
-            {!loading && results && results.content.length === 0 && (
+            {!loading && results && results.content.length === 0 && filterCount > 0 && (
+              <EmptyState
+                title="No properties match your selected filters"
+                action={
+                  <div className="f-empty-actions">
+                    <button type="button" className="m-btn m-btn--secondary m-btn--sm" onClick={() => setFiltersOpen(true)}>
+                      Adjust filters
+                    </button>
+                    <button type="button" className="m-btn m-btn--primary m-btn--sm" onClick={() => applyFilters(EMPTY_FILTERS)}>
+                      Clear all filters
+                    </button>
+                  </div>
+                }
+              >
+                Try removing a filter, widening the price range or lowering the rating.
+              </EmptyState>
+            )}
+
+            {!loading && results && results.content.length === 0 && filterCount === 0 && (
               <>
                 {listedInCity ? (
                   <EmptyState

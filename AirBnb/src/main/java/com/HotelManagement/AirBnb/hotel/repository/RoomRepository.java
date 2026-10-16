@@ -18,6 +18,9 @@ public interface RoomRepository extends WriteRepository<Room, Long> {
     @Query(value = RoomQueries.FIND_LIVE_BY_HOTEL, nativeQuery = true)
     List<Room> findLiveByHotel(@Param("hotelId") Long hotelId);
 
+    @Query(value = RoomQueries.FIND_LIVE_BY_HOTEL_IDS, nativeQuery = true)
+    List<Room> findLiveByHotelIds(@Param("hotelIds") Collection<Long> hotelIds);
+
     @Query(value = RoomQueries.FIND_LIVE_IN_HOTEL, nativeQuery = true)
     Optional<Room> findLiveInHotel(@Param("id") Long id, @Param("hotelId") Long hotelId);
 

@@ -15,6 +15,7 @@ import com.HotelManagement.AirBnb.hotel.repository.RoomRepository;
 import com.HotelManagement.AirBnb.hotel.service.AmenityService;
 import com.HotelManagement.AirBnb.location.entity.Location;
 import com.HotelManagement.AirBnb.location.repository.LocationRepository;
+import com.HotelManagement.AirBnb.review.repository.HotelReviewRepository;
 import com.HotelManagement.AirBnb.search.dto.AvailabilityResponse;
 import com.HotelManagement.AirBnb.search.dto.HotelSearchResult;
 import com.HotelManagement.AirBnb.search.dto.HotelSectionResponse;
@@ -37,8 +38,10 @@ import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
@@ -64,11 +67,12 @@ public class HotelSearchService {
     private final HotelPhotoRepository hotelPhotoRepository;
     private final RoomPhotoRepository roomPhotoRepository;
     private final AmenityService amenityService;
+    private final HotelReviewRepository reviewRepository;
 
     public HotelSearchService(HotelRepository hotelRepository, RoomRepository roomRepository,
                               InventoryRepository inventoryRepository, LocationRepository locationRepository,
                               HotelPhotoRepository hotelPhotoRepository, RoomPhotoRepository roomPhotoRepository,
-                              AmenityService amenityService) {
+                              AmenityService amenityService, HotelReviewRepository reviewRepository) {
         this.hotelRepository = hotelRepository;
         this.roomRepository = roomRepository;
         this.inventoryRepository = inventoryRepository;
@@ -76,6 +80,7 @@ public class HotelSearchService {
         this.hotelPhotoRepository = hotelPhotoRepository;
         this.roomPhotoRepository = roomPhotoRepository;
         this.amenityService = amenityService;
+        this.reviewRepository = reviewRepository;
     }
 
     /** Validated stay parameters. */
@@ -109,6 +114,53 @@ public class HotelSearchService {
         return new Stay(checkIn, checkOut, rooms);
     }
 
+    /**
+     * Optional search filters; null / empty means "not filtered". amenities are validated catalog codes
+     * that must all be offered by one bookable room type or its hotel; minPrice/maxPrice bound that room
+     * type's average nightly price per room for the stay (inclusive); minRating is the lowest accepted
+     * average review rating (one decimal, as shown), and excludes hotels without reviews.
+     */
+    public record Filters(List<String> amenities, BigDecimal minPrice, BigDecimal maxPrice, BigDecimal minRating) {
+        public static final Filters NONE = new Filters(List.of(), null, null, null);
+
+        String amenitiesParam() {
+            return String.join(",", amenities);
+        }
+
+        /** Whether a room type (with its and its hotel's amenities) matches the price and amenity filters. */
+        boolean matches(BigDecimal stayPricePerRoom, long nights, String[] roomAmenities, String[] hotelAmenities) {
+            BigDecimal n = BigDecimal.valueOf(nights);
+            if (minPrice != null && stayPricePerRoom.compareTo(minPrice.multiply(n)) < 0) return false;
+            if (maxPrice != null && stayPricePerRoom.compareTo(maxPrice.multiply(n)) > 0) return false;
+            if (amenities.isEmpty()) return true;
+            Set<String> offered = new HashSet<>();
+            if (roomAmenities != null) offered.addAll(List.of(roomAmenities));
+            if (hotelAmenities != null) offered.addAll(List.of(hotelAmenities));
+            return offered.containsAll(amenities);
+        }
+    }
+
+    public static final BigDecimal MAX_PRICE = new BigDecimal("1000000");
+
+    /** Validates the optional filters; unknown amenity codes, negative or inverted prices and ratings outside 1-5 are rejected. */
+    public Filters filters(List<String> amenities, BigDecimal minPrice, BigDecimal maxPrice, BigDecimal minRating) {
+        List<String> codes = amenities == null ? List.of()
+                : amenities.stream().map(String::strip).filter(a -> !a.isEmpty()).toList();
+        codes = List.of(amenityService.normalize(codes)); // 400 for unknown codes; de-duplicated, catalog order
+        for (BigDecimal price : new BigDecimal[]{minPrice, maxPrice}) {
+            if (price != null && (price.signum() < 0 || price.compareTo(MAX_PRICE) > 0)) {
+                throw new BadRequestException("Prices must be between 0 and " + MAX_PRICE.toPlainString());
+            }
+        }
+        if (minPrice != null && maxPrice != null && minPrice.compareTo(maxPrice) > 0) {
+            throw new BadRequestException("Minimum price can't be more than the maximum price");
+        }
+        if (minRating != null && (minRating.compareTo(BigDecimal.ONE) < 0 || minRating.compareTo(BigDecimal.valueOf(5)) > 0)) {
+            throw new BadRequestException("Minimum rating must be between 1 and 5");
+        }
+        return new Filters(codes, minPrice, maxPrice, minRating);
+    }
+
     /** Stay for detail pages: optional, but all-or-nothing and valid when given. */
     public Stay optionalStay(LocalDate checkIn, LocalDate checkOut, Integer rooms) {
         if (checkIn == null && checkOut == null && rooms == null) {
@@ -118,14 +170,23 @@ public class HotelSearchService {
     }
 
     public PageResponse<HotelSearchResult> search(String city, String state, Stay stay, int page, int size) {
+        return search(city, state, stay, Filters.NONE, page, size);
+    }
+
+    /**
+     * Hotels at the location that can take the stay and match every active filter (AND between filters, all
+     * selected amenities required), filtered and paged in the database.
+     */
+    public PageResponse<HotelSearchResult> search(String city, String state, Stay stay, Filters filters, int page, int size) {
         if (page < 0 || size < 1 || size > MAX_PAGE_SIZE) {
             throw new BadRequestException("page must be 0 or more and size between 1 and " + MAX_PAGE_SIZE);
         }
         Location location = resolveLocation(city, state);
 
         Page<Hotel> hotels = hotelRepository.searchAvailable(location.getId(), stay.checkIn(), stay.checkOut(),
-                stay.rooms(), stay.nights(), PageRequest.of(page, size)); // ordered by name in the query
-        return PageResponse.of(hotels, toResults(hotels.getContent(), stay));
+                stay.rooms(), stay.nights(), filters.amenitiesParam(), filters.minPrice(), filters.maxPrice(),
+                filters.minRating(), PageRequest.of(page, size)); // ordered by name in the query
+        return PageResponse.of(hotels, toResults(hotels.getContent(), stay, filters));
     }
 
     /**
@@ -141,7 +202,7 @@ public class HotelSearchService {
         record Row(long hotelId, long locationId, long availableInCity) {
         }
         List<Row> rows = hotelRepository.findSectionHotelIds(stay.checkIn(), stay.checkOut(), stay.rooms(),
-                        stay.nights(), perCity).stream()
+                        stay.nights(), Filters.NONE.amenitiesParam(), null, null, perCity).stream()
                 .map(r -> new Row(((Number) r[0]).longValue(), ((Number) r[1]).longValue(), ((Number) r[2]).longValue()))
                 .toList();
         if (rows.isEmpty()) {
@@ -168,7 +229,7 @@ public class HotelSearchService {
                 .limit(maxCities)
                 .toList();
 
-        Map<Long, HotelSearchResult> results = toResults(sections.stream().flatMap(List::stream).toList(), stay).stream()
+        Map<Long, HotelSearchResult> results = toResults(sections.stream().flatMap(List::stream).toList(), stay, Filters.NONE).stream()
                 .collect(Collectors.toMap(HotelSearchResult::id, Function.identity()));
         return sections.stream().map(l -> {
             Location loc = l.getFirst().getLocation();
@@ -178,10 +239,11 @@ public class HotelSearchService {
     }
 
     /**
-     * Search-result cards for hotels (same order), with the cheapest room type that can take the stay and up
-     * to five photo URLs. Two set-based queries for the whole list (no per-hotel queries, no image bytes).
+     * Search-result cards for hotels (same order): the cheapest room type that can take the stay and matches
+     * the filters, up to five photo URLs and the review rating. A fixed number of set-based queries for the
+     * whole list (no per-hotel queries, no image bytes).
      */
-    private List<HotelSearchResult> toResults(List<Hotel> hotels, Stay stay) {
+    private List<HotelSearchResult> toResults(List<Hotel> hotels, Stay stay, Filters filters) {
         List<Long> ids = hotels.stream().map(Hotel::getHotelId).toList();
         if (ids.isEmpty()) {
             return List.of();
@@ -189,18 +251,28 @@ public class HotelSearchService {
         Map<Long, List<RoomAvailability>> availability = availabilityByHotel(ids, stay);
         Map<Long, List<PhotoMetadata>> photos = hotelPhotoRepository.findMetadataByHotelIds(ids).stream()
                 .collect(Collectors.groupingBy(PhotoMetadata::ownerId));
+        Map<Long, String[]> roomAmenities = filters.amenities().isEmpty() ? Map.of()
+                : roomRepository.findLiveByHotelIds(ids).stream()
+                .collect(Collectors.toMap(Room::getId, r -> r.getAmenities() == null ? new String[0] : r.getAmenities()));
+        Map<Long, Object[]> ratings = reviewRepository.ratingsByHotelIds(ids).stream()
+                .collect(Collectors.toMap(r -> ((Number) r[0]).longValue(), Function.identity()));
 
         return hotels.stream().map(h -> {
             List<RoomAvailability> bookable = availability.getOrDefault(h.getHotelId(), List.of()).stream()
-                    .filter(RoomAvailability::bookable).toList();
+                    .filter(RoomAvailability::bookable)
+                    .filter(a -> filters.matches(a.stayPricePerRoom(), stay.nights(), roomAmenities.get(a.roomId()), h.getAmenities()))
+                    .toList();
             RoomAvailability cheapest = bookable.stream()
                     .min(Comparator.comparing(RoomAvailability::stayPricePerRoom)).orElse(null);
             List<String> photoUrls = photos.getOrDefault(h.getHotelId(), List.of()).stream()
                     .limit(SEARCH_PHOTOS_PER_HOTEL).map(p -> hotelPhotoUrl(h.getHotelId(), p.id())).toList();
+            Object[] rating = ratings.get(h.getHotelId());
             return new HotelSearchResult(h.getHotelId(), h.getName(), h.getLocation().getCity(), h.getLocation().getState(),
                     photoUrls, amenityService.toList(h.getAmenities()), bookable.size(),
                     cheapest == null ? null : cheapest.averageNightly(stay),
-                    cheapest == null ? null : cheapest.total(stay));
+                    cheapest == null ? null : cheapest.total(stay),
+                    rating == null ? null : (BigDecimal) rating[1],
+                    rating == null ? 0 : ((Number) rating[2]).longValue());
         }).toList();
     }
 

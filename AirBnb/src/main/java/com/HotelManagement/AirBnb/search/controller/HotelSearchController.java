@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -40,6 +41,13 @@ public class HotelSearchController {
      * states), {@code checkinDate} and {@code checkoutDate} (ISO dates, check-in today or later, 1–30
      * nights), {@code numberOfRooms} (1–10), {@code page} (default 0), {@code size} (1–50, default 10).
      * <p>
+     * Optional filters, each applied only when given and combined with AND:
+     * {@code amenities} (comma-separated codes from GET /api/v1/amenities; one bookable room type must offer
+     * all of them, in the room or at the hotel), {@code minPrice} / {@code maxPrice} (₹, 0–1,000,000, bounds on
+     * that room type's average nightly price per room for the stay, inclusive) and {@code minRating} (1–5; the
+     * hotel's average review rating, rounded to one decimal, must be at least this; hotels without reviews
+     * are excluded while it is set).
+     * <p>
      * Returns active hotels in that location that have at least one room type with numberOfRooms free on
      * every night from check-in up to (not including) check-out, ordered by name. Each result has the
      * hotel's public summary (photos as URLs, amenities) plus the cheapest qualifying price per night and
@@ -47,8 +55,8 @@ public class HotelSearchController {
      * accepted and confirmed bookings; it is re-checked when booking.
      * <p>
      * Access: public.<br>
-     * 200 OK: a page of results (may be empty). 400: missing/unknown/ambiguous city, invalid dates, rooms
-     * or paging.
+     * 200 OK: a page of results (may be empty). 400: missing/unknown/ambiguous city, invalid dates, rooms,
+     * paging or filters (unknown amenity, negative or inverted prices, rating outside 1–5).
      *
      * @return one page of available hotels
      */
@@ -59,10 +67,14 @@ public class HotelSearchController {
             @RequestParam(required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate checkinDate,
             @RequestParam(required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate checkoutDate,
             @RequestParam(required = false) Integer numberOfRooms,
+            @RequestParam(required = false) List<String> amenities,
+            @RequestParam(required = false) BigDecimal minPrice,
+            @RequestParam(required = false) BigDecimal maxPrice,
+            @RequestParam(required = false) BigDecimal minRating,
             @RequestParam(defaultValue = "0") int page,
             @RequestParam(defaultValue = "10") int size) {
         return searchService.search(city, state, searchService.requireStay(checkinDate, checkoutDate, numberOfRooms),
-                page, size);
+                searchService.filters(amenities, minPrice, maxPrice, minRating), page, size);
     }
 
     /**

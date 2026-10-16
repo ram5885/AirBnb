@@ -31,6 +31,10 @@ public interface BookingRepository extends WriteRepository<Booking, Long> {
     @Query(value = BookingQueries.FIND_FOR_USER_FOR_UPDATE, nativeQuery = true)
     Optional<Booking> findForUserForUpdate(@Param("id") Long id, @Param("userId") Long userId);
 
+    /** The user's CONFIRMED bookings at the hotel, latest check-out first. */
+    @Query(value = BookingQueries.FIND_CONFIRMED_FOR_USER_AT_HOTEL, nativeQuery = true)
+    List<Booking> findConfirmedForUserAtHotel(@Param("userId") Long userId, @Param("hotelId") Long hotelId);
+
     @Query(value = BookingQueries.FIND_USER_PAGE, countQuery = BookingQueries.COUNT_USER_PAGE, nativeQuery = true)
     Page<Booking> findUserPage(@Param("userId") Long userId, @Param("statuses") Collection<String> statuses,
                                @Param("checkoutAfter") LocalDate checkoutAfter,

@@ -8,6 +8,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.Collection;
 import java.util.List;
@@ -51,13 +52,16 @@ public interface HotelRepository extends WriteRepository<Hotel, Long> {
     @Query(value = HotelQueries.SEARCH, countQuery = HotelQueries.SEARCH_COUNT, nativeQuery = true)
     Page<Hotel> searchAvailable(@Param("locationId") Long locationId, @Param("checkIn") LocalDate checkIn,
                                 @Param("checkOut") LocalDate checkOut, @Param("rooms") int rooms,
-                                @Param("nights") long nights, Pageable pageable);
+                                @Param("nights") long nights, @Param("amenities") String amenities,
+                                @Param("minPrice") BigDecimal minPrice, @Param("maxPrice") BigDecimal maxPrice,
+                                @Param("minRating") BigDecimal minRating, Pageable pageable);
 
     /** Rows of [hotel_id, location_id, available_in_city]; see HotelQueries.SECTION_HOTEL_IDS. */
     @Query(value = HotelQueries.SECTION_HOTEL_IDS, nativeQuery = true)
     List<Object[]> findSectionHotelIds(@Param("checkIn") LocalDate checkIn, @Param("checkOut") LocalDate checkOut,
                                        @Param("rooms") int rooms, @Param("nights") long nights,
-                                       @Param("perCity") int perCity);
+                                       @Param("amenities") String amenities, @Param("minPrice") BigDecimal minPrice,
+                                       @Param("maxPrice") BigDecimal maxPrice, @Param("perCity") int perCity);
 
     /** Active, non-deleted hotels with these ids, in no particular order. */
     @Query(value = HotelQueries.FIND_PUBLIC_BY_IDS, nativeQuery = true)

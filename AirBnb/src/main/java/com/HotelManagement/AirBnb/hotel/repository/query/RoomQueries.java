@@ -13,6 +13,10 @@ public final class RoomQueries {
             SELECT r.* FROM room r WHERE r.hotel_id = :hotelId AND r.deleted_at IS NULL
             ORDER BY r.created_at, r.id""";
 
+    /** Live room types of several hotels (any order). */
+    public static final String FIND_LIVE_BY_HOTEL_IDS = """
+            SELECT r.* FROM room r WHERE r.hotel_id IN (:hotelIds) AND r.deleted_at IS NULL""";
+
     public static final String FIND_LIVE_IN_HOTEL = """
             SELECT r.* FROM room r WHERE r.id = :id AND r.hotel_id = :hotelId AND r.deleted_at IS NULL""";
 

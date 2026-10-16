@@ -48,21 +48,46 @@ public final class HotelQueries {
      * one live room type with :rooms free on every night in [checkIn, checkOut). A night is free when its
      * inventory row exists, isn't closed and total_count - booked_count covers the request (booked_count
      * already includes every inventory-holding booking; cancelled and expired ones are released).
+     * <p>
+     * The optional search filters apply to that same room type, so one bookable option must satisfy all of
+     * them: :amenities (comma-separated codes, '' = no filter) must all be offered by the room type or the
+     * hotel, and its average nightly price for the stay (sum of the nights' prices / :nights, per room) must
+     * be within :minPrice..:maxPrice (NULL = no bound). Prices are compared as totals (bound x :nights) so
+     * there is no rounding.
      */
     static final String HAS_BOOKABLE_ROOM = """
             EXISTS (
                 SELECT 1 FROM room r
                 WHERE r.hotel_id = h.hotel_id AND r.deleted_at IS NULL
-                  AND (SELECT COUNT(*) FROM inventory i
+                  AND (:amenities = ''
+                       OR (COALESCE(r.amenities, CAST('{}' AS text[])) || COALESCE(h.amenities, CAST('{}' AS text[])))
+                          @> string_to_array(:amenities, ','))
+                  AND (SELECT COUNT(*) = :nights
+                              AND (CAST(:minPrice AS numeric) IS NULL OR SUM(i.price) >= CAST(:minPrice AS numeric) * :nights)
+                              AND (CAST(:maxPrice AS numeric) IS NULL OR SUM(i.price) <= CAST(:maxPrice AS numeric) * :nights)
+                       FROM inventory i
                        WHERE i.hotel_id = h.hotel_id AND i.room_id = r.id
                          AND i.date >= :checkIn AND i.date < :checkOut
-                         AND i.closed = FALSE AND i.total_count - i.booked_count >= :rooms) = :nights)""";
+                         AND i.closed = FALSE AND i.total_count - i.booked_count >= :rooms))""";
 
-    /** Guest search: active, non-deleted hotels at the location that can take the stay (HAS_BOOKABLE_ROOM). */
+    /**
+     * Optional guest-rating filter: the hotel's average review rating, rounded to one decimal as it is shown,
+     * is at least :minRating (NULL = no filter). Hotels without reviews have no average, so they never pass
+     * an active rating filter. Uses idx_hotel_review_hotel_rating.
+     */
+    static final String MEETS_MIN_RATING = """
+            (CAST(:minRating AS numeric) IS NULL
+             OR (SELECT ROUND(AVG(v.rating), 1) FROM hotel_review v WHERE v.hotel_id = h.hotel_id)
+                >= CAST(:minRating AS numeric))""";
+
+    /**
+     * Guest search: active, non-deleted hotels at the location that can take the stay with the filters
+     * (HAS_BOOKABLE_ROOM) and meet the rating filter (MEETS_MIN_RATING).
+     */
     public static final String SEARCH_WHERE = """
             FROM hotel h
             WHERE h.location_id = :locationId AND h.active = TRUE AND h.deleted_at IS NULL
-              AND\s""" + HAS_BOOKABLE_ROOM;
+              AND\s""" + HAS_BOOKABLE_ROOM + "\n  AND " + MEETS_MIN_RATING;
 
     public static final String SEARCH = "SELECT h.* " + SEARCH_WHERE + "\nORDER BY h.name, h.hotel_id";
 

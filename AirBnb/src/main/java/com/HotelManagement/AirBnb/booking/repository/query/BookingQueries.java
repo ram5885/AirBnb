@@ -24,6 +24,12 @@ public final class BookingQueries {
 
     public static final String FIND_FOR_USER_FOR_UPDATE = FIND_FOR_USER + "\nFOR UPDATE";
 
+    /** The user's CONFIRMED bookings at one hotel, latest check-out first (candidates for a review). */
+    public static final String FIND_CONFIRMED_FOR_USER_AT_HOTEL = """
+            SELECT b.* FROM booking b
+            WHERE b.user_id = :userId AND b.hotel_id = :hotelId AND b.booking_status = 'CONFIRMED'
+            ORDER BY b.check_out_date DESC, b.booking_id DESC""";
+
     /** My Bookings page: statuses plus optional check-out bounds; order by check-in or by newest. */
     public static final String USER_PAGE_WHERE = """
             FROM booking b

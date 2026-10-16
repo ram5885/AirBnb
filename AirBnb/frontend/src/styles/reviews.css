@@ -1,0 +1,358 @@
+/* Hotel reviews (hotel page Reviews tab). Uses tokens from index.css and m-* pieces from manager.css. */
+
+.rv {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.rv-note {
+  font-size: 15px;
+  color: var(--color-text-light);
+}
+
+.rv-note a {
+  color: var(--color-text);
+  font-weight: 600;
+  text-decoration: underline;
+}
+
+/* stars */
+.rv-stars {
+  display: inline-flex;
+  gap: 2px;
+  vertical-align: middle;
+}
+
+.rv-star {
+  position: relative;
+  display: inline-block;
+}
+
+.rv-star svg {
+  display: block;
+}
+
+.rv-star__empty {
+  fill: var(--color-border);
+}
+
+.rv-star__fill {
+  position: absolute;
+  inset: 0 auto 0 0;
+  overflow: hidden;
+  fill: var(--color-text);
+}
+
+/* summary */
+.rv-summary {
+  display: grid;
+  grid-template-columns: minmax(150px, auto) minmax(0, 1fr);
+  gap: 32px;
+  align-items: center;
+  padding-bottom: 20px;
+  border-bottom: 1px solid var(--color-border-light);
+}
+
+.rv-summary__score {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.rv-summary__average {
+  font-size: 44px;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.rv-summary__average span {
+  font-size: 18px;
+  font-weight: 500;
+  color: var(--color-text-light);
+}
+
+.rv-distribution {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.rv-distribution li {
+  display: grid;
+  grid-template-columns: 56px minmax(0, 1fr) 36px;
+  gap: 10px;
+  align-items: center;
+  font-size: 13px;
+}
+
+.rv-distribution__bar {
+  height: 6px;
+  border-radius: var(--radius-pill);
+  background: var(--color-border-light);
+  overflow: hidden;
+}
+
+.rv-distribution__bar span {
+  display: block;
+  height: 100%;
+  background: var(--color-text);
+  border-radius: inherit;
+}
+
+.rv-distribution__count {
+  text-align: right;
+  color: var(--color-text-light);
+}
+
+/* form */
+.rv-form {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  padding: 20px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+}
+
+.rv-form h3 {
+  font-size: 18px;
+}
+
+.rv-form__field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.rv-form__field > span:first-child {
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.rv-form textarea,
+.rv-form select {
+  width: 100%;
+  padding: 10px 12px;
+  font: inherit;
+  font-size: 15px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  background: var(--color-bg);
+  color: var(--color-text);
+  resize: vertical;
+}
+
+.rv-form textarea:focus,
+.rv-form select:focus {
+  outline: none;
+  border-color: var(--color-text);
+  box-shadow: 0 0 0 1px var(--color-text);
+}
+
+.rv-form textarea[aria-invalid='true'] {
+  border-color: #c13515;
+}
+
+.rv-form .m-btn {
+  align-self: flex-start;
+}
+
+.rv-star-input {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  border: none;
+  padding: 0;
+}
+
+.rv-star-input label {
+  cursor: pointer;
+  fill: var(--color-border);
+  transition: fill 0.1s, transform 0.1s;
+}
+
+.rv-star-input label.is-on {
+  fill: var(--color-primary);
+}
+
+.rv-star-input label:hover {
+  transform: scale(1.1);
+}
+
+.rv-star-input input {
+  position: absolute;
+  opacity: 0;
+  width: 1px;
+  height: 1px;
+}
+
+.rv-star-input label:has(input:focus-visible) {
+  outline: 2px solid var(--color-text);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+.rv-star-input__label {
+  margin-left: 10px;
+  font-size: 15px;
+  font-weight: 600;
+}
+
+/* the guest's own reviews / stays */
+.rv-mine {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 16px;
+  border-radius: var(--radius-md);
+  background: var(--color-bg-soft);
+}
+
+.rv-mine__item {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+/* list */
+.rv-list__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 8px;
+}
+
+.rv-list__header h3 {
+  font-size: 18px;
+}
+
+.rv-sort select {
+  padding: 8px 12px;
+  font: inherit;
+  font-size: 14px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-pill);
+  background: var(--color-bg);
+}
+
+.rv-list {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 28px 32px;
+  margin: 16px 0;
+}
+
+.rv-card {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.rv-card__header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.rv-card__avatar {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: var(--color-text);
+  color: #fff;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+
+.rv-card__name {
+  font-weight: 600;
+}
+
+.rv-card__meta {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.rv-card__verified {
+  font-size: 12px;
+  font-weight: 600;
+  color: #067647;
+  background: #ecfdf3;
+  padding: 2px 8px;
+  border-radius: var(--radius-pill);
+}
+
+.rv-card__comment {
+  white-space: pre-line; /* keep the reviewer's line breaks; the text itself is escaped by React */
+  overflow-wrap: anywhere;
+  line-height: 1.5;
+}
+
+/* hotel page tabs and header rating */
+.h-tabs {
+  display: flex;
+  gap: 24px;
+  border-bottom: 1px solid var(--color-border-light);
+  margin-bottom: 20px;
+}
+
+.h-tabs button {
+  padding: 12px 0;
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--color-text-light);
+  background: none;
+  border-bottom: 2px solid transparent;
+  margin-bottom: -1px;
+}
+
+.h-tabs button[aria-selected='true'] {
+  color: var(--color-text);
+  border-bottom-color: var(--color-text);
+}
+
+.h-tabs button:focus-visible {
+  outline: 2px solid var(--color-text);
+  outline-offset: 2px;
+}
+
+.h-rating {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 4px;
+  font-size: 15px;
+  background: none;
+  padding: 0;
+}
+
+.h-rating strong {
+  font-weight: 600;
+}
+
+.h-rating span {
+  text-decoration: underline;
+}
+
+.h-rating--none {
+  color: var(--color-text-light);
+}
+
+@media (max-width: 700px) {
+  .rv-summary {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .rv-list {
+    grid-template-columns: 1fr;
+  }
+}

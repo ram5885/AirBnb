@@ -4,8 +4,13 @@ import { homePathFor, useAuth } from '../context/AuthContext.jsx';
 import '../styles/auth.css';
 
 const ROLES = [
-  { value: 'GUEST', label: 'Guest — book stays' },
-  { value: 'HOTEL_MANAGER', label: 'Hotel manager — list properties' },
+  { value: 'GUEST', title: 'Guest', text: 'Find and book stays', icon: 'M4 20v-1a6 6 0 0112 0v1M10 11a4 4 0 100-8 4 4 0 000 8z' },
+  {
+    value: 'HOTEL_MANAGER',
+    title: 'Hotel manager',
+    text: 'List and manage properties',
+    icon: 'M3 21V9l9-6 9 6v12M9 21v-6h6v6M3 21h18',
+  },
 ];
 
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -89,109 +94,100 @@ export default function Auth({ mode: initialMode }) {
 
   return (
     <div className="auth-page">
+      <div className="auth-brand" aria-hidden="true">
+        <svg viewBox="0 0 32 32" width="120" height="120" fill="currentColor">
+          <path d="M16 1c-1.1 0-2 .5-2.6 1.4C10.7 6.6 4 17.2 4 22a12 12 0 0024 0c0-4.8-6.7-15.4-9.4-19.6C18 1.5 17.1 1 16 1zm0 4.4c2.9 4.6 8 13.2 8 16.6a8 8 0 01-16 0c0-3.4 5.1-12 8-16.6z" />
+        </svg>
+        <span>airbnb</span>
+      </div>
+
       <div className="auth-card">
         <div className="auth-card__header">
-          <button
-            type="button"
-            className="auth-card__close"
-            aria-label="Close"
-            onClick={() => navigate('/')}
-          >
-            &times;
-          </button>
           <h1>Log in or sign up</h1>
         </div>
 
-        <div className="auth-tabs" role="tablist">
-          <button
-            type="button"
-            role="tab"
-            aria-selected={!isSignup}
-            className={`auth-tabs__tab ${!isSignup ? 'is-active' : ''}`}
-            onClick={() => switchMode('login')}
-          >
-            Log in
-          </button>
-          <button
-            type="button"
-            role="tab"
-            aria-selected={isSignup}
-            className={`auth-tabs__tab ${isSignup ? 'is-active' : ''}`}
-            onClick={() => switchMode('signup')}
-          >
-            Sign up
-          </button>
-        </div>
-
         <form className="auth-form" onSubmit={handleSubmit} noValidate>
-          {isSignup && (
-            <Field
-              label="Full name"
-              value={form.name}
-              onChange={(v) => updateField('name', v)}
-              error={fieldErrors.name}
-              autoComplete="name"
-            />
-          )}
+          <h2 className="auth-form__title">{isSignup ? 'Create your account' : 'Welcome to Airbnb'}</h2>
 
-          <Field
-            label="Email"
-            type="email"
-            value={form.email}
-            onChange={(v) => updateField('email', v)}
-            error={fieldErrors.email}
-            autoComplete="email"
-          />
-
-          <Field
-            label="Password"
-            type="password"
-            value={form.password}
-            onChange={(v) => updateField('password', v)}
-            error={fieldErrors.password}
-            autoComplete={isSignup ? 'new-password' : 'current-password'}
-          />
-
-          {isSignup && (
-            <>
+          <div className="auth-group">
+            {isSignup && (
               <Field
-                label="Confirm password"
-                type="password"
-                value={form.confirmPassword}
-                onChange={(v) => updateField('confirmPassword', v)}
-                error={fieldErrors.confirmPassword}
-                autoComplete="new-password"
+                label="Full name"
+                value={form.name}
+                onChange={(v) => updateField('name', v)}
+                error={fieldErrors.name}
+                autoComplete="name"
               />
+            )}
+            <Field
+              label="Email"
+              type="email"
+              value={form.email}
+              onChange={(v) => updateField('email', v)}
+              error={fieldErrors.email}
+              autoComplete="email"
+            />
+            <Field
+              label="Password"
+              type="password"
+              value={form.password}
+              onChange={(v) => updateField('password', v)}
+              error={fieldErrors.password}
+              autoComplete={isSignup ? 'new-password' : 'current-password'}
+            />
+            {isSignup && (
+              <>
+                <Field
+                  label="Confirm password"
+                  type="password"
+                  value={form.confirmPassword}
+                  onChange={(v) => updateField('confirmPassword', v)}
+                  error={fieldErrors.confirmPassword}
+                  autoComplete="new-password"
+                />
+              </>
+            )}
+          </div>
 
-              <label className="auth-select">
-                <span>I'm signing up as</span>
-                <select value={form.role} onChange={(e) => updateField('role', e.target.value)}>
-                  {ROLES.map((r) => (
-                    <option key={r.value} value={r.value}>
-                      {r.label}
-                    </option>
-                  ))}
-                </select>
-              </label>
-            </>
+          {isSignup && (
+            <fieldset className="auth-roles">
+              <legend>I'm signing up as</legend>
+              {ROLES.map((r) => (
+                <label key={r.value} className={`auth-role ${form.role === r.value ? 'is-on' : ''}`}>
+                  <input
+                    type="radio"
+                    name="role"
+                    value={r.value}
+                    checked={form.role === r.value}
+                    onChange={() => updateField('role', r.value)}
+                  />
+                  <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                    <path d={r.icon} />
+                  </svg>
+                  <span className="auth-role__title">{r.title}</span>
+                  <span className="auth-role__text">{r.text}</span>
+                </label>
+              ))}
+            </fieldset>
           )}
 
-          {formError && <p className="auth-form__error">{formError}</p>}
+          <FieldErrors errors={fieldErrors} />
+          <p className="auth-form__hint">
+            {isSignup
+              ? 'Use at least 6 characters for your password.'
+              : 'Use the email and password you signed up with.'}
+          </p>
+
+          {formError && (
+            <p className="auth-form__error" role="alert">
+              {formError}
+            </p>
+          )}
 
           <button type="submit" className="auth-submit" disabled={submitting}>
-            {submitting ? 'Please wait…' : isSignup ? 'Sign up' : 'Log in'}
+            {submitting ? 'Please wait…' : 'Continue'}
           </button>
         </form>
-
-        <div className="auth-divider">
-          <span>or</span>
-        </div>
-
-        <div className="auth-social">
-          <SocialButton label="Continue with Google" icon="G" />
-          <SocialButton label="Continue with Facebook" icon="f" />
-          <SocialButton label="Continue with Apple" icon="" />
-        </div>
 
         <p className="auth-switch">
           {isSignup ? (
@@ -215,30 +211,51 @@ export default function Auth({ mode: initialMode }) {
   );
 }
 
+/**
+ * One row of the joined field group with a floating label: centred in the row while empty, small above
+ * the text once focused or filled. Password rows get an eye button to show/hide the text.
+ */
 function Field({ label, type = 'text', value, onChange, error, autoComplete }) {
+  const [revealed, setRevealed] = useState(false);
+  const isPassword = type === 'password';
   return (
     <label className={`auth-field ${error ? 'has-error' : ''}`}>
-      <span>{label}</span>
       <input
-        type={type}
+        type={isPassword && revealed ? 'text' : type}
         value={value}
+        placeholder=" "
         autoComplete={autoComplete}
+        aria-invalid={!!error}
         onChange={(e) => onChange(e.target.value)}
       />
-      {error && <em className="auth-field__error">{error}</em>}
+      <span className="auth-field__label">{label}</span>
+      {isPassword && (
+        <button
+          type="button"
+          className="auth-field__toggle"
+          onClick={() => setRevealed((v) => !v)}
+          aria-label={revealed ? `Hide ${label.toLowerCase()}` : `Show ${label.toLowerCase()}`}
+        >
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+            <path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12z" />
+            <circle cx="12" cy="12" r="3" />
+            {revealed && <path d="M4 4l16 16" />}
+          </svg>
+        </button>
+      )}
     </label>
   );
 }
 
-function SocialButton({ label, icon }) {
+/** Field errors listed under the group (the joined rows leave no room under each input). */
+function FieldErrors({ errors }) {
+  const messages = Object.values(errors).filter(Boolean);
+  if (!messages.length) return null;
   return (
-    <button
-      type="button"
-      className="auth-social__btn"
-      onClick={() => alert(`${label} is not implemented in this demo — please use email instead.`)}
-    >
-      <span className="auth-social__icon">{icon}</span>
-      {label}
-    </button>
+    <ul className="auth-field-errors" role="alert">
+      {messages.map((m) => (
+        <li key={m}>{m}</li>
+      ))}
+    </ul>
   );
 }

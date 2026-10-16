@@ -42,7 +42,11 @@ public class SecurityConfig {
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/api/auth/**", "/error").permitAll()
                         .requestMatchers(HttpMethod.GET, "/api/locations/**", "/api/v1/amenities").permitAll()
-                        // Public hotel search/details/photos: only active hotels, no private contact data.
+                        // Writing reviews (and checking whether one can be written) is for guests with completed
+                        // stays; these come before the public GET rule below, which covers reading reviews.
+                        .requestMatchers(HttpMethod.POST, "/api/v1/hotels/*/reviews").hasRole("GUEST")
+                        .requestMatchers(HttpMethod.GET, "/api/v1/hotels/*/reviews/eligibility").hasRole("GUEST")
+                        // Public hotel search/details/photos/reviews: only active hotels, no private contact data.
                         .requestMatchers(HttpMethod.GET, "/api/v1/hotels/**").permitAll()
                         .requestMatchers("/api/v1/admin/**").hasRole("HOTEL_MANAGER")
                         // Razorpay server-to-server callbacks: authenticated by their HMAC signature instead.
