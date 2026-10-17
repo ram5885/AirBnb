@@ -1,0 +1,28 @@
+# Overlay for the automated end-to-end tests ONLY (scripts/e2e/run-e2e.sh). Runs the whole stack as a separate
+# Compose project with its own database volume and ports, and points booking-service at a Razorpay test double
+# so payment verification (signature, server-side fetch, amount checks, refunds) can be exercised offline.
+# The keys below are fake test-only values for that double; they are not Razorpay credentials.
+services:
+  razorpay-mock:
+    image: python:3.13-alpine
+    command: ["python", "-u", "/app/mock_razorpay.py"]
+    volumes:
+      - ./docker/razorpay-mock:/app:ro
+    ports:
+      # The test runner plays "the customer paid in Checkout" through the double's /__test endpoint.
+      - "127.0.0.1:${E2E_MOCK_PORT:-9100}:9000"
+    healthcheck:
+      test: ["CMD", "wget", "-qO-", "http://127.0.0.1:9000/health"]
+      interval: 3s
+      timeout: 3s
+      retries: 10
+    networks: [airbnb]
+
+  booking-service:
+    environment:
+      RAZORPAY_KEY_ID: rzp_test_e2e_mock_key
+      RAZORPAY_KEY_SECRET: e2e_mock_key_secret_not_a_real_secret
+      RAZORPAY_WEBHOOK_SECRET: e2e_mock_webhook_secret_not_a_real_secret
+      RAZORPAY_API_BASE_URL: http://razorpay-mock:9000
+    depends_on:
+      razorpay-mock: { condition: service_healthy }

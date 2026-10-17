@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Convenience aggregator: builds and tests every service in one command (mvn -f services/pom.xml verify).
+  The services don't depend on it or on each other; each one also builds on its own (cd services/<name> && mvn verify).
+-->
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>com.HotelManagement</groupId>
+	<artifactId>airbnb-services</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<packaging>pom</packaging>
+	<modules>
+		<module>auth-service</module>
+		<module>catalog-service</module>
+		<module>booking-service</module>
+		<module>review-service</module>
+		<module>api-gateway</module>
+	</modules>
+</project>

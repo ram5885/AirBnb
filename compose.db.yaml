@@ -1,0 +1,7 @@
+# Optional overlay: publish PostgreSQL on 127.0.0.1:5433 for GUI tools (DBeaver, pgAdmin, TablePlus) and psql on the Mac.
+#   docker compose -f compose.yaml -f compose.db.yaml up -d postgres
+# Bound to localhost only. Without this overlay the database is reachable only inside the Docker network.
+services:
+  postgres:
+    ports:
+      - "127.0.0.1:${DB_HOST_PORT:-5433}:5432"

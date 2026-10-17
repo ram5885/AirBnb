@@ -1,0 +1,20 @@
+# Local secrets and generated files (never commit these)
+.env
+.env.*
+!.env.example
+backups/
+logs/
+*.dump
+
+# OS / IDE
+.DS_Store
+**/.DS_Store
+.idea/
+.vscode/
+*.iml
+
+# Build output
+services/*/target/
+**/node_modules/
+**/dist/
+__pycache__/
